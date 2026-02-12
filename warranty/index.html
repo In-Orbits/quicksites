@@ -34,13 +34,8 @@
             background: var(--bg);
             color: var(--text-primary);
             line-height: 1.6;
-            padding: 40px 20px;
+            padding: 24px;
             -webkit-font-smoothing: antialiased;
-        }
-        
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
         }
         
         .header {
@@ -55,13 +50,13 @@
         .site-name {
             font-size: 14px;
             font-weight: bold;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             letter-spacing: 0.05em;
         }
         
         .timestamp {
             font-size: 12px;
-            color: var(--text-dim);
+            color: var(--text-secondary);
         }
         
         h1 {
@@ -73,7 +68,7 @@
         
         .subtitle {
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             margin-bottom: 32px;
         }
         
@@ -111,7 +106,7 @@
         .card-header {
             font-size: 12px;
             font-weight: bold;
-            color: var(--text-secondary);
+            color: var(--text-primary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 16px;
@@ -130,7 +125,7 @@
         }
         
         .info-label {
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
         
         .info-value {
@@ -175,7 +170,7 @@
             padding: 4px 0 4px 16px;
             position: relative;
             font-size: 14px;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }
         
         ul li:before {
@@ -192,7 +187,7 @@
         
         .status-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 16px;
             margin: 24px 0;
         }
@@ -246,9 +241,9 @@
             line-height: 1.5;
         }
         
-        @media (max-width: 720px) {
+        @media (max-width: 768px) {
             body {
-                padding: 20px 16px;
+                padding: 16px;
             }
             
             .status-grid {
@@ -262,127 +257,125 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="site-name">HUNTER DOUGLAS</div>
-            <div class="timestamp">FEB 2026</div>
+    <div class="header">
+        <div class="site-name">HUNTER DOUGLAS</div>
+        <div class="timestamp">FEB 2026</div>
+    </div>
+    
+    <h1>Vignette Modern Roman Shades</h1>
+    <div class="subtitle">Warranty Summary</div>
+    
+    <div class="card">
+        <div class="card-header">Invoice Details</div>
+        <div class="info-row">
+            <span class="info-label">Invoice #</span>
+            <span class="info-value">1769</span>
         </div>
+        <div class="info-row">
+            <span class="info-label">Purchase Date</span>
+            <span class="info-value">May 5, 2023</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Total</span>
+            <span class="info-value">$6,021.51</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Installer/Rep</span>
+            <span class="info-value">Ben</span>
+        </div>
+    </div>
+
+    <h2>Products</h2>
+    
+    <div class="card">
+        <h3>Vignette Modern Roman Shades</h3>
+        <ul class="product-list">
+            <li>M Bdrm - EasyRise Stacking Top-Down/Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204</li>
+            <li>M Bdrm - PowerView Stacking Top-Down/Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204 (×3)</li>
+            <li>Closet - PowerView Stacking Bottom-Up A22 - 4in Cambria Full Fold Light Filter Back 1204</li>
+            <li>M Bath - PowerView Stacking Bottom-Up A22 - 4in Cambria Full Fold Light Filter Back 1204</li>
+            <li>Guest - LiteRise Stacking Top-Down/Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204</li>
+            <li>Bdrm 3 - LiteRise Stacking Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204</li>
+        </ul>
         
-        <h1>Vignette Modern Roman Shades</h1>
-        <div class="subtitle">Warranty Summary</div>
-        
-        <div class="card">
-            <div class="card-header">Invoice Details</div>
-            <div class="info-row">
-                <span class="info-label">Invoice #</span>
-                <span class="info-value">1769</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Purchase Date</span>
-                <span class="info-value">May 5, 2023</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Total</span>
-                <span class="info-value">$6,021.51</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Installer/Rep</span>
-                <span class="info-value">Ben</span>
-            </div>
+        <h3>Motorization</h3>
+        <ul class="product-list">
+            <li>PowerView Accessories - Hunter Douglas Motorization (×2)</li>
+            <li>Motorization Installation Charges</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Coverage</h2>
+
+    <div class="warranty-card success">
+        <div class="warranty-title">✓ Lifetime Limited Warranty</div>
+        <div class="warranty-meta">LIFE OF ORIGINAL PURCHASER</div>
+        <ul>
+            <li>Fabric</li>
+            <li>Operating mechanisms (cords, springs, headrails)</li>
+            <li>Components and brackets</li>
+        </ul>
+    </div>
+
+    <div class="warranty-card warning">
+        <div class="warranty-title">⏰ 5-Year Motorization Warranty</div>
+        <div class="warranty-meta">MAY 5, 2023 → MAY 5, 2028</div>
+        <ul>
+            <li>PowerView motorization components</li>
+            <li>~2.25 years remaining (as of February 2026)</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Terms</h2>
+
+    <div class="card">
+        <h3>What's Covered</h3>
+        <ul>
+            <li><span class="checkmark">✓</span>Materials and workmanship defects</li>
+            <li><span class="checkmark">✓</span>Repairs or replacement with like/similar parts</li>
+            <li><span class="checkmark">✓</span>Must be original purchaser</li>
+        </ul>
+
+        <h3>What's NOT Covered</h3>
+        <ul>
+            <li><span class="xmark">×</span>Normal wear & tear</li>
+            <li><span class="xmark">×</span>Misuse or abuse</li>
+            <li><span class="xmark">×</span>Damage from improper installation</li>
+            <li><span class="xmark">×</span>Environmental factors (sun fade, moisture)</li>
+            <li><span class="xmark">×</span>Third-party motorization devices</li>
+            <li><span class="xmark">×</span>Removal/reinstallation at another location</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Current Status</h2>
+
+    <div class="status-grid">
+        <div class="status-card">
+            <div class="status-label">Main Warranty</div>
+            <div class="status-value">✓ Active (Lifetime)</div>
         </div>
-
-        <h2>Products</h2>
-        
-        <div class="card">
-            <h3>Vignette Modern Roman Shades</h3>
-            <ul class="product-list">
-                <li>M Bdrm - EasyRise Stacking Top-Down/Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204</li>
-                <li>M Bdrm - PowerView Stacking Top-Down/Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204 (×3)</li>
-                <li>Closet - PowerView Stacking Bottom-Up A22 - 4in Cambria Full Fold Light Filter Back 1204</li>
-                <li>M Bath - PowerView Stacking Bottom-Up A22 - 4in Cambria Full Fold Light Filter Back 1204</li>
-                <li>Guest - LiteRise Stacking Top-Down/Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204</li>
-                <li>Bdrm 3 - LiteRise Stacking Bottom-Up ZA22E - 4in Cambria Full Fold Rm Dk Back 1204</li>
-            </ul>
-            
-            <h3>Motorization</h3>
-            <ul class="product-list">
-                <li>PowerView Accessories - Hunter Douglas Motorization (×2)</li>
-                <li>Motorization Installation Charges</li>
-            </ul>
+        <div class="status-card">
+            <div class="status-label">Motorization</div>
+            <div class="status-value warning">~2.25 years remaining</div>
         </div>
+    </div>
 
-        <div class="divider"></div>
+    <div class="card">
+        <div class="card-header">How to File a Claim</div>
+        <p style="color: var(--text-primary); line-height: 1.6; font-size: 14px; margin-top: 8px;">
+            Contact your installer (Ben) or Hunter Douglas directly for warranty service while motorization is still under coverage.
+        </p>
+    </div>
 
-        <h2>Coverage</h2>
-
-        <div class="warranty-card success">
-            <div class="warranty-title">✓ Lifetime Limited Warranty</div>
-            <div class="warranty-meta">LIFE OF ORIGINAL PURCHASER</div>
-            <ul>
-                <li>Fabric</li>
-                <li>Operating mechanisms (cords, springs, headrails)</li>
-                <li>Components and brackets</li>
-            </ul>
-        </div>
-
-        <div class="warranty-card warning">
-            <div class="warranty-title">⏰ 5-Year Motorization Warranty</div>
-            <div class="warranty-meta">MAY 5, 2023 → MAY 5, 2028</div>
-            <ul>
-                <li>PowerView motorization components</li>
-                <li>~2.25 years remaining (as of February 2026)</li>
-            </ul>
-        </div>
-
-        <div class="divider"></div>
-
-        <h2>Terms</h2>
-
-        <div class="card">
-            <h3>What's Covered</h3>
-            <ul>
-                <li><span class="checkmark">✓</span>Materials and workmanship defects</li>
-                <li><span class="checkmark">✓</span>Repairs or replacement with like/similar parts</li>
-                <li><span class="checkmark">✓</span>Must be original purchaser</li>
-            </ul>
-
-            <h3>What's NOT Covered</h3>
-            <ul>
-                <li><span class="xmark">×</span>Normal wear & tear</li>
-                <li><span class="xmark">×</span>Misuse or abuse</li>
-                <li><span class="xmark">×</span>Damage from improper installation</li>
-                <li><span class="xmark">×</span>Environmental factors (sun fade, moisture)</li>
-                <li><span class="xmark">×</span>Third-party motorization devices</li>
-                <li><span class="xmark">×</span>Removal/reinstallation at another location</li>
-            </ul>
-        </div>
-
-        <div class="divider"></div>
-
-        <h2>Current Status</h2>
-
-        <div class="status-grid">
-            <div class="status-card">
-                <div class="status-label">Main Warranty</div>
-                <div class="status-value">✓ Active (Lifetime)</div>
-            </div>
-            <div class="status-card">
-                <div class="status-label">Motorization</div>
-                <div class="status-value warning">~2.25 years remaining</div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">How to File a Claim</div>
-            <p style="color: var(--text-secondary); line-height: 1.6; font-size: 14px; margin-top: 8px;">
-                Contact your installer (Ben) or Hunter Douglas directly for warranty service while motorization is still under coverage.
-            </p>
-        </div>
-
-        <div class="footer">
-            This summary is based on standard Hunter Douglas Lifetime Limited Warranty terms. 
-            Refer to official Hunter Douglas warranty documentation for complete terms and conditions.
-        </div>
+    <div class="footer">
+        This summary is based on standard Hunter Douglas Lifetime Limited Warranty terms. 
+        Refer to official Hunter Douglas warranty documentation for complete terms and conditions.
     </div>
 </body>
 </html>
