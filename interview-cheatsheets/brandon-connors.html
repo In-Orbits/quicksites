@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brandon Connors — Interview Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFFF8;
+      --bg-secondary: #f5f5f4;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-dim: #6b7280;
+      --border: #d1d5db;
+      --border-active: #000000;
+      --accent: #2a623d;
+      --accent-dark: #0b4e10;
+      --accent-tint: rgba(20, 103, 20, 0.15);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; box-shadow: none !important; }
+    body {
+      font-family: 'Playfair Display', Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+      font-size: 17px; line-height: 1.6; color: var(--text-primary); background: var(--bg);
+    }
+    .container { max-width: 820px; margin: 0 auto; padding: 80px 24px 48px; }
+    .panel-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 48px; background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; padding: 0 24px; gap: 24px; z-index: 100;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px;
+    }
+    .panel-nav a { color: var(--text-dim); text-decoration: none; padding: 4px 0; }
+    .panel-nav a:hover { color: var(--accent); }
+    .panel-nav a.active { color: var(--accent-dark); border-bottom: 2px solid var(--accent); font-weight: 600; }
+    .panel-nav .brand { color: var(--text-primary); font-weight: 600; margin-right: 16px; }
+    .header { border-bottom: 2px solid var(--border-active); padding-bottom: 24px; margin-bottom: 32px; }
+    .header h1 { font-size: 28px; font-weight: 600; margin-bottom: 4px; }
+    .header .subtitle { font-size: 17px; color: var(--text-secondary); }
+    .header .meta { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; color: var(--text-dim); margin-top: 8px; }
+    .op-badge { display: inline-block; padding: 2px 10px; font-size: 13px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: var(--accent); color: #fff; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+    section { margin-bottom: 40px; }
+    section h2 { font-size: 17px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; }
+    .resume-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .resume-entry { padding: 12px 16px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .resume-entry:nth-child(even) { border-right: none; }
+    .resume-entry .company { font-weight: 600; font-size: 16px; }
+    .resume-entry .role { font-size: 15px; color: var(--text-secondary); }
+    .resume-entry .detail { font-size: 14px; color: var(--text-dim); margin-top: 2px; }
+    .focus-block { border: 2px solid var(--accent); padding: 20px; margin-bottom: 16px; }
+    .focus-block h3 { font-size: 16px; font-weight: 600; color: var(--accent-dark); margin-bottom: 12px; }
+    .focus-block ul { list-style: none; padding: 0; }
+    .focus-block li { font-size: 15px; padding: 4px 0; padding-left: 16px; position: relative; }
+    .focus-block li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+    .focus-block li strong { color: var(--text-primary); }
+    .star-def { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; background: var(--bg-secondary); border: 1px solid var(--border); padding: 12px 16px; margin-bottom: 24px; }
+    .star-def .letter { font-weight: 600; color: var(--accent-dark); }
+    .story-card { border: 1px solid var(--border); margin-bottom: 16px; }
+    .story-card .story-header { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .story-card .story-header:hover { background: var(--accent-tint); }
+    .story-card .story-title { font-weight: 600; font-size: 16px; }
+    .story-card .story-tag { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 11px; color: var(--accent); border: 1px solid var(--accent); padding: 1px 8px; }
+    .story-card .star-grid { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; padding: 16px; font-size: 15px; }
+    .story-card .star-label { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-weight: 600; font-size: 13px; color: var(--accent-dark); padding-top: 2px; }
+    .story-card .star-text { padding-bottom: 8px; }
+    .story-card .story-body { display: none; }
+    .story-card.open .story-body { display: block; }
+    .chevron { font-size: 14px; color: var(--text-dim); transition: transform 0.2s ease-out; }
+    .story-card.open .chevron { transform: rotate(90deg); }
+    .ask-list { list-style: none; padding: 0; }
+    .ask-list li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  </style>
+</head>
+<body>
+<nav class="panel-nav">
+  <span class="brand">SAMSARA PANEL</span>
+  <a href="patrick-trofa.html">Patrick Trofa</a>
+  <a href="brandon-connors.html" class="active">Brandon Connors</a>
+  <a href="kyle-jones.html">Kyle Jones</a>
+  <a href="brandon-ray.html">Brandon Ray</a>
+</nav>
+<div class="container">
+  <div class="header">
+    <h1>Brandon Connors</h1>
+    <div class="subtitle">Director, Global Operations Engineering · Samsara</div>
+    <div class="meta">Friday, Feb 13 · 2:00pm–2:45pm PST · Zoom · 45 min</div>
+    <div style="margin-top: 12px;"><span class="op-badge">Eliminate Bureaucracy</span></div>
+  </div>
+
+  <section>
+    <h2>About Brandon</h2>
+    <div class="resume-grid">
+      <div class="resume-entry">
+        <div class="company">Apple</div>
+        <div class="role">Manufacturing Development</div>
+        <div class="detail">Apple's ops engine — prototype to mass production. JDM/ODM at the highest bar.</div>
+      </div>
+      <div class="resume-entry">
+        <div class="company">Waymo</div>
+        <div class="role">Supplier Quality Engineering</div>
+        <div class="detail">Autonomous vehicles. Quality failures literally kill people.</div>
+      </div>
+      <div class="resume-entry">
+        <div class="company">Embark Trucks</div>
+        <div class="role">VP of Engineering</div>
+        <div class="detail">Autonomous trucking startup. Shut down March 2023. Lived through a startup death.</div>
+      </div>
+      <div class="resume-entry">
+        <div class="company">Education</div>
+        <div class="role">MS Bioengineering, UC Berkeley</div>
+        <div class="detail">Engineer by training. Has patents. Hands-on, not a slide-deck leader.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Focus Areas</h2>
+    <div class="focus-block">
+      <h3>Focus 1: JDM Relationship Management</h3>
+      <ul>
+        <li><strong>SE Asia diversification</strong> — diagnosed degraded JDM trust, built "Bill of Rights" to rebuild</li>
+        <li><strong>8+ JDMs, differentiated strategies</strong> — WNC templates, Senao alignment, Sercomm WiFi 7 positioning</li>
+        <li><strong>Influence without authority</strong> — weekly calls, roadmap transparency, shared OKRs</li>
+        <li><strong>$330M → $870M+ growth</strong> — onboarded new partners, phased out underperformers, zero disruption</li>
+      </ul>
+    </div>
+    <div class="focus-block">
+      <h3>Focus 2: Eliminate Bureaucracy — Bias for Action</h3>
+      <ul>
+        <li><strong>Replaced broken systems</strong> — fired 3PL, built API integrations himself (Project Redwood)</li>
+        <li><strong>Governance without overhead</strong> — MPA protects the ceiling, daily ops stay fast</li>
+        <li><strong>173 units by hand</strong> — CM can't flex? Set up manual assembly line, then systematize</li>
+        <li><strong>Created competition from zero</strong> — SunPe RFP broke WNC's structural price protection</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Stories</h2>
+    <div class="star-def">
+      <span class="letter">S</span><span>Situation — set the scene, 1–2 sentences</span>
+      <span class="letter">T</span><span>Task — your specific responsibility</span>
+      <span class="letter">A</span><span>Action — what YOU did, 2–3 steps</span>
+      <span class="letter">R</span><span>Result — quantified business impact</span>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">SE Asia Diversification — Rebuilding JDM Trust</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">MERAKI</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">Taiwan-concentrated manufacturing. Years of start/stop programs burned JDM trust. COVID killed site visits.</span>
+          <span class="star-label">T</span><span class="star-text">Diversification strategy that fixed the root cause (broken trust), not just geography.</span>
+          <span class="star-label">A</span><span class="star-text">Diagnosed why JDMs deprioritized Meraki. Authored "JDM Bill of Rights" — rules of engagement rebuilding trust. Sequenced migration: Delta Bangkok → WNC Vietnam → Sercomm Philippines.</span>
+          <span class="star-label">R</span><span class="star-text">Strategy adopted. JDM relationships stabilized. Repeatable playbook for geographic diversification.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">JDM Portfolio at Scale — Influence Without Authority</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">MERAKI</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">$870M+ across 8+ JDMs, each with different strategic needs and relationship dynamics.</span>
+          <span class="star-label">T</span><span class="star-text">Manage portfolio with differentiated strategies — influence resource allocation without direct authority.</span>
+          <span class="star-label">A</span><span class="star-text">Weekly calls per JDM (influence sessions, not status). JDM-specific strategies: WNC got Aurora templates, Senao got management alignment, Sercomm got WiFi 7 positioning. Program awards as strategic signals.</span>
+          <span class="star-label">R</span><span class="star-text">$330M → $870M+. WNC 33x. New entrants became major contributors. Zero supply disruptions from transitions.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">Project Redwood — Building Around Broken Systems</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">VERGESENSE</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">3PL hemorrhaging inventory. ERP broken. IT queue 6 months deep.</span>
+          <span class="star-label">T</span><span class="star-text">Replace 3PL and fix integration. No headcount, no engineering support.</span>
+          <span class="star-label">A</span><span class="star-text">Fired Expeditors. Moved to Rush Order. Built API integrations himself (Celigo/NetSuite, Hex/AppsScript/Slack reporting). Bypassed IT entirely.</span>
+          <span class="star-label">R</span><span class="star-text">10x reduction in fulfillment costs. Zero contractor dependency. System runs itself.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">WNC MPA — Governance Without Bureaucracy</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">VERGESENSE</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">Day-to-day ops with WNC worked great (weekly calls, direct relationships). But no strategic protection — no IP, no liability caps.</span>
+          <span class="star-label">T</span><span class="star-text">Formalize without disrupting the fast operating model that made WNC effective.</span>
+          <span class="star-label">A</span><span class="star-text">Negotiated directly (not handed to legal). Built relationships at WNC CEO level. Designed MPA so daily operations stayed unchanged — protection in the document, not in new approval layers.</span>
+          <span class="star-label">R</span><span class="star-text">Boardroom-grade MPA. Same fast daily cadence. Strategy without bureaucracy.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">L410 SOC Bankruptcy — No Playbook, Just Action</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">VERGESENSE</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">SOC vendor bankrupt mid-NPI. WNC inflating costs and requesting unnecessary capital.</span>
+          <span class="star-label">T</span><span class="star-text">Replace silicon, hold cost line, keep WNC honest — all at once, no playbook.</span>
+          <span class="star-label">A</span><span class="star-text">RFP'd Alif in parallel with engineering eval. Audited test time (222s vs 360s). Rejected $30-40K line expansion, solved for $4K.</span>
+          <span class="star-label">R</span><span class="star-text">On-budget. $4.38/unit savings. 200+ units/day at 10% of proposed capital.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ask Brandon</h2>
+    <ul class="ask-list">
+      <li>"You've been at Apple/Waymo (heavy process) and Embark/Atomic (barely any). Where does Samsara sit on that spectrum, and where does it need to go?"</li>
+      <li>"Your team makes products manufacturable. What's the handoff look like today between ops engineering and hardware ops? Where does it break?"</li>
+      <li>"What's the biggest bureaucratic barrier at Samsara right now that you wish someone would just fix?"</li>
+      <li>"If you were hiring for this role, what's the one thing you'd look for that most people would miss?"</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
