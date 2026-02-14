@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costanoa — You're Invited!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --sand: #f5f0e8;
+    --forest: #2d4a3e;
+    --ocean: #3a6b7e;
+    --warm: #c4956a;
+    --cream: #faf8f4;
+    --bark: #5c4a3a;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%),
+      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover;
+    color: white;
+  }
+
+  .hero-content { max-width: 700px; padding: 2rem; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero .invite-line {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50px;
+    padding: 0.7rem 2rem;
+    font-size: 1.05rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    font-size: 1.5rem;
+    opacity: 0.7;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 1.5rem; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 600;
+    color: var(--forest);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: #777;
+    font-size: 1.05rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  /* WHAT IS IT */
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .what-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .what-card:hover { transform: translateY(-4px); }
+
+  .what-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+
+  .what-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest);
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .what-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* PHOTO GRID */
+  .photo-section { background: var(--sand); }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .photo-grid .caption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  /* DETAILS */
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .detail-item {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .detail-item .label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--warm);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .detail-item .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--forest);
+    font-weight: 600;
+  }
+
+  .detail-item .note {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0.3rem;
+    line-height: 1.5;
+  }
+
+  /* ACTIVITIES */
+  .activities-section { background: var(--forest); color: white; }
+  .activities-section .section-title { color: white; }
+  .activities-section .section-sub { color: rgba(255,255,255,0.7); }
+
+  .activity-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    list-style: none;
+  }
+
+  .activity-list li {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(5px);
+  }
+
+  .activity-list li .emoji { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+  .activity-list li strong { display: block; margin-bottom: 0.3rem; font-size: 1.05rem; }
+  .activity-list li span { font-size: 0.9rem; opacity: 0.7; }
+
+  /* KIDS */
+  .kids-callout {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .kids-callout h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--forest);
+    margin-bottom: 1rem;
+  }
+
+  .kids-callout p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* MAP */
+  .map-section { background: var(--sand); }
+
+  .map-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+
+  .map-wrapper iframe { width: 100%; height: 400px; border: 0; }
+
+  .drive-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .drive-info div { text-align: center; }
+  .drive-info .from { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
+  .drive-info .time { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--forest); font-weight: 600; }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, var(--forest), var(--ocean));
+    color: white;
+    padding: 5rem 1.5rem;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .cta-section a.btn {
+    display: inline-block;
+    background: white;
+    color: var(--forest);
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .cta-section a.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Costanoa</h1>
+    <p class="subtitle">California's Coastal Lodge & Camp — Highway 1, Pescadero</p>
+    <div class="invite-line">Meg & Don — you're invited! 🌊</div>
+  </div>
+  <div class="scroll-hint">↓</div>
+</div>
+
+<!-- WHAT IS IT -->
+<section>
+  <h2 class="section-title">What is Costanoa?</h2>
+  <p class="section-sub">An eco-adventure resort nestled between the Pacific Ocean and the Santa Cruz Mountains along scenic Highway 1. Think: nature meets comfort.</p>
+  <div class="what-grid">
+    <div class="what-card">
+      <div class="icon">🌲</div>
+      <h3>Coastal Wilderness</h3>
+      <p>Set on acres of protected coastline with eucalyptus groves, rolling hills, and ocean views. Wild rabbits, birds, and incredible stargazing.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">🏕️</div>
+      <h3>Glamping & Lodging</h3>
+      <p>Cabins, tent bungalows, lodge rooms, and full-hookup RV sites. Heated beds, fire pits, and real bathrooms — not roughing it.</p>
+    </div>
+    <div class="what-card">
+      <div class="icon">🍽️</div>
+      <h3>Great Food & Wine</h3>
+      <p>Two on-site restaurants with fresh, local California fare. Wine tastings and s'mores by the fire pit in the evening.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENERY -->
+<section class="photo-section">
+  <h2 class="section-title">The Scenery</h2>
+  <p class="section-sub">Rugged coastline, towering redwoods, and golden hillsides — all within walking distance.</p>
+  <div class="photo-grid">
+    <div>
+      <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="California coastal cliffs">
+      <div class="caption">Dramatic Pacific coastline along Highway 1</div>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80" alt="Redwood forest trail">
+      <div class="caption">Trails through towering redwood & eucalyptus groves</div>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80" alt="Sunset over ocean">
+      <div class="caption">Sunsets that don't quit</div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section>
+  <h2 class="section-title">The Details</h2>
+  <div class="details-grid">
+    <div class="detail-item">
+      <div class="label">Where</div>
+      <div class="value">Pescadero, CA</div>
+      <div class="note">2001 Rossi Road, right off Highway 1<br>Between San Francisco & Santa Cruz</div>
+    </div>
+    <div class="detail-item">
+      <div class="label">Accommodations</div>
+      <div class="value">Lodge & RV</div>
+      <div class="note">We'll be in the Airstream — lodge rooms, cabins, and glamping tents available for you</div>
+    </div>
+    <div class="detail-item">
+      <div class="label">Vibe</div>
+      <div class="value">Relaxed & Easy</div>
+      <div class="note">No agenda. Hike if you want. Read a book. Hang with the grandkids. Your call.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities-section">
+  <h2 class="section-title">Things to Do</h2>
+  <p class="section-sub">As much or as little as you want — that's the whole point.</p>
+  <ul class="activity-list">
+    <li><span class="emoji">🥾</span> <strong>Hiking</strong> <span>Coastal trails with ocean views</span></li>
+    <li><span class="emoji">🚴</span> <strong>Mountain Biking</strong> <span>Trails through the hills</span></li>
+    <li><span class="emoji">🧘</span> <strong>Yoga & Spa</strong> <span>Classes + massage treatments</span></li>
+    <li><span class="emoji">🍷</span> <strong>Wine Tasting</strong> <span>Local California wines on-site</span></li>
+    <li><span class="emoji">🔭</span> <strong>Stargazing</strong> <span>Zero light pollution — incredible skies</span></li>
+    <li><span class="emoji">🏖️</span> <strong>Beach Time</strong> <span>Pacific beaches minutes away</span></li>
+    <li><span class="emoji">🐘</span> <strong>Año Nuevo</strong> <span>Elephant seal colony next door</span></li>
+    <li><span class="emoji">🔥</span> <strong>Fire Pit Hangs</strong> <span>S'mores. Stories. Stars.</span></li>
+  </ul>
+</section>
+
+<!-- KIDS -->
+<section>
+  <h2 class="section-title">For the Grandkids</h2>
+  <div class="kids-callout">
+    <h3>Charlie & Mac Are Going to Love It 🌟</h3>
+    <p>Costanoa has a playground, tons of space to run around, wildlife to spot (rabbits, birds, maybe even elephant seals at nearby Año Nuevo), fire pits for s'mores, and that special kind of outdoor freedom kids don't get enough of. It's the kind of place where they'll sleep hard and wake up happy.</p>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <h2 class="section-title">How to Get There</h2>
+  <p class="section-sub">A beautiful drive down the coast — no airports required.</p>
+  <div class="map-wrapper">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3183.5!2d-122.3963!3d37.2276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f0468e5fb7ab5%3A0x7b5e7c1d0e9e8c1a!2sCostanoa!5e0!3m2!1sen!2sus!4v1707890000000!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <div class="drive-info">
+    <div>
+      <div class="from">From Corte Madera</div>
+      <div class="time">~1.5 hours</div>
+    </div>
+    <div>
+      <div class="from">From San Francisco</div>
+      <div class="time">~1 hour</div>
+    </div>
+    <div>
+      <div class="from">From Santa Cruz</div>
+      <div class="time">~30 min</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Come With Us! 🌊</h2>
+  <p>We'd love to have you join us. The boys would be thrilled to have Grandma and Grandpa along for the adventure.</p>
+  <a class="btn" href="https://www.costanoa.com/" target="_blank">Explore Costanoa →</a>
+</section>
+
+<footer>Made with ❤️ by the Head Family</footer>
+
+</body>
+</html>
