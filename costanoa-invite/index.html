@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Costanoa — Meg & Don, You're Invited!</title>
+<title>Costanoa — GG &amp; Pops, You're Invited!</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -24,6 +24,35 @@
     background: var(--cream);
     overflow-x: hidden;
   }
+
+  /* TOP NAV */
+  .top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    padding: 0.6rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .top-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+
+  .top-nav a:hover { opacity: 1; }
+  .top-nav .sep { color: rgba(255,255,255,0.3); }
 
   /* HERO */
   .hero {
@@ -566,12 +595,29 @@
 </head>
 <body>
 
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <a href="https://www.costanoa.com/" target="_blank">costanoa.com</a>
+  <span class="sep">·</span>
+  <a href="https://www.costanoa.com/stay/lodge/" target="_blank">Lodge Rooms</a>
+  <span class="sep">·</span>
+  <a href="https://www.costanoa.com/stay/cabins/" target="_blank">Cabins</a>
+  <span class="sep">·</span>
+  <a href="https://www.costanoa.com/stay/glamping-tents/" target="_blank">Glamping</a>
+  <span class="sep">·</span>
+  <a href="https://www.costanoa.com/eat/" target="_blank">Dining</a>
+  <span class="sep">·</span>
+  <a href="https://www.costanoa.com/recreation/" target="_blank">Activities</a>
+  <span class="sep">·</span>
+  <a href="https://reservations.costanoa.com/costanoa/" target="_blank">Book Now</a>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-content">
     <h1>Costanoa</h1>
     <p class="subtitle">Coastal Lodge & Camp · Highway 1, Pescadero, CA</p>
-    <div class="invite-line">Meg & Don — you're invited! 🌊</div>
+    <div class="invite-line">GG &amp; Pops — you're invited! 🌊</div>
   </div>
   <div class="scroll-hint">↓</div>
 </div>
@@ -812,20 +858,12 @@
   <h2 class="section-title">Getting There</h2>
   <p class="section-sub">2001 Rossi Road, Pescadero, CA 94060 — right off Highway 1. Beautiful drive down the coast.</p>
   <div class="map-wrapper">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3183.5!2d-122.3963!3d37.2276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f0468e5fb7ab5%3A0x7b5e7c1d0e9e8c1a!2sCostanoa!5e0!3m2!1sen!2sus!4v1707890000000!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps?q=Costanoa+Lodge+%26+Camp,+2001+Rossi+Rd,+Pescadero,+CA+94060&output=embed" allowfullscreen loading="lazy"></iframe>
   </div>
   <div class="drive-info">
     <div>
-      <div class="from">From Corte Madera</div>
-      <div class="time">~1.5 hours</div>
-    </div>
-    <div>
-      <div class="from">From San Francisco</div>
-      <div class="time">~1 hour</div>
-    </div>
-    <div>
-      <div class="from">From Santa Cruz</div>
-      <div class="time">~30 min</div>
+      <div class="from">From Sonoma</div>
+      <div class="time">~2 hours</div>
     </div>
   </div>
 </section>
@@ -833,7 +871,7 @@
 <!-- CTA -->
 <section class="cta-section">
   <h2>Come With Us Saturday! 🌊</h2>
-  <p>We'd love to have you join. The boys would be thrilled to have Grandma and Grandpa (and Toby) along for the adventure. Book a room and we'll handle the rest.</p>
+  <p>We'd love to have you join. The boys would be thrilled to have GG and Pops (and Toby) along for the adventure. Book a room and we'll handle the rest.</p>
   <a class="btn" href="https://reservations.costanoa.com/costanoa/" target="_blank">Book a Room →</a>
   <a class="btn secondary" href="https://www.costanoa.com/" target="_blank">Explore Costanoa</a>
 </section>
