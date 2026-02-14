@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Costanoa — You're Invited!</title>
+<title>Costanoa — Meg & Don, You're Invited!</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -35,12 +35,12 @@
     justify-content: center;
     text-align: center;
     background:
-      linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.4) 100%),
-      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover;
+      linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.45) 100%),
+      url('https://www.costanoa.com/wp-content/uploads/2024/07/california-coastal-lodge-exterior.jpg') center/cover;
     color: white;
   }
 
-  .hero-content { max-width: 700px; padding: 2rem; }
+  .hero-content { max-width: 720px; padding: 2rem; }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
@@ -52,7 +52,7 @@
   }
 
   .hero .subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     font-weight: 300;
     letter-spacing: 0.05em;
     opacity: 0.9;
@@ -79,6 +79,7 @@
     animation: bounce 2s infinite;
     font-size: 1.5rem;
     opacity: 0.7;
+    color: white;
   }
 
   @keyframes bounce {
@@ -103,9 +104,42 @@
     color: #777;
     font-size: 1.05rem;
     font-weight: 300;
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+
+  /* INVITE BANNER */
+  .invite-banner {
+    background: var(--forest);
+    color: white;
+    text-align: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .invite-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .invite-banner p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
     line-height: 1.6;
+  }
+
+  .invite-banner .date-highlight {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    margin-top: 1rem;
+    font-weight: 500;
+    font-size: 1.15rem;
   }
 
   /* WHAT IS IT */
@@ -120,20 +154,28 @@
   .what-card {
     background: white;
     border-radius: 16px;
-    padding: 2rem;
+    overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    text-align: center;
     transition: transform 0.2s;
   }
 
   .what-card:hover { transform: translateY(-4px); }
 
-  .what-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .what-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .what-card .card-body {
+    padding: 1.5rem;
+    text-align: center;
+  }
 
   .what-card h3 {
     font-family: 'Playfair Display', serif;
     color: var(--forest);
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     margin-bottom: 0.5rem;
   }
 
@@ -154,7 +196,7 @@
     margin: 0 auto;
   }
 
-  .photo-grid img {
+  .photo-grid .photo-item img {
     width: 100%;
     height: 280px;
     object-fit: cover;
@@ -170,7 +212,9 @@
     font-style: italic;
   }
 
-  /* DETAILS */
+  /* DETAILS GRID */
+  .details-section { background: white; }
+
   .details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -207,6 +251,124 @@
     line-height: 1.5;
   }
 
+  /* ACCOMMODATION OPTIONS */
+  .accom-section { background: var(--cream); }
+
+  .accom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .accom-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+
+  .accom-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .accom-card .accom-body {
+    padding: 1.5rem;
+  }
+
+  .accom-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .accom-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  .accom-card .amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .accom-card .amenities span {
+    background: var(--sand);
+    color: var(--bark);
+    font-size: 0.78rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+  }
+
+  .rec-badge {
+    display: inline-block;
+    background: var(--forest);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  /* TOBY */
+  .toby-section {
+    background: linear-gradient(135deg, #e8d5c4, #f0e6da);
+    text-align: center;
+    padding: 4rem 1.5rem;
+  }
+
+  .toby-section .emoji-big { font-size: 3.5rem; margin-bottom: 1rem; }
+
+  .toby-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    color: var(--forest);
+    margin-bottom: 1rem;
+  }
+
+  .toby-section p {
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .toby-section .pet-img {
+    max-width: 500px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  .toby-details {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .toby-details span {
+    background: white;
+    color: var(--bark);
+    font-size: 0.85rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+  }
+
   /* ACTIVITIES */
   .activities-section { background: var(--forest); color: white; }
   .activities-section .section-title { color: white; }
@@ -227,12 +389,42 @@
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
-    backdrop-filter: blur(5px);
   }
 
   .activity-list li .emoji { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
   .activity-list li strong { display: block; margin-bottom: 0.3rem; font-size: 1.05rem; }
   .activity-list li span { font-size: 0.9rem; opacity: 0.7; }
+
+  /* NEARBY */
+  .nearby-section { background: var(--sand); }
+
+  .nearby-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .nearby-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .nearby-card .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+
+  .nearby-card h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest);
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .nearby-card p { color: #888; font-size: 0.9rem; line-height: 1.5; }
+  .nearby-card .dist { font-size: 0.8rem; color: var(--warm); font-weight: 500; margin-top: 0.3rem; }
 
   /* KIDS */
   .kids-callout {
@@ -259,7 +451,7 @@
   }
 
   /* MAP */
-  .map-section { background: var(--sand); }
+  .map-section { background: white; }
 
   .map-wrapper {
     max-width: 900px;
@@ -283,6 +475,41 @@
   .drive-info .from { font-size: 0.85rem; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
   .drive-info .time { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--forest); font-weight: 600; }
 
+  /* FOOD */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .food-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+
+  .food-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .food-card .food-body {
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .food-card h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--forest);
+    margin-bottom: 0.3rem;
+  }
+
+  .food-card p { color: #888; font-size: 0.9rem; }
+
   /* CTA */
   .cta-section {
     text-align: center;
@@ -300,7 +527,7 @@
   .cta-section p {
     font-size: 1.1rem;
     opacity: 0.85;
-    max-width: 500px;
+    max-width: 550px;
     margin: 0 auto 2rem;
     line-height: 1.6;
   }
@@ -315,11 +542,18 @@
     font-weight: 500;
     font-size: 1.1rem;
     transition: transform 0.2s, box-shadow 0.2s;
+    margin: 0.5rem;
   }
 
   .cta-section a.btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  }
+
+  .cta-section a.btn.secondary {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
   }
 
   footer {
@@ -336,73 +570,170 @@
 <div class="hero">
   <div class="hero-content">
     <h1>Costanoa</h1>
-    <p class="subtitle">California's Coastal Lodge & Camp — Highway 1, Pescadero</p>
+    <p class="subtitle">Coastal Lodge & Camp · Highway 1, Pescadero, CA</p>
     <div class="invite-line">Meg & Don — you're invited! 🌊</div>
   </div>
   <div class="scroll-hint">↓</div>
 </div>
 
+<!-- INVITE DETAILS -->
+<div class="invite-banner">
+  <h2>Join Us for Saturday Night</h2>
+  <p>We're heading to Costanoa with the boys and the Airstream. We'd love for you to come hang Saturday night — grab a lodge room or cabin, have dinner together, explore the coast. Low-key and easy.</p>
+  <div class="date-highlight">📅 Saturday Night · Costanoa Lodge & Camp</div>
+</div>
+
 <!-- WHAT IS IT -->
 <section>
   <h2 class="section-title">What is Costanoa?</h2>
-  <p class="section-sub">An eco-adventure resort nestled between the Pacific Ocean and the Santa Cruz Mountains along scenic Highway 1. Think: nature meets comfort.</p>
+  <p class="section-sub">An eco-adventure resort on California's coast, right off Highway 1 between San Francisco and Santa Cruz. 40 acres of protected coastline — ocean views, eucalyptus groves, rolling hills, and wildlife everywhere.</p>
   <div class="what-grid">
     <div class="what-card">
-      <div class="icon">🌲</div>
-      <h3>Coastal Wilderness</h3>
-      <p>Set on acres of protected coastline with eucalyptus groves, rolling hills, and ocean views. Wild rabbits, birds, and incredible stargazing.</p>
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/california-coastal-lodge-exterior.jpg" alt="Costanoa Lodge exterior">
+      <div class="card-body">
+        <h3>The Lodge</h3>
+        <p>Two-story lodge with 40 rooms, French doors opening to private patios and balconies overlooking Ohlone Ridge. Not camping — real beds, real bathrooms, robes and coffee.</p>
+      </div>
     </div>
     <div class="what-card">
-      <div class="icon">🏕️</div>
-      <h3>Glamping & Lodging</h3>
-      <p>Cabins, tent bungalows, lodge rooms, and full-hookup RV sites. Heated beds, fire pits, and real bathrooms — not roughing it.</p>
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/northern-california-coast.jpg" alt="Northern California coast at Costanoa">
+      <div class="card-body">
+        <h3>The Setting</h3>
+        <p>Nestled between the Pacific Ocean and the Santa Cruz Mountains. Protected coastline with Franklin Point beaches, Whitehouse Creek trails, and the Ohlone Ridge right out your door.</p>
+      </div>
     </div>
     <div class="what-card">
-      <div class="icon">🍽️</div>
-      <h3>Great Food & Wine</h3>
-      <p>Two on-site restaurants with fresh, local California fare. Wine tastings and s'mores by the fire pit in the evening.</p>
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/airstream-rv-camp-in-california.jpg" alt="Airstream at Costanoa RV sites">
+      <div class="card-body">
+        <h3>Where We'll Be</h3>
+        <p>We're bringing the Airstream and posting up at their RV sites — full hookups, fire pits, and room for the boys to run around. You'll be right nearby in the lodge or a cabin.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SCENERY -->
+<!-- SCENERY FROM COSTANOA -->
 <section class="photo-section">
   <h2 class="section-title">The Scenery</h2>
-  <p class="section-sub">Rugged coastline, towering redwoods, and golden hillsides — all within walking distance.</p>
+  <p class="section-sub">This is what you're walking into. Ocean bluffs, wildflower trails, and wide-open skies.</p>
   <div class="photo-grid">
-    <div>
-      <img src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&q=80" alt="California coastal cliffs">
-      <div class="caption">Dramatic Pacific coastline along Highway 1</div>
+    <div class="photo-item">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/franklin-point-beach.jpg" alt="Franklin Point Beach">
+      <div class="caption">Franklin Point Beach — a short walk from the resort</div>
     </div>
-    <div>
-      <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80" alt="Redwood forest trail">
-      <div class="caption">Trails through towering redwood & eucalyptus groves</div>
+    <div class="photo-item">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/northern-california-hikes.jpg" alt="Coastal hiking trails">
+      <div class="caption">Ohlone Ridge Trail — sweeping ocean vistas</div>
     </div>
-    <div>
-      <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80" alt="Sunset over ocean">
-      <div class="caption">Sunsets that don't quit</div>
+    <div class="photo-item">
+      <img src="https://www.costanoa.com/wp-content/uploads/2025/03/man-under-stars_homepagecrop.jpg" alt="Stargazing at Costanoa">
+      <div class="caption">Zero light pollution — the stars here are unreal</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/pigeon-point-california-lighthouse.jpg" alt="Pigeon Point Lighthouse">
+      <div class="caption">Pigeon Point Lighthouse — 10 minutes away</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/tw0-adirondack-chairs-1.jpg" alt="Adirondack chairs at Costanoa">
+      <div class="caption">Fire pit hangs with a view</div>
+    </div>
+    <div class="photo-item">
+      <img src="https://www.costanoa.com/wp-content/uploads/2026/01/elephant-seal2-e1769212659627.jpg" alt="Elephant seals at Año Nuevo">
+      <div class="caption">Elephant seals at Año Nuevo State Park — right next door</div>
     </div>
   </div>
 </section>
 
-<!-- DETAILS -->
+<!-- WHERE TO STAY -->
+<section class="accom-section">
+  <h2 class="section-title">Where You'd Stay</h2>
+  <p class="section-sub">A few options depending on your vibe. Everything is pet-friendly — Toby is welcome.</p>
+  <div class="accom-grid">
+    <div class="accom-card">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/02/NorthLodgeFireplace.jpeg" alt="Lodge room interior">
+      <div class="accom-body">
+        <span class="rec-badge">Recommended</span>
+        <h3>Lodge King Premium</h3>
+        <p>Spacious second-floor room with large balcony, Ohlone Ridge views, thermostat-controlled fireplace, and deep soak tub. The nicest option on property.</p>
+        <div class="amenities">
+          <span>🛏️ King bed</span>
+          <span>🔥 Fireplace</span>
+          <span>🛁 Deep soak tub</span>
+          <span>🐕 Pet friendly</span>
+          <span>☕ Coffee station</span>
+          <span>🧥 Bathrobes</span>
+        </div>
+      </div>
+    </div>
+    <div class="accom-card">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/doug-fir-cabin-exterior.jpg" alt="Douglas Fir Cabin">
+      <div class="accom-body">
+        <h3>Douglas Fir Cabin</h3>
+        <p>Duplex cabins overlooking Chalk Hill Mountains. Fireplace, skylights, private back deck. Cozy and charming — like a grown-up treehouse.</p>
+        <div class="amenities">
+          <span>🛏️ King or 2 doubles</span>
+          <span>🔥 Fireplace</span>
+          <span>🌿 Private deck</span>
+          <span>🐕 Pet friendly</span>
+          <span>💡 Skylights</span>
+        </div>
+      </div>
+    </div>
+    <div class="accom-card">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/california-glamping-tent-exterior.jpg" alt="Glamping tent bungalow">
+      <div class="accom-body">
+        <h3>Tent Bungalow</h3>
+        <p>Canvas-walled bungalows with heated beds and fire pits. The "glamping" experience — you're outdoors but you're comfortable. More adventurous.</p>
+        <div class="amenities">
+          <span>🛏️ Heated beds</span>
+          <span>🔥 Private fire pit</span>
+          <span>🐕 Pet friendly</span>
+          <span>🏕️ Canvas walls</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOBY SECTION -->
+<section class="toby-section">
+  <div class="emoji-big">🐕</div>
+  <h2>Toby's Invited Too!</h2>
+  <p>Costanoa is fully pet-friendly. Lodge rooms, cabins, and tent bungalows all welcome dogs. There's acres of property to walk, and the boys would love having Toby around.</p>
+  <img class="pet-img" src="https://www.costanoa.com/wp-content/uploads/2024/07/woman-walking-labradoodle.jpg" alt="Dog walking at Costanoa">
+  <div class="toby-details">
+    <span>🐾 Pet fee: $75/stay (lodge/cabin)</span>
+    <span>🦮 Leash required on property</span>
+    <span>🌲 Tons of walking trails</span>
+    <span>✅ 2 pets per room, up to 50 lbs each</span>
+  </div>
+</section>
+
+<!-- FOOD & DRINK -->
 <section>
-  <h2 class="section-title">The Details</h2>
-  <div class="details-grid">
-    <div class="detail-item">
-      <div class="label">Where</div>
-      <div class="value">Pescadero, CA</div>
-      <div class="note">2001 Rossi Road, right off Highway 1<br>Between San Francisco & Santa Cruz</div>
+  <h2 class="section-title">Food & Drink</h2>
+  <p class="section-sub">No need to leave the property. Saturday dinner at Cascade, grab breakfast Sunday before heading out.</p>
+  <div class="food-grid">
+    <div class="food-card">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/outdoor-dining-pizza-beer.jpg" alt="Cascade Restaurant outdoor dining">
+      <div class="food-body">
+        <h4>Cascade Restaurant</h4>
+        <p>Breakfast, lunch, and dinner. Fresh, seasonal California fare with patio seating overlooking the grounds.</p>
+      </div>
     </div>
-    <div class="detail-item">
-      <div class="label">Accommodations</div>
-      <div class="value">Lodge & RV</div>
-      <div class="note">We'll be in the Airstream — lodge rooms, cabins, and glamping tents available for you</div>
+    <div class="food-card">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/pine-tent-sign-flowers.jpg" alt="Pine Tent event space">
+      <div class="food-body">
+        <h4>Pine Tent</h4>
+        <p>Seasonal open-air space. Great for gatherings, wine tastings, and events.</p>
+      </div>
     </div>
-    <div class="detail-item">
-      <div class="label">Vibe</div>
-      <div class="value">Relaxed & Easy</div>
-      <div class="note">No agenda. Hike if you want. Read a book. Hang with the grandkids. Your call.</div>
+    <div class="food-card">
+      <img src="https://www.costanoa.com/wp-content/uploads/2024/07/general-store.jpg" alt="General Store">
+      <div class="food-body">
+        <h4>General Store</h4>
+        <p>Wine, snacks, s'mores supplies, toys for the kids, and Costanoa gear.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -412,30 +743,74 @@
   <h2 class="section-title">Things to Do</h2>
   <p class="section-sub">As much or as little as you want — that's the whole point.</p>
   <ul class="activity-list">
-    <li><span class="emoji">🥾</span> <strong>Hiking</strong> <span>Coastal trails with ocean views</span></li>
-    <li><span class="emoji">🚴</span> <strong>Mountain Biking</strong> <span>Trails through the hills</span></li>
-    <li><span class="emoji">🧘</span> <strong>Yoga & Spa</strong> <span>Classes + massage treatments</span></li>
-    <li><span class="emoji">🍷</span> <strong>Wine Tasting</strong> <span>Local California wines on-site</span></li>
-    <li><span class="emoji">🔭</span> <strong>Stargazing</strong> <span>Zero light pollution — incredible skies</span></li>
-    <li><span class="emoji">🏖️</span> <strong>Beach Time</strong> <span>Pacific beaches minutes away</span></li>
-    <li><span class="emoji">🐘</span> <strong>Año Nuevo</strong> <span>Elephant seal colony next door</span></li>
-    <li><span class="emoji">🔥</span> <strong>Fire Pit Hangs</strong> <span>S'mores. Stories. Stars.</span></li>
+    <li><span class="emoji">🥾</span> <strong>Hiking</strong> <span>Ohlone Ridge Trail — 3.5 miles with ocean views. Whitehouse Creek for an easier walk.</span></li>
+    <li><span class="emoji">🚴</span> <strong>Mountain Biking</strong> <span>Trails through coastal hills and Douglas Fir groves</span></li>
+    <li><span class="emoji">🧘</span> <strong>Yoga & Spa</strong> <span>On-site classes + Swedish massage and spa treatments</span></li>
+    <li><span class="emoji">🍷</span> <strong>Wine Tasting</strong> <span>Local California wines, right on property</span></li>
+    <li><span class="emoji">🔭</span> <strong>Stargazing</strong> <span>Zero light pollution — the night sky is spectacular</span></li>
+    <li><span class="emoji">🏖️</span> <strong>Beach</strong> <span>Franklin Point beach is a short walk from the resort</span></li>
+    <li><span class="emoji">🐘</span> <strong>Año Nuevo</strong> <span>Elephant seal colony right next door — peak season in winter</span></li>
+    <li><span class="emoji">🔥</span> <strong>Fire Pit</strong> <span>S'mores, stories, and stars every evening</span></li>
   </ul>
 </section>
 
-<!-- KIDS -->
+<!-- NEARBY ATTRACTIONS -->
+<section class="nearby-section">
+  <h2 class="section-title">Nearby</h2>
+  <p class="section-sub">Some of the best coastal California has to offer, all within a short drive.</p>
+  <div class="nearby-grid">
+    <div class="nearby-card">
+      <div class="emoji">🐘</div>
+      <h4>Año Nuevo State Park</h4>
+      <p>Massive elephant seal colony. Guided walks available — peak season is winter/spring.</p>
+      <div class="dist">Adjacent to Costanoa</div>
+    </div>
+    <div class="nearby-card">
+      <div class="emoji">🏠</div>
+      <h4>Pigeon Point Lighthouse</h4>
+      <p>One of the tallest lighthouses on the West Coast. Beautiful at sunset.</p>
+      <div class="dist">~10 min drive</div>
+    </div>
+    <div class="nearby-card">
+      <div class="emoji">🌊</div>
+      <h4>Half Moon Bay</h4>
+      <p>Charming coastal town with shops, restaurants, and Mavericks Beach.</p>
+      <div class="dist">~25 min north</div>
+    </div>
+    <div class="nearby-card">
+      <div class="emoji">🌲</div>
+      <h4>Big Basin Redwoods</h4>
+      <p>California's oldest state park. Old-growth redwoods and waterfall trails.</p>
+      <div class="dist">~30 min east</div>
+    </div>
+    <div class="nearby-card">
+      <div class="emoji">🏄</div>
+      <h4>Santa Cruz</h4>
+      <p>Boardwalk, surfing, downtown shops — a classic California beach town.</p>
+      <div class="dist">~30 min south</div>
+    </div>
+    <div class="nearby-card">
+      <div class="emoji">🐐</div>
+      <h4>Harley Farms</h4>
+      <p>Goat dairy and farm shop in Pescadero. Great cheese, cute goats.</p>
+      <div class="dist">~5 min drive</div>
+    </div>
+  </div>
+</section>
+
+<!-- GRANDKIDS -->
 <section>
   <h2 class="section-title">For the Grandkids</h2>
   <div class="kids-callout">
     <h3>Charlie & Mac Are Going to Love It 🌟</h3>
-    <p>Costanoa has a playground, tons of space to run around, wildlife to spot (rabbits, birds, maybe even elephant seals at nearby Año Nuevo), fire pits for s'mores, and that special kind of outdoor freedom kids don't get enough of. It's the kind of place where they'll sleep hard and wake up happy.</p>
+    <p>Acres of space to run around, a playground, wildlife everywhere (rabbits, birds, maybe elephant seals), fire pits for s'mores, and the kind of outdoor freedom kids live for. Plus Costanoa runs a Kids Camp with tie-dye, ice cream making, and nature activities. They'll sleep hard and wake up happy.</p>
   </div>
 </section>
 
-<!-- MAP -->
+<!-- MAP & DIRECTIONS -->
 <section class="map-section">
-  <h2 class="section-title">How to Get There</h2>
-  <p class="section-sub">A beautiful drive down the coast — no airports required.</p>
+  <h2 class="section-title">Getting There</h2>
+  <p class="section-sub">2001 Rossi Road, Pescadero, CA 94060 — right off Highway 1. Beautiful drive down the coast.</p>
   <div class="map-wrapper">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3183.5!2d-122.3963!3d37.2276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f0468e5fb7ab5%3A0x7b5e7c1d0e9e8c1a!2sCostanoa!5e0!3m2!1sen!2sus!4v1707890000000!5m2!1sen!2sus" allowfullscreen loading="lazy"></iframe>
   </div>
@@ -457,9 +832,10 @@
 
 <!-- CTA -->
 <section class="cta-section">
-  <h2>Come With Us! 🌊</h2>
-  <p>We'd love to have you join us. The boys would be thrilled to have Grandma and Grandpa along for the adventure.</p>
-  <a class="btn" href="https://www.costanoa.com/" target="_blank">Explore Costanoa →</a>
+  <h2>Come With Us Saturday! 🌊</h2>
+  <p>We'd love to have you join. The boys would be thrilled to have Grandma and Grandpa (and Toby) along for the adventure. Book a room and we'll handle the rest.</p>
+  <a class="btn" href="https://reservations.costanoa.com/costanoa/" target="_blank">Book a Room →</a>
+  <a class="btn secondary" href="https://www.costanoa.com/" target="_blank">Explore Costanoa</a>
 </section>
 
 <footer>Made with ❤️ by the Head Family</footer>
