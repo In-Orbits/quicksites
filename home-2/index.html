@@ -9,7 +9,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg: #f9f9f9;
+    --bg: #f0f0f0;
     --surface: #ffffff;
     --surface-dark: #0a0a0a;
     --border: #e5e5e5;
@@ -32,9 +32,10 @@
     --gap: 8px;
     --pad: 20px;
     --section-gap: 64px;
-    --r-lg: 10px;
-    --r-sm: 2px;
-    --r-pill: 9999px;
+    --r-lg: 0px;
+    --r-sm: 0px;
+    --r-pill: 0px;
+    --shadow: 4px 4px 0px #d0d0d0;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -65,7 +66,7 @@
     align-items: center;
     background: rgba(255,255,255,0.85);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--text);
   }
   .nav-logo {
     font-size: var(--text-md);
@@ -169,12 +170,13 @@
 
   .card {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 1px solid var(--text);
     border-radius: var(--r-lg);
     padding: var(--pad);
-    transition: border-color 0.15s;
+    box-shadow: var(--shadow);
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .card:hover { border-color: var(--border-hover); }
+  .card:hover { border-color: var(--text); box-shadow: 6px 6px 0px #c0c0c0; }
 
   .card h3 {
     font-size: var(--text-md);
@@ -214,8 +216,9 @@
     background: var(--surface-dark);
     color: var(--text-inv);
     border-color: var(--surface-dark);
+    box-shadow: 4px 4px 0px #000;
   }
-  .card-dark:hover { border-color: #333; }
+  .card-dark:hover { border-color: #333; box-shadow: 6px 6px 0px #000; }
   .card-dark h3 { color: var(--text-inv); }
   .card-dark p { color: #737373; }
 
@@ -266,9 +269,10 @@
 
   /* ---- FEATURE LIST ---- */
   .feature-list {
-    border: 1px solid var(--border);
+    border: 1px solid var(--text);
     border-radius: var(--r-lg);
     overflow: hidden;
+    box-shadow: var(--shadow);
   }
   .feature-item {
     padding: 10px 16px;
@@ -286,10 +290,11 @@
 
   /* ---- DATA TABLE ---- */
   .table-wrap {
-    border: 1px solid var(--border);
+    border: 1px solid var(--text);
     border-radius: var(--r-lg);
     overflow: hidden;
     margin-top: 12px;
+    box-shadow: var(--shadow);
   }
   .data-table {
     width: 100%;
@@ -340,10 +345,12 @@
   .cta-card {
     background: var(--surface-dark);
     color: var(--text-inv);
+    border: 1px solid var(--surface-dark);
     border-radius: var(--r-lg);
     padding: 40px 32px;
     text-align: center;
     margin: var(--gap) 0 0;
+    box-shadow: 4px 4px 0px #000;
   }
   .cta-card h2 {
     color: var(--text-inv);
