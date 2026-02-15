@@ -377,10 +377,9 @@
   <ul class="nav-links">
     <li><a href="#loop">Loop</a></li>
     <li><a href="#scope">Scope</a></li>
-    <li><a href="#features">Features</a></li>
     <li><a href="#security">Security</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#waves">Waves</a></li>
-    <li><a href="#questionnaire">Input</a></li>
   </ul>
 </nav>
 
@@ -389,6 +388,43 @@
   <div class="hero-eyebrow">Head Family · Product Requirements · v1.0</div>
   <h1>HomeBase</h1>
   <p class="hero-sub">A proactive family operating system powered by Burt (AI Chief of Staff) that eliminates cognitive overload, keeps both parents informed, and ensures nothing falls through the cracks. Brian & Mairin have clear sight into every decision. Burt automates research, surfaces options, and runs systems. A weekly cadence keeps the family coordinated. The rest of the week runs on autopilot.</p>
+</div>
+
+<!-- ═══════════════ SECURITY (FIRST) ═══════════════ -->
+<div class="container" id="security">
+  <div class="sh">
+    <div class="sh-label">First Things First</div>
+    <h2>Clear Boundaries</h2>
+    <p>Burt has only the minimum context needed to coordinate logistics. Nothing more.</p>
+  </div>
+
+  <div class="bento" style="grid-template-columns: 1fr 1fr;">
+    <div class="card" style="border-left: 2px solid var(--green);">
+      <h3>What Burt Knows</h3>
+      <ul class="sec-yes">
+        <li><span class="s">✓</span> First names and birthdays</li>
+        <li><span class="s">✓</span> School calendar (public feed)</li>
+        <li><span class="s">✓</span> Home maintenance schedules</li>
+        <li><span class="s">✓</span> Activity preferences and interests</li>
+        <li><span class="s">✓</span> Friend names for social planning</li>
+        <li><span class="s">✓</span> General location (Marin County)</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left: 2px solid var(--red);">
+      <h3>Zero Access To</h3>
+      <ul class="sec-no">
+        <li><span class="s">✕</span> Email accounts (Gmail, iCloud, work)</li>
+        <li><span class="s">✕</span> Bank accounts or financial info</li>
+        <li><span class="s">✕</span> iCloud / Apple ID</li>
+        <li><span class="s">✕</span> Medical portals or health records</li>
+        <li><span class="s">✕</span> Social media accounts</li>
+        <li><span class="s">✕</span> Passwords, texts, photos, or files</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top: var(--gap); background:var(--bg);">
+    <p>All information Burt has was explicitly shared by Brian in conversation — names, birthdays, school name, activity preferences. Burt cannot browse the internet on your behalf, log into any accounts, or access anything sensitive. When Burt needs new information (like medical details or vendor contacts), he asks Brian directly.</p>
+  </div>
 </div>
 
 <!-- ═══════════════ 1. CORE LOOP ═══════════════ -->
@@ -744,43 +780,6 @@
   </div>
 </div>
 
-<!-- ═══════════════ 8. SECURITY ═══════════════ -->
-<div class="container" id="security">
-  <div class="sh">
-    <div class="sh-label">08 — Security</div>
-    <h2>Clear Boundaries</h2>
-    <p>Burt has only the minimum context needed to coordinate logistics. Nothing more.</p>
-  </div>
-
-  <div class="bento" style="grid-template-columns: 1fr 1fr;">
-    <div class="card" style="border-left: 2px solid var(--green);">
-      <h3>What Burt Knows</h3>
-      <ul class="sec-yes">
-        <li><span class="s">✓</span> First names and birthdays</li>
-        <li><span class="s">✓</span> School calendar (public feed)</li>
-        <li><span class="s">✓</span> Home maintenance schedules</li>
-        <li><span class="s">✓</span> Activity preferences and interests</li>
-        <li><span class="s">✓</span> Friend names for social planning</li>
-        <li><span class="s">✓</span> General location (Marin County)</li>
-      </ul>
-    </div>
-    <div class="card" style="border-left: 2px solid var(--red);">
-      <h3>Zero Access To</h3>
-      <ul class="sec-no">
-        <li><span class="s">✕</span> Email accounts (Gmail, iCloud, work)</li>
-        <li><span class="s">✕</span> Bank accounts or financial info</li>
-        <li><span class="s">✕</span> iCloud / Apple ID</li>
-        <li><span class="s">✕</span> Medical portals or health records</li>
-        <li><span class="s">✕</span> Social media accounts</li>
-        <li><span class="s">✕</span> Passwords, texts, photos, or files</li>
-      </ul>
-    </div>
-  </div>
-  <div class="card" style="margin-top: var(--gap); background:var(--bg);">
-    <p>All information Burt has was explicitly shared by Brian in conversation — names, birthdays, school name, activity preferences. Burt cannot browse the internet on your behalf, log into any accounts, or access anything sensitive. When Burt needs information (like medical details or vendor contacts), he asks. That's what the questionnaire below is for.</p>
-  </div>
-</div>
-
 <!-- ═══════════════ 9. IMPLEMENTATION WAVES ═══════════════ -->
 <div class="container" id="waves">
   <div class="sh">
@@ -847,77 +846,7 @@
   </div>
 </div>
 
-<!-- ═══════════════ 10. QUESTIONNAIRE ═══════════════ -->
-<div class="container" id="questionnaire">
-  <div class="sh">
-    <div class="sh-label">10 — One-Time Input</div>
-    <h2>Mairin Download Questionnaire</h2>
-    <p>A single sit-down to collect everything Burt needs. Run once, then Burt maintains going forward. No ongoing homework.</p>
-  </div>
-
-  <div class="card q-section" style="padding: 28px 24px;">
-    <h3>Landscaper</h3>
-    <ol>
-      <li>Who is the landscaper? (Name / company / contact)</li>
-      <li>Current schedule? (Weekly? Biweekly? What day?)</li>
-      <li>What do they do? (Mow, blow, trim, plant?)</li>
-      <li>Payment details (amount, method, cadence)</li>
-      <li>Upcoming projects or changes?</li>
-    </ol>
-
-    <h3>Window Cleaners</h3>
-    <ol>
-      <li>Who does window cleaning? (Name / company / contact)</li>
-      <li>Current schedule/arrangement?</li>
-      <li>Payment details?</li>
-    </ol>
-
-    <h3>Laura (Nanny)</h3>
-    <ol>
-      <li>Pay rate?</li>
-      <li>Fixed weekly or hourly?</li>
-      <li>Payment method? (Venmo, Zelle, check, other)</li>
-      <li>Payment schedule? (Weekly, biweekly)</li>
-      <li>Days and hours Laura works?</li>
-    </ol>
-
-    <h3>Plants & Grounds</h3>
-    <ol>
-      <li>How many plants (indoor + outdoor)?</li>
-      <li>Watering schedules?</li>
-      <li>Seasonal plant care needs?</li>
-    </ol>
-
-    <h3>Medical / Dental</h3>
-    <ol>
-      <li>Pediatrician name and practice?</li>
-      <li>Dentist name and practice?</li>
-      <li>Last well-checks for Charlie and Mac?</li>
-      <li>Last dental visits?</li>
-      <li>Ongoing treatments or specialists? (Beyond Charlie's OT)</li>
-      <li>Allergies?</li>
-      <li>Medications or supplements?</li>
-      <li>Vaccinations up to date?</li>
-    </ol>
-
-    <h3>Emergency Info</h3>
-    <ol>
-      <li>Health insurance provider + policy/group number?</li>
-      <li>Emergency contacts beyond Brian & Mairin?</li>
-      <li>Medical alerts for emergencies?</li>
-      <li>Does Laura have a signed authorization for medical decisions?</li>
-    </ol>
-
-    <h3>General</h3>
-    <ol>
-      <li>Anything else Mairin currently tracks that Brian should know about?</li>
-      <li>Recurring appointments not yet captured?</li>
-      <li>Preferred way for Burt to flag things to Mairin?</li>
-    </ol>
-  </div>
-</div>
-
-<!-- ═══════════════ 11. CTA + OPEN QUESTIONS ═══════════════ -->
+<!-- ═══════════════ CTA + OPEN QUESTIONS ═══════════════ -->
 <div class="container" style="padding-bottom: 32px;">
   <div class="cta-card" style="margin-top: var(--section-gap);">
     <h2>What Do You Think?</h2>
