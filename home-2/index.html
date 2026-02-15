@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Home 2.0</title>
+<style>
+  :root {
+    --bg: #faf9f6;
+    --card: #ffffff;
+    --accent: #2d5a27;
+    --accent-light: #e8f0e6;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e5e5;
+    --warm: #f5f0eb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+  .hero {
+    background: linear-gradient(135deg, #2d5a27 0%, #4a7c42 100%);
+    color: white;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: 1.15rem;
+    opacity: 0.85;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero .version {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    opacity: 0.6;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--accent);
+    margin: 48px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-light);
+  }
+  h2:first-of-type { margin-top: 0; }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--text);
+  }
+  p { margin-bottom: 16px; }
+  .mission-box {
+    background: var(--warm);
+    border-left: 4px solid var(--accent);
+    padding: 24px 28px;
+    margin: 32px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.05rem;
+  }
+  .how-it-works {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 8px 16px;
+    margin: 24px 0;
+  }
+  .step-num {
+    width: 36px;
+    height: 36px;
+    background: var(--accent);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-family: -apple-system, sans-serif;
+    font-size: 0.9rem;
+  }
+  .step-text {
+    padding-top: 6px;
+    font-size: 0.95rem;
+  }
+  .domain-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) {
+    .domain-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2rem; }
+  }
+  .domain-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: box-shadow 0.2s;
+  }
+  .domain-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .domain-card .icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+  }
+  .domain-card h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-family: -apple-system, sans-serif;
+  }
+  .domain-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .domain-card li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding: 3px 0;
+    padding-left: 16px;
+    position: relative;
+  }
+  .domain-card li::before {
+    content: "·";
+    position: absolute;
+    left: 4px;
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .horizon-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-family: -apple-system, sans-serif;
+    font-size: 0.9rem;
+  }
+  .horizon-table th {
+    background: var(--accent);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .horizon-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .horizon-table tr:nth-child(even) td {
+    background: var(--accent-light);
+  }
+  .season-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) {
+    .season-grid { grid-template-columns: 1fr; }
+  }
+  .season-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-family: -apple-system, sans-serif;
+    font-size: 0.9rem;
+  }
+  .season-card .label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .season-card .desc {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .priority-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: -apple-system, sans-serif;
+    font-size: 0.9rem;
+  }
+  .priority-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .green { background: #22c55e; }
+  .yellow { background: #eab308; }
+  .red { background: #ef4444; }
+  .mairin-section {
+    background: var(--warm);
+    border-radius: 12px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+  .mairin-section h3 {
+    margin-top: 24px;
+  }
+  .mairin-section h3:first-child {
+    margin-top: 0;
+  }
+  .mairin-section ol {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+  .mairin-section li {
+    font-size: 0.92rem;
+    padding: 4px 0;
+    color: var(--muted);
+  }
+  .feedback-box {
+    background: var(--accent);
+    color: white;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 48px 0 24px;
+    text-align: center;
+  }
+  .feedback-box h2 {
+    color: white;
+    border: none;
+    margin: 0 0 12px;
+    font-size: 1.4rem;
+  }
+  .feedback-box p {
+    opacity: 0.9;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+  }
+  .wave-section {
+    margin: 24px 0;
+  }
+  .wave-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .wave-badge {
+    background: var(--accent);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-family: -apple-system, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .wave-items {
+    list-style: none;
+    padding: 0;
+  }
+  .wave-items li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .wave-items li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-family: -apple-system, sans-serif;
+  }
+  .open-q {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .open-q h4 {
+    font-family: -apple-system, sans-serif;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  .open-q p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Project Home 2.0</h1>
+  <div class="subtitle">A family operating system to reduce cognitive overload, keep both parents in sync, and make sure nothing falls through the cracks.</div>
+  <div class="version">Brian & Mairin Head · v1.0 · February 2026</div>
+</div>
+
+<div class="container">
+
+  <div class="mission-box">
+    <strong>The goal:</strong> Burt (our AI assistant) handles research, planning, reminders, and coordination. We make the decisions. Everything else runs on autopilot. A weekly Sunday session keeps us aligned — the rest of the week just flows.
+  </div>
+
+  <h2>How It Works</h2>
+
+  <div class="how-it-works">
+    <div class="step-num">1</div>
+    <div class="step-text"><strong>Burt monitors</strong> — calendars, school feeds, deadlines, and event sources. Continuously.</div>
+    <div class="step-num">2</div>
+    <div class="step-text"><strong>Sunday morning brief</strong> — Burt posts the full week ahead: drop-offs, events, deadlines, meal plan, weekend activities. Mairin gets this via email.</div>
+    <div class="step-num">3</div>
+    <div class="step-text"><strong>We review & confirm</strong> — adjust anything that needs it. The week is locked.</div>
+    <div class="step-num">4</div>
+    <div class="step-text"><strong>Autopilot</strong> — day-of reminders, nudges, and coordination happen automatically.</div>
+    <div class="step-num">5</div>
+    <div class="step-text"><strong>Feedback loop</strong> — after activities, we give quick feedback so recommendations get smarter over time.</div>
+  </div>
+
+  <h2>What We're Managing</h2>
+
+  <div class="domain-grid">
+    <div class="domain-card">
+      <div class="icon">📅</div>
+      <h4>Planning & Logistics</h4>
+      <ul>
+        <li>School schedule (MPMS calendar synced)</li>
+        <li>Camp research & registration</li>
+        <li>Vacation planning (12–18 month horizon)</li>
+        <li>Weekly routine template</li>
+        <li>Sunday coordination session</li>
+      </ul>
+    </div>
+    <div class="domain-card">
+      <div class="icon">🎉</div>
+      <h4>Vibes & Fun</h4>
+      <ul>
+        <li>Weekend activities (4-week pipeline)</li>
+        <li>Local Marin events tracking</li>
+        <li>Friend & social planning</li>
+        <li>Date nights (Burt books!)</li>
+        <li>Holiday & seasonal traditions</li>
+      </ul>
+    </div>
+    <div class="domain-card">
+      <div class="icon">🏠</div>
+      <h4>Home Operations</h4>
+      <ul>
+        <li>Maintenance schedule (migrating to Todoist)</li>
+        <li>Landscaper coordination</li>
+        <li>Laura payment automation</li>
+        <li>Plant & grill schedules</li>
+        <li>Vendor management</li>
+      </ul>
+    </div>
+    <div class="domain-card">
+      <div class="icon">👧🏼</div>
+      <h4>Kids</h4>
+      <ul>
+        <li>Fashion & wardrobe curation</li>
+        <li>Medical & dental tracking</li>
+        <li>School comms monitoring</li>
+        <li>Development & interests log</li>
+        <li>Emergency info document</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>The Planning Horizon</h2>
+  <p>Everything in the system — camps, vacations, maintenance, weekend plans — follows the same time-based framework. For vacations, the horizon stretches to 12–18 months.</p>
+
+  <table class="horizon-table">
+    <thead>
+      <tr><th>Timeframe</th><th>Mode</th><th>What Happens</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>6+ months</td><td>Research</td><td>Identify options, deadlines, and costs</td></tr>
+      <tr><td>3–6 months</td><td>Decide</td><td>Narrow options, lock registrations</td></tr>
+      <tr><td>1–3 months</td><td>Logistics</td><td>Confirm, book, arrange coverage</td></tr>
+      <tr><td>1–4 weeks</td><td>Execute</td><td>Plan is set, reminders firing</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Seasonal Modes</h2>
+  <p>The system adapts its energy and recommendations to the rhythm of the year.</p>
+
+  <div class="season-grid">
+    <div class="season-card">
+      <div class="label">☀️ Summer (Jun–Aug)</div>
+      <div class="desc">Outdoor / Travel mode. High energy. Beach, parks, Airstream, Block Island, camps.</div>
+    </div>
+    <div class="season-card">
+      <div class="label">🍂 Fall (Sep–Nov)</div>
+      <div class="desc">Nesting / School mode. Medium energy. Routine-heavy, indoor projects, holidays.</div>
+    </div>
+    <div class="season-card">
+      <div class="label">❄️ Winter (Dec–Feb)</div>
+      <div class="desc">Project / Indoor mode. Restorative. Museums, home projects, cozy traditions.</div>
+    </div>
+    <div class="season-card">
+      <div class="label">🌸 Spring (Mar–May)</div>
+      <div class="desc">Renewal / Social mode. Rising energy. New activities, outdoor dining, garden.</div>
+    </div>
+  </div>
+
+  <h2>Communication</h2>
+  <p>Brian works with Burt directly via Discord. Mairin stays in the loop through Google Calendar invites and a weekly email summary — no new apps required.</p>
+
+  <h3>Priority Levels</h3>
+  <div class="priority-row">
+    <div class="priority-dot green"></div>
+    <div><strong>FYI</strong> — In the Sunday brief. Review when convenient.</div>
+  </div>
+  <div class="priority-row">
+    <div class="priority-dot yellow"></div>
+    <div><strong>Action needed</strong> — Decision or task required within 24 hours.</div>
+  </div>
+  <div class="priority-row">
+    <div class="priority-dot red"></div>
+    <div><strong>Urgent</strong> — Time-sensitive. Immediate notification.</div>
+  </div>
+
+  <h2>Key Design Principles</h2>
+
+  <h3>🧠 Kid Voice in Planning</h3>
+  <p>Charlie (and eventually Mac) gets input on weekend plans and vacation ideas. The system plans <em>with</em> kids, not just <em>for</em> them.</p>
+
+  <h3>🎲 Spontaneity Valve</h3>
+  <p>One weekend per month is intentionally unplanned — with a "grab and go" options list if we want it. Not every weekend needs a headline.</p>
+
+  <h3>📊 Feedback That Learns</h3>
+  <p>After activities, quick feedback captures not just what worked but <em>why</em>. Over time, recommendations get smarter and more personalized.</p>
+
+  <h3>🔄 Living Preferences</h3>
+  <p>The system evolves with the family. Quarterly check-ins, age milestone updates, and seasonal refreshes keep everything current as the kids grow.</p>
+
+  <h2>Rollout Waves</h2>
+  <p>We build in phases. Next wave starts when the current one is stable.</p>
+
+  <div class="wave-section">
+    <div class="wave-header">
+      <span class="wave-badge">Wave 1 — Foundation</span>
+    </div>
+    <ul class="wave-items">
+      <li>School schedule tracking (MPMS feed connected)</li>
+      <li>Weekly routine template (daily drop-off/pickup defaults)</li>
+      <li>Sunday coordination session (Discord + email to Mairin)</li>
+    </ul>
+  </div>
+
+  <div class="wave-section">
+    <div class="wave-header">
+      <span class="wave-badge">Wave 2 — High Impact</span>
+    </div>
+    <ul class="wave-items">
+      <li>Camp research & gap coverage</li>
+      <li>Weekend activity pipeline (4-week rolling)</li>
+      <li>Local events tracking</li>
+      <li>Home maintenance migration to Todoist</li>
+      <li>Landscaper, Laura, medical — after Mairin download</li>
+    </ul>
+  </div>
+
+  <div class="wave-section">
+    <div class="wave-header">
+      <span class="wave-badge">Wave 3 — Enrichment</span>
+    </div>
+    <ul class="wave-items">
+      <li>Vacation planning (12–18 month horizon)</li>
+      <li>Friend/social planning & Roladex buildout</li>
+      <li>Date night execution (Burt books)</li>
+      <li>Holiday traditions & seasonal planning</li>
+      <li>Kids fashion mood boards</li>
+      <li>School comms monitoring, dev tracking, emergency doc</li>
+    </ul>
+  </div>
+
+  <div class="mairin-section">
+    <h2 style="margin-top:0; border:none; color: var(--accent);">Mairin Download Session</h2>
+    <p>One sit-down to give Burt everything he needs. After this, Burt maintains it all going forward.</p>
+
+    <h3>🌿 Landscaper</h3>
+    <ol>
+      <li>Who is the landscaper? (Name / company / contact)</li>
+      <li>Current schedule? (Weekly? Biweekly? What day?)</li>
+      <li>What do they do? (Mow, blow, trim, plant?)</li>
+      <li>Payment details (amount, method, cadence)</li>
+      <li>Any upcoming projects or changes?</li>
+    </ol>
+
+    <h3>🪟 Window Cleaners</h3>
+    <ol>
+      <li>Who does window cleaning?</li>
+      <li>Current schedule?</li>
+      <li>Payment details?</li>
+    </ol>
+
+    <h3>👩‍👧‍👦 Laura (Nanny)</h3>
+    <ol>
+      <li>Pay rate?</li>
+      <li>Fixed weekly or hourly?</li>
+      <li>Payment method? (Venmo, Zelle, check?)</li>
+      <li>Payment schedule? (Weekly, biweekly?)</li>
+      <li>Days and hours?</li>
+    </ol>
+
+    <h3>🌱 Plants & Grounds</h3>
+    <ol>
+      <li>How many plants (indoor + outdoor)?</li>
+      <li>Watering schedules?</li>
+      <li>Seasonal care needs?</li>
+    </ol>
+
+    <h3>🩺 Medical/Dental</h3>
+    <ol>
+      <li>Pediatrician name and practice?</li>
+      <li>Dentist name and practice?</li>
+      <li>Last well-checks for Charlie and Mac?</li>
+      <li>Last dental visits?</li>
+      <li>Ongoing treatments or specialists?</li>
+      <li>Allergies?</li>
+      <li>Medications or supplements?</li>
+      <li>Vaccinations up to date?</li>
+    </ol>
+
+    <h3>🚨 Emergency Info</h3>
+    <ol>
+      <li>Health insurance provider + policy number?</li>
+      <li>Emergency contacts beyond us?</li>
+      <li>Medical alerts for emergencies?</li>
+      <li>Does Laura have a signed medical authorization?</li>
+    </ol>
+
+    <h3>💬 General</h3>
+    <ol>
+      <li>Anything else you currently track that Brian should know about?</li>
+      <li>Recurring appointments not yet captured?</li>
+      <li>How should Burt flag things to you — through Brian, or directly?</li>
+    </ol>
+  </div>
+
+  <div class="feedback-box">
+    <h2>What Do You Think?</h2>
+    <p>This is a draft. We want your input before building. What's missing? What doesn't feel right? What would make this actually useful for you? Talk to Brian or just jot your thoughts down — we'll incorporate everything.</p>
+  </div>
+
+  <div class="open-q">
+    <h4>🤔 Open Questions</h4>
+    <p><strong>Family Dashboard:</strong> Should we build a website where both of us can see the full plan, calendar, and maintenance schedule in one place?</p>
+    <p style="margin-top:8px"><strong>Direct Channel:</strong> Beyond calendar invites and weekly emails — would you want any direct way to interact with the system?</p>
+    <p style="margin-top:8px"><strong>Kid Participation:</strong> At what age should Charlie and Mac start having a voice in planning?</p>
+  </div>
+
+</div>
+
+<footer>
+  Project Home 2.0 · Head Family · February 2026
+</footer>
+
+</body>
+</html>
