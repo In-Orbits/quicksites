@@ -3,272 +3,427 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project Home 2.0</title>
+<title>HomeBase — Head Family</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
   :root {
-    --bg: #faf9f6;
-    --card: #ffffff;
-    --accent: #2d5a27;
-    --accent-light: #e8f0e6;
-    --text: #1a1a1a;
-    --muted: #6b7280;
-    --border: #e5e5e5;
-    --warm: #f5f0eb;
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --surface-2: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #f0f0f0;
+    --text-muted: #888888;
+    --accent: #c8a97e;
+    --accent-dim: rgba(200,169,126,0.12);
+    --accent-glow: rgba(200,169,126,0.06);
+    --green: #4ade80;
+    --yellow: #fbbf24;
+    --red: #f87171;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
-    padding: 0;
+    -webkit-font-smoothing: antialiased;
   }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 20px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 0.72rem; }
+  }
+
+  /* ---- HERO ---- */
   .hero {
-    background: linear-gradient(135deg, #2d5a27 0%, #4a7c42 100%);
-    color: white;
-    padding: 80px 24px 60px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 120px 24px 80px;
+    position: relative;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-weight: 500;
   }
   .hero h1 {
-    font-size: 2.8rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 400;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 24px;
   }
-  .hero .subtitle {
-    font-size: 1.15rem;
-    opacity: 0.85;
+  .hero h1 em {
     font-style: italic;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  .hero .version {
-    margin-top: 20px;
-    font-size: 0.85rem;
-    opacity: 0.6;
-  }
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 24px;
-  }
-  h2 {
-    font-size: 1.6rem;
-    font-weight: 400;
     color: var(--accent);
-    margin: 48px 0 20px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--accent-light);
   }
-  h2:first-of-type { margin-top: 0; }
-  h3 {
+  .hero-sub {
     font-size: 1.1rem;
-    font-weight: 600;
-    margin: 28px 0 12px;
-    color: var(--text);
+    color: var(--text-muted);
+    max-width: 540px;
+    font-weight: 300;
+    line-height: 1.8;
   }
-  p { margin-bottom: 16px; }
-  .mission-box {
-    background: var(--warm);
-    border-left: 4px solid var(--accent);
-    padding: 24px 28px;
-    margin: 32px 0;
-    border-radius: 0 8px 8px 0;
+
+  /* ---- SECTIONS ---- */
+  section {
+    padding: 120px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  @media (max-width: 700px) {
+    section { padding: 80px 20px; }
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+
+  .lead {
     font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 640px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 48px;
   }
-  .how-it-works {
+
+  /* ---- STEPS ---- */
+  .steps {
     display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 8px 16px;
-    margin: 24px 0;
+    gap: 0;
+    margin: 48px 0;
   }
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 0 24px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:first-child { border-top: 1px solid var(--border); }
   .step-num {
-    width: 36px;
-    height: 36px;
-    background: var(--accent);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: 400;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .step-content h3 {
+    font-size: 1rem;
     font-weight: 600;
-    font-family: -apple-system, sans-serif;
+    margin-bottom: 6px;
+  }
+  .step-content p {
     font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 300;
   }
-  .step-text {
-    padding-top: 6px;
-    font-size: 0.95rem;
-  }
+
+  /* ---- DOMAIN GRID ---- */
   .domain-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin: 24px 0;
+    margin: 48px 0;
   }
   @media (max-width: 600px) {
     .domain-grid { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 2rem; }
   }
   .domain-card {
-    background: var(--card);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    transition: box-shadow 0.2s;
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.3s, transform 0.2s;
   }
   .domain-card:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-color: var(--accent);
+    transform: translateY(-2px);
   }
-  .domain-card .icon {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+  .domain-icon {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
   }
-  .domain-card h4 {
-    font-size: 1rem;
-    margin-bottom: 8px;
-    font-family: -apple-system, sans-serif;
+  .domain-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.01em;
   }
   .domain-card ul {
     list-style: none;
     padding: 0;
   }
   .domain-card li {
-    font-size: 0.88rem;
-    color: var(--muted);
-    padding: 3px 0;
-    padding-left: 16px;
-    position: relative;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    padding: 4px 0;
+    font-weight: 300;
   }
   .domain-card li::before {
-    content: "·";
-    position: absolute;
-    left: 4px;
+    content: "→ ";
     color: var(--accent);
-    font-weight: bold;
+    font-size: 0.8rem;
   }
-  .horizon-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 24px 0;
-    font-family: -apple-system, sans-serif;
-    font-size: 0.9rem;
-  }
-  .horizon-table th {
-    background: var(--accent);
-    color: white;
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 500;
-  }
-  .horizon-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .horizon-table tr:nth-child(even) td {
-    background: var(--accent-light);
-  }
-  .season-grid {
+
+  /* ---- HORIZON TABLE ---- */
+  .horizon-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin: 24px 0;
+    margin: 48px 0;
   }
   @media (max-width: 600px) {
-    .season-grid { grid-template-columns: 1fr; }
+    .horizon-grid { grid-template-columns: 1fr; }
   }
-  .season-card {
-    background: var(--card);
+  .horizon-card {
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 20px;
-    font-family: -apple-system, sans-serif;
-    font-size: 0.9rem;
+    border-radius: 12px;
+    padding: 24px;
   }
-  .season-card .label {
+  .horizon-card .time {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .horizon-card .mode {
     font-weight: 600;
     font-size: 1rem;
+    margin-bottom: 6px;
+  }
+  .horizon-card .desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* ---- SEASONS ---- */
+  .season-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 48px 0;
+  }
+  @media (max-width: 600px) {
+    .season-strip { grid-template-columns: 1fr 1fr; }
+  }
+  .season {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .season .emoji { font-size: 1.8rem; margin-bottom: 8px; }
+  .season .name {
+    font-weight: 600;
+    font-size: 0.85rem;
     margin-bottom: 4px;
   }
-  .season-card .desc {
-    color: var(--muted);
-    font-size: 0.85rem;
+  .season .vibe {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 300;
   }
-  .priority-row {
+
+  /* ---- PRIORITY ---- */
+  .priority-list {
+    margin: 32px 0;
+  }
+  .priority-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 0;
+    gap: 16px;
+    padding: 20px 0;
     border-bottom: 1px solid var(--border);
-    font-family: -apple-system, sans-serif;
-    font-size: 0.9rem;
   }
   .priority-dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
   }
-  .green { background: #22c55e; }
-  .yellow { background: #eab308; }
-  .red { background: #ef4444; }
-  .mairin-section {
-    background: var(--warm);
-    border-radius: 12px;
-    padding: 32px;
-    margin: 32px 0;
+  .priority-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 120px;
   }
-  .mairin-section h3 {
-    margin-top: 24px;
+  .priority-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
   }
-  .mairin-section h3:first-child {
-    margin-top: 0;
-  }
-  .mairin-section ol {
-    padding-left: 20px;
-    margin-bottom: 16px;
-  }
-  .mairin-section li {
-    font-size: 0.92rem;
-    padding: 4px 0;
-    color: var(--muted);
-  }
-  .feedback-box {
-    background: var(--accent);
-    color: white;
-    border-radius: 12px;
-    padding: 32px;
-    margin: 48px 0 24px;
+
+  /* ---- BURT SECTION ---- */
+  .burt-intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    margin: 48px 0;
     text-align: center;
   }
-  .feedback-box h2 {
-    color: white;
-    border: none;
-    margin: 0 0 12px;
-    font-size: 1.4rem;
+  .burt-intro .bot-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
   }
-  .feedback-box p {
-    opacity: 0.9;
-    margin-bottom: 0;
+  .burt-intro h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .burt-intro p {
     font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 12px;
+    font-weight: 300;
+    line-height: 1.8;
   }
-  .wave-section {
-    margin: 24px 0;
+
+  /* ---- SECURITY ---- */
+  .security-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 48px 0;
+  }
+  @media (max-width: 600px) {
+    .security-grid { grid-template-columns: 1fr; }
+  }
+  .sec-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .sec-card.safe { border-left: 3px solid var(--green); }
+  .sec-card.none { border-left: 3px solid var(--red); }
+  .sec-card h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sec-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sec-card li {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    padding: 3px 0;
+    font-weight: 300;
+  }
+
+  /* ---- WAVES ---- */
+  .wave {
+    margin: 40px 0;
   }
   .wave-header {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 16px;
+    margin-bottom: 20px;
   }
   .wave-badge {
-    background: var(--accent);
-    color: white;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-family: -apple-system, sans-serif;
-    font-size: 0.8rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    padding: 6px 16px;
+    border-radius: 24px;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   .wave-items {
@@ -276,81 +431,251 @@
     padding: 0;
   }
   .wave-items li {
-    padding: 8px 0;
-    padding-left: 24px;
+    padding: 12px 0;
+    padding-left: 20px;
     position: relative;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     border-bottom: 1px solid var(--border);
+    font-weight: 300;
   }
   .wave-items li::before {
-    content: "→";
+    content: "—";
     position: absolute;
     left: 0;
     color: var(--accent);
   }
-  footer {
-    text-align: center;
-    padding: 40px 24px;
-    color: var(--muted);
-    font-size: 0.85rem;
-    font-family: -apple-system, sans-serif;
+
+  /* ---- QUESTIONNAIRE ---- */
+  .questionnaire {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    margin: 48px 0;
   }
-  .open-q {
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    border-radius: 10px;
-    padding: 20px 24px;
-    margin: 24px 0;
+  @media (max-width: 600px) {
+    .questionnaire { padding: 28px 20px; }
+    .burt-intro { padding: 32px 20px; }
   }
-  .open-q h4 {
-    font-family: -apple-system, sans-serif;
-    font-size: 0.95rem;
+  .questionnaire h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: var(--accent);
+  }
+  .questionnaire h3:first-of-type { margin-top: 0; }
+  .questionnaire ol {
+    padding-left: 20px;
     margin-bottom: 8px;
   }
-  .open-q p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 0;
+  .questionnaire li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    padding: 5px 0;
+    font-weight: 300;
   }
+
+  /* ---- PRINCIPLES ---- */
+  .principles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 48px 0;
+  }
+  @media (max-width: 600px) {
+    .principles { grid-template-columns: 1fr; }
+  }
+  .principle {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .principle .icon { font-size: 1.4rem; margin-bottom: 12px; }
+  .principle h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
+  .principle p {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ---- FEEDBACK CTA ---- */
+  .cta {
+    background: linear-gradient(135deg, var(--accent) 0%, #a08560 100%);
+    border-radius: 20px;
+    padding: 56px 48px;
+    text-align: center;
+    margin: 64px 0 0;
+    color: var(--bg);
+  }
+  .cta h2 {
+    color: var(--bg);
+    margin-bottom: 16px;
+    font-size: 1.8rem;
+  }
+  .cta p {
+    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto;
+    opacity: 0.85;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ---- OPEN Q ---- */
+  .open-questions {
+    margin: 48px 0;
+  }
+  .oq {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .oq h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .oq p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border);
+  }
+  footer .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto;
+    opacity: 0.5;
+  }
+  section .divider { margin: 0; }
 </style>
 </head>
 <body>
 
+<nav>
+  <div class="nav-logo">HomeBase</div>
+  <ul class="nav-links">
+    <li><a href="#how">How</a></li>
+    <li><a href="#scope">Scope</a></li>
+    <li><a href="#burt">Burt</a></li>
+    <li><a href="#security">Security</a></li>
+    <li><a href="#waves">Rollout</a></li>
+    <li><a href="#questionnaire">Questionnaire</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
 <div class="hero">
-  <h1>Project Home 2.0</h1>
-  <div class="subtitle">A family operating system to reduce cognitive overload, keep both parents in sync, and make sure nothing falls through the cracks.</div>
-  <div class="version">Brian & Mairin Head · v1.0 · February 2026</div>
+  <div class="hero-eyebrow">Head Family · 2026</div>
+  <h1>Home<em>Base</em></h1>
+  <p class="hero-sub">A family operating system designed to reduce cognitive overload, keep both parents in sync, and make sure nothing falls through the cracks.</p>
 </div>
 
-<div class="container">
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">The System</div>
+  <h2>How HomeBase Works</h2>
+  <p class="lead">One weekly sync. The rest runs on autopilot. Burt handles the research, planning, and reminders — we make the decisions.</p>
 
-  <div class="mission-box">
-    <strong>The goal:</strong> Burt (our AI assistant) handles research, planning, reminders, and coordination. We make the decisions. Everything else runs on autopilot. A weekly Sunday session keeps us aligned — the rest of the week just flows.
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h3>Continuous Monitoring</h3>
+        <p>Burt watches school calendars, deadlines, event sources, and maintenance schedules. Always on, always current.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h3>Sunday Morning Brief</h3>
+        <p>A complete week-ahead plan lands every Sunday: drop-offs, school events, deadlines, meal plan, weekend activities. Mairin gets it via email.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h3>Review & Confirm</h3>
+        <p>We adjust anything that needs it. Once confirmed, the week is locked.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h3>Autopilot</h3>
+        <p>Day-of reminders, coordination nudges, and logistics happen automatically throughout the week.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h3>Learn & Improve</h3>
+        <p>Quick feedback after activities — what worked and why — makes recommendations smarter over time.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <h2>How It Works</h2>
+<!-- PLANNING HORIZON -->
+<section>
+  <div class="section-label">Framework</div>
+  <h2>The Planning Horizon</h2>
+  <p class="lead">Everything — camps, vacations, maintenance, weekends — follows the same time-based framework. No more scrambling.</p>
 
-  <div class="how-it-works">
-    <div class="step-num">1</div>
-    <div class="step-text"><strong>Burt monitors</strong> — calendars, school feeds, deadlines, and event sources. Continuously.</div>
-    <div class="step-num">2</div>
-    <div class="step-text"><strong>Sunday morning brief</strong> — Burt posts the full week ahead: drop-offs, events, deadlines, meal plan, weekend activities. Mairin gets this via email.</div>
-    <div class="step-num">3</div>
-    <div class="step-text"><strong>We review & confirm</strong> — adjust anything that needs it. The week is locked.</div>
-    <div class="step-num">4</div>
-    <div class="step-text"><strong>Autopilot</strong> — day-of reminders, nudges, and coordination happen automatically.</div>
-    <div class="step-num">5</div>
-    <div class="step-text"><strong>Feedback loop</strong> — after activities, we give quick feedback so recommendations get smarter over time.</div>
+  <div class="horizon-grid">
+    <div class="horizon-card">
+      <div class="time">6+ Months Out</div>
+      <div class="mode">Research</div>
+      <div class="desc">Identify options, registration windows, and costs. Surface the best picks.</div>
+    </div>
+    <div class="horizon-card">
+      <div class="time">3–6 Months Out</div>
+      <div class="mode">Decide</div>
+      <div class="desc">Narrow options, flag deadlines, lock registrations before they close.</div>
+    </div>
+    <div class="horizon-card">
+      <div class="time">1–3 Months Out</div>
+      <div class="mode">Logistics</div>
+      <div class="desc">Confirm schedules, book what's needed, arrange gap coverage.</div>
+    </div>
+    <div class="horizon-card">
+      <div class="time">1–4 Weeks Out</div>
+      <div class="mode">Execute</div>
+      <div class="desc">The plan is set. Reminders fire. Everything is covered.</div>
+    </div>
   </div>
+</section>
 
-  <h2>What We're Managing</h2>
+<!-- SCOPE -->
+<section id="scope">
+  <div class="section-label">What We're Managing</div>
+  <h2>Four Domains, One System</h2>
+  <p class="lead">HomeBase covers planning, fun, home operations, and kids — all coordinated through a single weekly rhythm.</p>
 
   <div class="domain-grid">
     <div class="domain-card">
-      <div class="icon">📅</div>
-      <h4>Planning & Logistics</h4>
+      <div class="domain-icon">📅</div>
+      <h3>Planning & Logistics</h3>
       <ul>
-        <li>School schedule (MPMS calendar synced)</li>
+        <li>School schedule (MPMS synced)</li>
         <li>Camp research & registration</li>
         <li>Vacation planning (12–18 month horizon)</li>
         <li>Weekly routine template</li>
@@ -358,21 +683,21 @@
       </ul>
     </div>
     <div class="domain-card">
-      <div class="icon">🎉</div>
-      <h4>Vibes & Fun</h4>
+      <div class="domain-icon">🎉</div>
+      <h3>Vibes & Fun</h3>
       <ul>
         <li>Weekend activities (4-week pipeline)</li>
         <li>Local Marin events tracking</li>
         <li>Friend & social planning</li>
-        <li>Date nights (Burt books!)</li>
+        <li>Date nights (Burt books)</li>
         <li>Holiday & seasonal traditions</li>
       </ul>
     </div>
     <div class="domain-card">
-      <div class="icon">🏠</div>
-      <h4>Home Operations</h4>
+      <div class="domain-icon">🏠</div>
+      <h3>Home Operations</h3>
       <ul>
-        <li>Maintenance schedule (migrating to Todoist)</li>
+        <li>Maintenance schedules & reminders</li>
         <li>Landscaper coordination</li>
         <li>Laura payment automation</li>
         <li>Plant & grill schedules</li>
@@ -380,8 +705,8 @@
       </ul>
     </div>
     <div class="domain-card">
-      <div class="icon">👧🏼</div>
-      <h4>Kids</h4>
+      <div class="domain-icon">👧🏼</div>
+      <h3>Kids</h3>
       <ul>
         <li>Fashion & wardrobe curation</li>
         <li>Medical & dental tracking</li>
@@ -391,120 +716,189 @@
       </ul>
     </div>
   </div>
+</section>
 
-  <h2>The Planning Horizon</h2>
-  <p>Everything in the system — camps, vacations, maintenance, weekend plans — follows the same time-based framework. For vacations, the horizon stretches to 12–18 months.</p>
-
-  <table class="horizon-table">
-    <thead>
-      <tr><th>Timeframe</th><th>Mode</th><th>What Happens</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>6+ months</td><td>Research</td><td>Identify options, deadlines, and costs</td></tr>
-      <tr><td>3–6 months</td><td>Decide</td><td>Narrow options, lock registrations</td></tr>
-      <tr><td>1–3 months</td><td>Logistics</td><td>Confirm, book, arrange coverage</td></tr>
-      <tr><td>1–4 weeks</td><td>Execute</td><td>Plan is set, reminders firing</td></tr>
-    </tbody>
-  </table>
-
+<!-- SEASONS -->
+<section>
+  <div class="section-label">Rhythm</div>
   <h2>Seasonal Modes</h2>
-  <p>The system adapts its energy and recommendations to the rhythm of the year.</p>
+  <p class="lead">The system adapts its energy and recommendations to the natural rhythm of the year.</p>
 
-  <div class="season-grid">
-    <div class="season-card">
-      <div class="label">☀️ Summer (Jun–Aug)</div>
-      <div class="desc">Outdoor / Travel mode. High energy. Beach, parks, Airstream, Block Island, camps.</div>
+  <div class="season-strip">
+    <div class="season">
+      <div class="emoji">☀️</div>
+      <div class="name">Summer</div>
+      <div class="vibe">Outdoor & Travel</div>
     </div>
-    <div class="season-card">
-      <div class="label">🍂 Fall (Sep–Nov)</div>
-      <div class="desc">Nesting / School mode. Medium energy. Routine-heavy, indoor projects, holidays.</div>
+    <div class="season">
+      <div class="emoji">🍂</div>
+      <div class="name">Fall</div>
+      <div class="vibe">Nesting & School</div>
     </div>
-    <div class="season-card">
-      <div class="label">❄️ Winter (Dec–Feb)</div>
-      <div class="desc">Project / Indoor mode. Restorative. Museums, home projects, cozy traditions.</div>
+    <div class="season">
+      <div class="emoji">❄️</div>
+      <div class="name">Winter</div>
+      <div class="vibe">Projects & Cozy</div>
     </div>
-    <div class="season-card">
-      <div class="label">🌸 Spring (Mar–May)</div>
-      <div class="desc">Renewal / Social mode. Rising energy. New activities, outdoor dining, garden.</div>
+    <div class="season">
+      <div class="emoji">🌸</div>
+      <div class="name">Spring</div>
+      <div class="vibe">Renewal & Social</div>
+    </div>
+  </div>
+</section>
+
+<!-- BURT -->
+<section id="burt">
+  <div class="section-label">Meet the Operator</div>
+  <h2>This is Burt</h2>
+
+  <div class="burt-intro">
+    <div class="bot-icon">🤖</div>
+    <h3>Your AI Chief of Staff</h3>
+    <p>Burt is an AI assistant that Brian has set up to help run the family's logistics. Think of him as a tireless personal assistant who never forgets a deadline, always has ideas for the weekend, and keeps the whole machine running.</p>
+    <p>Burt handles the research, the reminders, the coordination, and the grunt work. You and Brian make all the decisions. Burt just makes sure you have the right information at the right time.</p>
+    <p style="color: var(--accent); font-weight: 400; margin-top: 20px;">Brian talks to Burt via Discord. Mairin gets a weekly email summary + Google Calendar invites — no new apps required.</p>
+  </div>
+
+  <h3 style="font-size: 1rem; margin: 40px 0 16px;">Design Principles</h3>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="icon">🧠</div>
+      <h4>Kid Voice in Planning</h4>
+      <p>Charlie and eventually Mac get input on weekend plans and vacation ideas. The system plans with kids, not just for them.</p>
+    </div>
+    <div class="principle">
+      <div class="icon">🎲</div>
+      <h4>Spontaneity Valve</h4>
+      <p>One weekend per month is intentionally unplanned — with a grab-and-go options list if you want it.</p>
+    </div>
+    <div class="principle">
+      <div class="icon">📊</div>
+      <h4>Feedback That Learns</h4>
+      <p>After activities, quick feedback captures not just what worked but why. Recommendations get smarter over time.</p>
+    </div>
+    <div class="principle">
+      <div class="icon">🔄</div>
+      <h4>Living Preferences</h4>
+      <p>Quarterly check-ins, age milestones, and seasonal refreshes keep everything current as the family evolves.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section id="security">
+  <div class="section-label">Privacy & Security</div>
+  <h2>What Burt Can — and <em>Cannot</em> — Access</h2>
+  <p class="lead">This was designed with clear boundaries. Burt has only the minimum context needed to coordinate logistics — nothing more.</p>
+
+  <div class="security-grid">
+    <div class="sec-card safe">
+      <h4>✅ What Burt Has Access To</h4>
+      <ul>
+        <li>First names and birthdays (family + friends)</li>
+        <li>School calendar (public MPMS feed)</li>
+        <li>Home maintenance schedules</li>
+        <li>Activity preferences and interests</li>
+        <li>Friend names for social planning</li>
+        <li>Restaurant names and event info</li>
+        <li>General location (Corte Madera / Marin)</li>
+      </ul>
+    </div>
+    <div class="sec-card none">
+      <h4>🚫 What Burt Has Zero Access To</h4>
+      <ul>
+        <li>Email accounts (Gmail, iCloud, work)</li>
+        <li>Bank accounts or financial info</li>
+        <li>iCloud / Apple ID</li>
+        <li>Medical portals or health records</li>
+        <li>Social media accounts</li>
+        <li>Passwords or login credentials</li>
+        <li>Text messages or phone calls</li>
+        <li>Photos or personal files</li>
+      </ul>
     </div>
   </div>
 
-  <h2>Communication</h2>
-  <p>Brian works with Burt directly via Discord. Mairin stays in the loop through Google Calendar invites and a weekly email summary — no new apps required.</p>
+  <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 300; margin-top: 16px;">
+    All information Burt has was explicitly shared by Brian in conversation — names, dates of birth, school name, and activity preferences. That's it. Burt cannot browse, log in, or access anything on the internet on your behalf. When Burt needs information (like medical details or vendor contacts), he asks — that's what the questionnaire below is for.
+  </p>
 
-  <h3>Priority Levels</h3>
-  <div class="priority-row">
-    <div class="priority-dot green"></div>
-    <div><strong>FYI</strong> — In the Sunday brief. Review when convenient.</div>
+  <h3 style="font-size: 1rem; margin: 40px 0 16px;">Communication Priority Levels</h3>
+
+  <div class="priority-list">
+    <div class="priority-item">
+      <div class="priority-dot" style="background: var(--green);"></div>
+      <div class="priority-label">FYI</div>
+      <div class="priority-desc">In the Sunday brief. Review when convenient.</div>
+    </div>
+    <div class="priority-item">
+      <div class="priority-dot" style="background: var(--yellow);"></div>
+      <div class="priority-label">Action Needed</div>
+      <div class="priority-desc">Decision or task required within 24 hours.</div>
+    </div>
+    <div class="priority-item">
+      <div class="priority-dot" style="background: var(--red);"></div>
+      <div class="priority-label">Urgent</div>
+      <div class="priority-desc">Time-sensitive. Immediate notification to Brian.</div>
+    </div>
   </div>
-  <div class="priority-row">
-    <div class="priority-dot yellow"></div>
-    <div><strong>Action needed</strong> — Decision or task required within 24 hours.</div>
-  </div>
-  <div class="priority-row">
-    <div class="priority-dot red"></div>
-    <div><strong>Urgent</strong> — Time-sensitive. Immediate notification.</div>
-  </div>
+</section>
 
-  <h2>Key Design Principles</h2>
+<!-- WAVES -->
+<section id="waves">
+  <div class="section-label">Rollout</div>
+  <h2>Built in Waves</h2>
+  <p class="lead">We start with the foundation and layer on capability. Next wave starts when the current one is solid.</p>
 
-  <h3>🧠 Kid Voice in Planning</h3>
-  <p>Charlie (and eventually Mac) gets input on weekend plans and vacation ideas. The system plans <em>with</em> kids, not just <em>for</em> them.</p>
-
-  <h3>🎲 Spontaneity Valve</h3>
-  <p>One weekend per month is intentionally unplanned — with a "grab and go" options list if we want it. Not every weekend needs a headline.</p>
-
-  <h3>📊 Feedback That Learns</h3>
-  <p>After activities, quick feedback captures not just what worked but <em>why</em>. Over time, recommendations get smarter and more personalized.</p>
-
-  <h3>🔄 Living Preferences</h3>
-  <p>The system evolves with the family. Quarterly check-ins, age milestone updates, and seasonal refreshes keep everything current as the kids grow.</p>
-
-  <h2>Rollout Waves</h2>
-  <p>We build in phases. Next wave starts when the current one is stable.</p>
-
-  <div class="wave-section">
+  <div class="wave">
     <div class="wave-header">
       <span class="wave-badge">Wave 1 — Foundation</span>
     </div>
     <ul class="wave-items">
-      <li>School schedule tracking (MPMS feed connected)</li>
+      <li>School schedule tracking (MPMS calendar synced)</li>
       <li>Weekly routine template (daily drop-off/pickup defaults)</li>
       <li>Sunday coordination session (Discord + email to Mairin)</li>
     </ul>
   </div>
 
-  <div class="wave-section">
+  <div class="wave">
     <div class="wave-header">
       <span class="wave-badge">Wave 2 — High Impact</span>
     </div>
     <ul class="wave-items">
-      <li>Camp research & gap coverage</li>
+      <li>Camp research & gap coverage planning</li>
       <li>Weekend activity pipeline (4-week rolling)</li>
-      <li>Local events tracking</li>
+      <li>Local Marin events tracking</li>
       <li>Home maintenance migration to Todoist</li>
-      <li>Landscaper, Laura, medical — after Mairin download</li>
+      <li>Landscaper, Laura, medical tracking — after Mairin download</li>
     </ul>
   </div>
 
-  <div class="wave-section">
+  <div class="wave">
     <div class="wave-header">
       <span class="wave-badge">Wave 3 — Enrichment</span>
     </div>
     <ul class="wave-items">
       <li>Vacation planning (12–18 month horizon)</li>
-      <li>Friend/social planning & Roladex buildout</li>
+      <li>Friend & social planning with Roladex</li>
       <li>Date night execution (Burt books)</li>
       <li>Holiday traditions & seasonal planning</li>
       <li>Kids fashion mood boards</li>
-      <li>School comms monitoring, dev tracking, emergency doc</li>
+      <li>School comms monitoring & development tracking</li>
+      <li>Emergency info document</li>
     </ul>
   </div>
+</section>
 
-  <div class="mairin-section">
-    <h2 style="margin-top:0; border:none; color: var(--accent);">Mairin Download Session</h2>
-    <p>One sit-down to give Burt everything he needs. After this, Burt maintains it all going forward.</p>
+<!-- QUESTIONNAIRE -->
+<section id="questionnaire">
+  <div class="section-label">One-Time Download</div>
+  <h2>Mairin's Input Session</h2>
+  <p class="lead">One sit-down to give Burt what he needs. After this, Burt maintains everything going forward. No ongoing homework.</p>
 
+  <div class="questionnaire">
     <h3>🌿 Landscaper</h3>
     <ol>
       <li>Who is the landscaper? (Name / company / contact)</li>
@@ -537,7 +931,7 @@
       <li>Seasonal care needs?</li>
     </ol>
 
-    <h3>🩺 Medical/Dental</h3>
+    <h3>🩺 Medical / Dental</h3>
     <ol>
       <li>Pediatrician name and practice?</li>
       <li>Dentist name and practice?</li>
@@ -552,7 +946,7 @@
     <h3>🚨 Emergency Info</h3>
     <ol>
       <li>Health insurance provider + policy number?</li>
-      <li>Emergency contacts beyond us?</li>
+      <li>Emergency contacts beyond Brian & Mairin?</li>
       <li>Medical alerts for emergencies?</li>
       <li>Does Laura have a signed medical authorization?</li>
     </ol>
@@ -564,23 +958,36 @@
       <li>How should Burt flag things to you — through Brian, or directly?</li>
     </ol>
   </div>
+</section>
 
-  <div class="feedback-box">
+<!-- FEEDBACK -->
+<section>
+  <div class="cta">
     <h2>What Do You Think?</h2>
-    <p>This is a draft. We want your input before building. What's missing? What doesn't feel right? What would make this actually useful for you? Talk to Brian or just jot your thoughts down — we'll incorporate everything.</p>
+    <p>This is a draft. We want your input before building anything. What's missing? What doesn't feel right? What would actually make your life easier? Talk to Brian — we'll incorporate everything.</p>
   </div>
 
-  <div class="open-q">
-    <h4>🤔 Open Questions</h4>
-    <p><strong>Family Dashboard:</strong> Should we build a website where both of us can see the full plan, calendar, and maintenance schedule in one place?</p>
-    <p style="margin-top:8px"><strong>Direct Channel:</strong> Beyond calendar invites and weekly emails — would you want any direct way to interact with the system?</p>
-    <p style="margin-top:8px"><strong>Kid Participation:</strong> At what age should Charlie and Mac start having a voice in planning?</p>
-  </div>
+  <div class="open-questions">
+    <div class="section-label" style="margin-top: 48px;">Open Questions</div>
 
-</div>
+    <div class="oq">
+      <h4>Family Dashboard</h4>
+      <p>Should we build a website where both of us can see the full plan, calendar, and schedules in one place?</p>
+    </div>
+    <div class="oq">
+      <h4>Direct Channel</h4>
+      <p>Beyond calendar invites and weekly emails — would you want any way to interact with the system directly?</p>
+    </div>
+    <div class="oq">
+      <h4>Kid Participation</h4>
+      <p>At what age should Charlie and Mac start having a voice in the planning process?</p>
+    </div>
+  </div>
+</section>
 
 <footer>
-  Project Home 2.0 · Head Family · February 2026
+  <div class="logo">HomeBase</div>
+  <div>Head Family · February 2026</div>
 </footer>
 
 </body>
