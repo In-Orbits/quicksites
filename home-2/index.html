@@ -8,564 +8,334 @@
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
   :root {
-    --bg: #0a0a0a;
-    --surface: #141414;
-    --surface-2: #1a1a1a;
-    --border: #2a2a2a;
-    --text: #f0f0f0;
-    --text-muted: #888888;
-    --accent: #c8a97e;
-    --accent-dim: rgba(200,169,126,0.12);
-    --accent-glow: rgba(200,169,126,0.06);
-    --green: #4ade80;
-    --yellow: #fbbf24;
-    --red: #f87171;
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --border: #e8e8e8;
+    --border-hover: #d0d0d0;
+    --text: #111111;
+    --text-muted: #666666;
+    --text-light: #999999;
+    --accent: #111111;
+    --accent-warm: #c8a97e;
+    --radius: 16px;
+    --radius-sm: 12px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Inter', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.7;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
 
-  ::selection {
-    background: var(--accent);
-    color: var(--bg);
+  ::selection { background: #111; color: #fff; }
+
+  /* ---- ICONS (inline SVG replacements for emoji) ---- */
+  .icon-svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--text);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
+  .icon-svg.sm { width: 28px; height: 28px; }
 
   /* ---- NAV ---- */
   nav {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 20px 40px;
+    padding: 16px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,10,0.8);
+    background: rgba(250,250,250,0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.02em;
+    color: var(--text);
   }
   .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     list-style: none;
   }
   .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.3s;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--accent); }
-
+  .nav-links a:hover { color: var(--text); }
   @media (max-width: 700px) {
-    nav { padding: 16px 20px; }
-    .nav-links { gap: 16px; }
-    .nav-links a { font-size: 0.72rem; }
+    nav { padding: 14px 16px; }
+    .nav-links { gap: 14px; }
+    .nav-links a { font-size: 0.7rem; }
   }
 
   /* ---- HERO ---- */
   .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 160px 24px 100px;
     text-align: center;
-    padding: 120px 24px 80px;
-    position: relative;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 80px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
+    max-width: 720px;
+    margin: 0 auto;
   }
   .hero-eyebrow {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
+    color: var(--text-light);
+    margin-bottom: 20px;
     font-weight: 500;
   }
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.8rem, 7vw, 5rem);
     font-weight: 400;
     letter-spacing: -0.03em;
-    line-height: 1.1;
+    line-height: 1.08;
     margin-bottom: 24px;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--accent);
   }
   .hero-sub {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    max-width: 540px;
-    font-weight: 300;
-    line-height: 1.8;
-  }
-
-  /* ---- SECTIONS ---- */
-  section {
-    padding: 120px 24px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  @media (max-width: 700px) {
-    section { padding: 80px 20px; }
-  }
-
-  .section-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-    font-weight: 500;
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 400;
-    line-height: 1.2;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
-  }
-
-  .lead {
     font-size: 1.05rem;
     color: var(--text-muted);
-    max-width: 640px;
+    max-width: 520px;
+    margin: 0 auto;
     font-weight: 300;
-    line-height: 1.8;
-    margin-bottom: 48px;
+    line-height: 1.75;
   }
 
-  /* ---- STEPS ---- */
-  .steps {
-    display: grid;
-    gap: 0;
-    margin: 48px 0;
-  }
-  .step {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 0 24px;
-    padding: 32px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .step:first-child { border-top: 1px solid var(--border); }
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--accent);
-    font-weight: 400;
-    line-height: 1;
-    padding-top: 4px;
-  }
-  .step-content h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .step-content p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 300;
+  /* ---- CONTAINER ---- */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
-  /* ---- DOMAIN GRID ---- */
-  .domain-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 48px 0;
+  /* ---- SECTION HEADERS ---- */
+  .sh {
+    padding: 100px 0 40px;
   }
-  @media (max-width: 600px) {
-    .domain-grid { grid-template-columns: 1fr; }
-  }
-  .domain-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    transition: border-color 0.3s, transform 0.2s;
-  }
-  .domain-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-  .domain-icon {
-    font-size: 1.6rem;
-    margin-bottom: 16px;
-  }
-  .domain-card h3 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    letter-spacing: 0.01em;
-  }
-  .domain-card ul {
-    list-style: none;
-    padding: 0;
-  }
-  .domain-card li {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    padding: 4px 0;
-    font-weight: 300;
-  }
-  .domain-card li::before {
-    content: "→ ";
-    color: var(--accent);
-    font-size: 0.8rem;
-  }
-
-  /* ---- HORIZON TABLE ---- */
-  .horizon-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 48px 0;
-  }
-  @media (max-width: 600px) {
-    .horizon-grid { grid-template-columns: 1fr; }
-  }
-  .horizon-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-  }
-  .horizon-card .time {
-    font-size: 0.75rem;
+  .sh-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--accent);
-    margin-bottom: 8px;
+    color: var(--text-light);
+    margin-bottom: 12px;
     font-weight: 500;
   }
-  .horizon-card .mode {
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 6px;
-  }
-  .horizon-card .desc {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  /* ---- SEASONS ---- */
-  .season-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin: 48px 0;
-  }
-  @media (max-width: 600px) {
-    .season-strip { grid-template-columns: 1fr 1fr; }
-  }
-  .season {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-  }
-  .season .emoji { font-size: 1.8rem; margin-bottom: 8px; }
-  .season .name {
-    font-weight: 600;
-    font-size: 0.85rem;
-    margin-bottom: 4px;
-  }
-  .season .vibe {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  /* ---- PRIORITY ---- */
-  .priority-list {
-    margin: 32px 0;
-  }
-  .priority-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .priority-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .priority-label {
-    font-weight: 600;
-    font-size: 0.9rem;
-    min-width: 120px;
-  }
-  .priority-desc {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  /* ---- BURT SECTION ---- */
-  .burt-intro {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 48px;
-    margin: 48px 0;
-    text-align: center;
-  }
-  .burt-intro .bot-icon {
-    font-size: 3rem;
-    margin-bottom: 16px;
-  }
-  .burt-intro h3 {
+  .sh h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    margin-bottom: 16px;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
     font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 12px;
   }
-  .burt-intro p {
+  .sh p {
     font-size: 0.95rem;
     color: var(--text-muted);
-    max-width: 520px;
-    margin: 0 auto 12px;
+    max-width: 560px;
     font-weight: 300;
-    line-height: 1.8;
+    line-height: 1.75;
   }
 
-  /* ---- SECURITY ---- */
-  .security-grid {
+  /* ---- BENTO GRID ---- */
+  .bento {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 48px 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
-  @media (max-width: 600px) {
-    .security-grid { grid-template-columns: 1fr; }
+  @media (max-width: 700px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento .span-2 { grid-column: span 1; }
   }
-  .sec-card {
+  .bento .span-2 { grid-column: span 2; }
+  .bento .span-3 { grid-column: span 3; }
+  @media (max-width: 700px) {
+    .bento .span-3 { grid-column: span 1; }
+  }
+
+  .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: border-color 0.25s;
   }
-  .sec-card.safe { border-left: 3px solid var(--green); }
-  .sec-card.none { border-left: 3px solid var(--red); }
-  .sec-card h4 {
-    font-size: 0.85rem;
+  .card:hover { border-color: var(--border-hover); }
+
+  .card-icon {
+    margin-bottom: 20px;
+  }
+  .card h3 {
+    font-size: 0.95rem;
     font-weight: 600;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .card p {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 8px;
+  }
+  .card li {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    padding: 3px 0;
+    font-weight: 300;
+  }
+  .card li::before {
+    content: "→ ";
+    color: var(--text-light);
+  }
+
+  /* ---- CARD VARIANTS ---- */
+  .card-dark {
+    background: var(--text);
+    color: #fff;
+    border-color: var(--text);
+  }
+  .card-dark:hover { border-color: #333; }
+  .card-dark h3 { color: #fff; }
+  .card-dark p { color: #aaa; }
+  .card-dark .icon-svg { stroke: #fff; }
+
+  .card-warm {
+    background: #f8f3ed;
+    border-color: #ece4d9;
+  }
+  .card-warm:hover { border-color: #d9cfc2; }
+
+  /* ---- STEPS (bento style) ---- */
+  .step-card .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--text-light);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  /* ---- SECURITY GRID ---- */
+  .sec-yes li::before { content: "✓ "; color: #22c55e; font-weight: 600; }
+  .sec-no li::before { content: "✕ "; color: #ef4444; font-weight: 600; }
+
+  /* ---- PRIORITY ---- */
+  .priority-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .priority-row:last-child { border: none; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .dot-g { background: #22c55e; }
+  .dot-y { background: #eab308; }
+  .dot-r { background: #ef4444; }
+  .priority-label { font-weight: 600; min-width: 100px; }
+  .priority-desc { color: var(--text-muted); font-weight: 300; }
+
+  /* ---- WAVE BADGES ---- */
+  .wave-badge {
+    display: inline-block;
+    border: 1px solid var(--border);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* ---- QUESTIONNAIRE ---- */
+  .q-section h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 28px 0 10px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  .sec-card ul {
-    list-style: none;
-    padding: 0;
+  .q-section h3:first-of-type { margin-top: 0; }
+  .q-section ol {
+    padding-left: 20px;
+    margin-bottom: 4px;
   }
-  .sec-card li {
+  .q-section li {
     font-size: 0.84rem;
     color: var(--text-muted);
     padding: 3px 0;
     font-weight: 300;
   }
 
-  /* ---- WAVES ---- */
-  .wave {
-    margin: 40px 0;
-  }
-  .wave-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-  .wave-badge {
-    background: var(--accent-dim);
-    color: var(--accent);
-    padding: 6px 16px;
-    border-radius: 24px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .wave-items {
-    list-style: none;
-    padding: 0;
-  }
-  .wave-items li {
-    padding: 12px 0;
-    padding-left: 20px;
-    position: relative;
-    font-size: 0.9rem;
-    border-bottom: 1px solid var(--border);
-    font-weight: 300;
-  }
-  .wave-items li::before {
-    content: "—";
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  /* ---- QUESTIONNAIRE ---- */
-  .questionnaire {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 48px;
-    margin: 48px 0;
-  }
-  @media (max-width: 600px) {
-    .questionnaire { padding: 28px 20px; }
-    .burt-intro { padding: 32px 20px; }
-  }
-  .questionnaire h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 32px 0 12px;
-    color: var(--accent);
-  }
-  .questionnaire h3:first-of-type { margin-top: 0; }
-  .questionnaire ol {
-    padding-left: 20px;
-    margin-bottom: 8px;
-  }
-  .questionnaire li {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    padding: 5px 0;
-    font-weight: 300;
-  }
-
-  /* ---- PRINCIPLES ---- */
-  .principles {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 48px 0;
-  }
-  @media (max-width: 600px) {
-    .principles { grid-template-columns: 1fr; }
-  }
-  .principle {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-  }
-  .principle .icon { font-size: 1.4rem; margin-bottom: 12px; }
-  .principle h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; }
-  .principle p {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  /* ---- FEEDBACK CTA ---- */
-  .cta {
-    background: linear-gradient(135deg, var(--accent) 0%, #a08560 100%);
-    border-radius: 20px;
+  /* ---- CTA ---- */
+  .cta-card {
+    background: var(--text);
+    color: #fff;
+    border-radius: var(--radius);
     padding: 56px 48px;
     text-align: center;
-    margin: 64px 0 0;
-    color: var(--bg);
+    margin: 12px 0 0;
   }
-  .cta h2 {
-    color: var(--bg);
-    margin-bottom: 16px;
-    font-size: 1.8rem;
+  .cta-card h2 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 12px;
   }
-  .cta p {
-    font-size: 0.95rem;
-    max-width: 500px;
-    margin: 0 auto;
-    opacity: 0.85;
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  /* ---- OPEN Q ---- */
-  .open-questions {
-    margin: 48px 0;
-  }
-  .oq {
-    padding: 24px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .oq h4 {
+  .cta-card p {
     font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .oq p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #aaa;
+    max-width: 480px;
+    margin: 0 auto;
     font-weight: 300;
+    line-height: 1.75;
   }
 
   /* ---- FOOTER ---- */
   footer {
     text-align: center;
     padding: 60px 24px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    border-top: 1px solid var(--border);
+    color: var(--text-light);
+    font-size: 0.78rem;
   }
   footer .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: var(--accent);
-    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 6px;
   }
 
-  /* ---- DIVIDER ---- */
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--accent);
-    margin: 0 auto;
-    opacity: 0.5;
+  /* ---- OPEN Q ---- */
+  .oq {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
   }
-  section .divider { margin: 0; }
+  .oq:last-child { border: none; }
+  .oq h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 4px; }
+  .oq p { font-size: 0.84rem; color: var(--text-muted); font-weight: 300; }
 </style>
 </head>
 <body>
@@ -577,102 +347,108 @@
     <li><a href="#scope">Scope</a></li>
     <li><a href="#burt">Burt</a></li>
     <li><a href="#security">Security</a></li>
-    <li><a href="#waves">Rollout</a></li>
-    <li><a href="#questionnaire">Questionnaire</a></li>
+    <li><a href="#rollout">Rollout</a></li>
+    <li><a href="#questionnaire">Input</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow">Head Family · 2026</div>
-  <h1>Home<em>Base</em></h1>
+  <h1>HomeBase</h1>
   <p class="hero-sub">A family operating system designed to reduce cognitive overload, keep both parents in sync, and make sure nothing falls through the cracks.</p>
 </div>
 
 <!-- HOW IT WORKS -->
-<section id="how">
-  <div class="section-label">The System</div>
-  <h2>How HomeBase Works</h2>
-  <p class="lead">One weekly sync. The rest runs on autopilot. Burt handles the research, planning, and reminders — we make the decisions.</p>
+<div class="container" id="how">
+  <div class="sh">
+    <div class="sh-label">The System</div>
+    <h2>How HomeBase Works</h2>
+    <p>One weekly sync. The rest runs on autopilot.</p>
+  </div>
 
-  <div class="steps">
-    <div class="step">
+  <div class="bento">
+    <div class="card step-card">
       <div class="step-num">01</div>
-      <div class="step-content">
-        <h3>Continuous Monitoring</h3>
-        <p>Burt watches school calendars, deadlines, event sources, and maintenance schedules. Always on, always current.</p>
-      </div>
+      <h3>Monitor</h3>
+      <p>Burt watches school calendars, deadlines, event sources, and maintenance schedules. Always on.</p>
     </div>
-    <div class="step">
+    <div class="card step-card">
       <div class="step-num">02</div>
-      <div class="step-content">
-        <h3>Sunday Morning Brief</h3>
-        <p>A complete week-ahead plan lands every Sunday: drop-offs, school events, deadlines, meal plan, weekend activities. Mairin gets it via email.</p>
-      </div>
+      <h3>Sunday Brief</h3>
+      <p>A complete week-ahead lands every Sunday morning: schedule, events, deadlines, meals, weekends.</p>
     </div>
-    <div class="step">
+    <div class="card step-card">
       <div class="step-num">03</div>
-      <div class="step-content">
-        <h3>Review & Confirm</h3>
-        <p>We adjust anything that needs it. Once confirmed, the week is locked.</p>
-      </div>
+      <h3>Confirm</h3>
+      <p>We review, adjust, and lock the week. Mairin gets it via email — no new apps.</p>
     </div>
-    <div class="step">
+    <div class="card step-card span-2">
       <div class="step-num">04</div>
-      <div class="step-content">
-        <h3>Autopilot</h3>
-        <p>Day-of reminders, coordination nudges, and logistics happen automatically throughout the week.</p>
-      </div>
+      <h3>Autopilot</h3>
+      <p>Day-of reminders, coordination nudges, and logistics run automatically. The week just flows.</p>
     </div>
-    <div class="step">
+    <div class="card step-card">
       <div class="step-num">05</div>
-      <div class="step-content">
-        <h3>Learn & Improve</h3>
-        <p>Quick feedback after activities — what worked and why — makes recommendations smarter over time.</p>
-      </div>
+      <h3>Learn</h3>
+      <p>Quick feedback after activities — what worked and why — makes it smarter over time.</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- PLANNING HORIZON -->
-<section>
-  <div class="section-label">Framework</div>
-  <h2>The Planning Horizon</h2>
-  <p class="lead">Everything — camps, vacations, maintenance, weekends — follows the same time-based framework. No more scrambling.</p>
+<div class="container">
+  <div class="sh">
+    <div class="sh-label">Framework</div>
+    <h2>The Planning Horizon</h2>
+    <p>Everything follows the same time-based framework. No more scrambling.</p>
+  </div>
 
-  <div class="horizon-grid">
-    <div class="horizon-card">
-      <div class="time">6+ Months Out</div>
-      <div class="mode">Research</div>
-      <div class="desc">Identify options, registration windows, and costs. Surface the best picks.</div>
+  <div class="bento" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" stroke-dasharray="4 3"/></svg>
+      </div>
+      <h3>6+ months</h3>
+      <p>Research options, deadlines, and costs. Surface the best picks.</p>
     </div>
-    <div class="horizon-card">
-      <div class="time">3–6 Months Out</div>
-      <div class="mode">Decide</div>
-      <div class="desc">Narrow options, flag deadlines, lock registrations before they close.</div>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" stroke-dasharray="8 3"/></svg>
+      </div>
+      <h3>3–6 months</h3>
+      <p>Narrow options. Flag deadlines. Lock registrations.</p>
     </div>
-    <div class="horizon-card">
-      <div class="time">1–3 Months Out</div>
-      <div class="mode">Logistics</div>
-      <div class="desc">Confirm schedules, book what's needed, arrange gap coverage.</div>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" stroke-dasharray="14 3"/></svg>
+      </div>
+      <h3>1–3 months</h3>
+      <p>Confirm, book, and arrange coverage for gaps.</p>
     </div>
-    <div class="horizon-card">
-      <div class="time">1–4 Weeks Out</div>
-      <div class="mode">Execute</div>
-      <div class="desc">The plan is set. Reminders fire. Everything is covered.</div>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14"/></svg>
+      </div>
+      <h3>1–4 weeks</h3>
+      <p>Plan is set. Reminders fire. Everything covered.</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- SCOPE -->
-<section id="scope">
-  <div class="section-label">What We're Managing</div>
-  <h2>Four Domains, One System</h2>
-  <p class="lead">HomeBase covers planning, fun, home operations, and kids — all coordinated through a single weekly rhythm.</p>
+<div class="container" id="scope">
+  <div class="sh">
+    <div class="sh-label">Scope</div>
+    <h2>Four Domains, One System</h2>
+    <p>Planning, fun, home ops, and kids — all through a single weekly rhythm.</p>
+  </div>
 
-  <div class="domain-grid">
-    <div class="domain-card">
-      <div class="domain-icon">📅</div>
+  <div class="bento" style="grid-template-columns: 1fr 1fr;">
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><rect x="8" y="6" width="24" height="28" rx="2"/><line x1="8" y1="12" x2="32" y2="12"/><line x1="15" y1="6" x2="15" y2="12"/><line x1="25" y1="6" x2="25" y2="12"/><line x1="14" y1="18" x2="18" y2="18"/><line x1="22" y1="18" x2="26" y2="18"/><line x1="14" y1="24" x2="18" y2="24"/><line x1="22" y1="24" x2="26" y2="24"/></svg>
+      </div>
       <h3>Planning & Logistics</h3>
       <ul>
         <li>School schedule (MPMS synced)</li>
@@ -682,8 +458,10 @@
         <li>Sunday coordination session</li>
       </ul>
     </div>
-    <div class="domain-card">
-      <div class="domain-icon">🎉</div>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><path d="M20 8l3 6 7 1-5 5 1.2 7L20 23.5 13.8 27 15 20l-5-5 7-1z"/></svg>
+      </div>
       <h3>Vibes & Fun</h3>
       <ul>
         <li>Weekend activities (4-week pipeline)</li>
@@ -693,8 +471,10 @@
         <li>Holiday & seasonal traditions</li>
       </ul>
     </div>
-    <div class="domain-card">
-      <div class="domain-icon">🏠</div>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><path d="M8 32V18l12-10 12 10v14H8z"/><rect x="16" y="22" width="8" height="10"/></svg>
+      </div>
       <h3>Home Operations</h3>
       <ul>
         <li>Maintenance schedules & reminders</li>
@@ -704,8 +484,10 @@
         <li>Vendor management</li>
       </ul>
     </div>
-    <div class="domain-card">
-      <div class="domain-icon">👧🏼</div>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="16" cy="14" r="5"/><circle cx="26" cy="16" r="4"/><path d="M6 32c0-6 5-10 10-10 2 0 3.8.6 5.3 1.6"/><path d="M34 32c0-5-3.5-8.5-8-8.5-1.5 0-2.8.4-4 1"/></svg>
+      </div>
       <h3>Kids</h3>
       <ul>
         <li>Fashion & wardrobe curation</li>
@@ -716,206 +498,222 @@
       </ul>
     </div>
   </div>
-</section>
+</div>
 
 <!-- SEASONS -->
-<section>
-  <div class="section-label">Rhythm</div>
-  <h2>Seasonal Modes</h2>
-  <p class="lead">The system adapts its energy and recommendations to the natural rhythm of the year.</p>
+<div class="container">
+  <div class="sh">
+    <div class="sh-label">Rhythm</div>
+    <h2>Seasonal Modes</h2>
+    <p>The system adapts its energy and recommendations to the year's rhythm.</p>
+  </div>
 
-  <div class="season-strip">
-    <div class="season">
-      <div class="emoji">☀️</div>
-      <div class="name">Summer</div>
-      <div class="vibe">Outdoor & Travel</div>
+  <div class="bento" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="card" style="text-align:center;">
+      <div class="card-icon" style="display:flex;justify-content:center;">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="20" cy="20" r="6"/><line x1="20" y1="6" x2="20" y2="10"/><line x1="20" y1="30" x2="20" y2="34"/><line x1="6" y1="20" x2="10" y2="20"/><line x1="30" y1="20" x2="34" y2="20"/><line x1="10" y1="10" x2="13" y2="13"/><line x1="27" y1="27" x2="30" y2="30"/><line x1="10" y1="30" x2="13" y2="27"/><line x1="27" y1="13" x2="30" y2="10"/></svg>
+      </div>
+      <h3>Summer</h3>
+      <p>Outdoor & Travel. High energy.</p>
     </div>
-    <div class="season">
-      <div class="emoji">🍂</div>
-      <div class="name">Fall</div>
-      <div class="vibe">Nesting & School</div>
+    <div class="card" style="text-align:center;">
+      <div class="card-icon" style="display:flex;justify-content:center;">
+        <svg class="icon-svg" viewBox="0 0 40 40"><path d="M12 14c1-4 4-6 8-6s7 2 8 6"/><path d="M10 28c-2 0-4-2-4-4 0-3 2-5 5-5h18c3 0 5 2 5 5 0 2-2 4-4 4"/><line x1="14" y1="28" x2="14" y2="34"/><line x1="20" y1="28" x2="20" y2="36"/><line x1="26" y1="28" x2="26" y2="33"/></svg>
+      </div>
+      <h3>Fall</h3>
+      <p>Nesting & School. Medium.</p>
     </div>
-    <div class="season">
-      <div class="emoji">❄️</div>
-      <div class="name">Winter</div>
-      <div class="vibe">Projects & Cozy</div>
+    <div class="card" style="text-align:center;">
+      <div class="card-icon" style="display:flex;justify-content:center;">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="14" cy="16" r="6" stroke-dasharray="2 2"/><circle cx="26" cy="22" r="5" stroke-dasharray="2 2"/><circle cx="18" cy="28" r="4" stroke-dasharray="2 2"/></svg>
+      </div>
+      <h3>Winter</h3>
+      <p>Projects & Cozy. Restorative.</p>
     </div>
-    <div class="season">
-      <div class="emoji">🌸</div>
-      <div class="name">Spring</div>
-      <div class="vibe">Renewal & Social</div>
+    <div class="card" style="text-align:center;">
+      <div class="card-icon" style="display:flex;justify-content:center;">
+        <svg class="icon-svg" viewBox="0 0 40 40"><path d="M20 34V18"/><path d="M20 18c-4-4-10-2-10 4"/><path d="M20 22c4-6 12-3 10 4"/><path d="M20 14c-2-6 2-10 6-10"/><circle cx="20" cy="10" r="2"/></svg>
+      </div>
+      <h3>Spring</h3>
+      <p>Renewal & Social. Rising.</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- BURT -->
-<section id="burt">
-  <div class="section-label">Meet the Operator</div>
-  <h2>This is Burt</h2>
-
-  <div class="burt-intro">
-    <div class="bot-icon">🤖</div>
-    <h3>Your AI Chief of Staff</h3>
-    <p>Burt is an AI assistant that Brian has set up to help run the family's logistics. Think of him as a tireless personal assistant who never forgets a deadline, always has ideas for the weekend, and keeps the whole machine running.</p>
-    <p>Burt handles the research, the reminders, the coordination, and the grunt work. You and Brian make all the decisions. Burt just makes sure you have the right information at the right time.</p>
-    <p style="color: var(--accent); font-weight: 400; margin-top: 20px;">Brian talks to Burt via Discord. Mairin gets a weekly email summary + Google Calendar invites — no new apps required.</p>
+<div class="container" id="burt">
+  <div class="sh">
+    <div class="sh-label">The Operator</div>
+    <h2>Meet Burt</h2>
   </div>
 
-  <h3 style="font-size: 1rem; margin: 40px 0 16px;">Design Principles</h3>
+  <div class="bento" style="grid-template-columns: 1fr 1fr;">
+    <div class="card card-dark span-2" style="text-align:center; padding: 48px 32px;">
+      <div class="card-icon" style="display:flex;justify-content:center;margin-bottom:24px;">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="8" width="32" height="40" rx="4"/><circle cx="22" cy="24" r="3"/><circle cx="34" cy="24" r="3"/><path d="M22 34h12" stroke-dasharray="2 3"/><line x1="20" y1="14" x2="28" y2="14"/></svg>
+      </div>
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; margin-bottom:12px;">Your AI Chief of Staff</h3>
+      <p style="max-width:480px; margin:0 auto 8px;">Burt is an AI assistant Brian set up to run family logistics. Think of him as a tireless personal assistant who never forgets a deadline, always has weekend ideas, and keeps the whole machine running.</p>
+      <p style="max-width:480px; margin:0 auto; color: #888;">Brian talks to Burt via Discord. Mairin gets a weekly email + Google Calendar invites. No new apps required.</p>
+    </div>
 
-  <div class="principles">
-    <div class="principle">
-      <div class="icon">🧠</div>
-      <h4>Kid Voice in Planning</h4>
-      <p>Charlie and eventually Mac get input on weekend plans and vacation ideas. The system plans with kids, not just for them.</p>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><circle cx="20" cy="16" r="8"/><path d="M10 36c0-6 4.5-10 10-10s10 4 10 10"/><line x1="20" y1="13" x2="20" y2="19"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+      </div>
+      <h3>Kid Voice</h3>
+      <p>Charlie and eventually Mac get input on weekend plans and vacation ideas. Plans with kids, not just for them.</p>
     </div>
-    <div class="principle">
-      <div class="icon">🎲</div>
-      <h4>Spontaneity Valve</h4>
-      <p>One weekend per month is intentionally unplanned — with a grab-and-go options list if you want it.</p>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><rect x="8" y="8" width="10" height="10" rx="2" stroke-dasharray="3 2"/><rect x="22" y="8" width="10" height="10" rx="2"/><rect x="8" y="22" width="10" height="10" rx="2"/><rect x="22" y="22" width="10" height="10" rx="2" stroke-dasharray="3 2"/></svg>
+      </div>
+      <h3>Spontaneity Valve</h3>
+      <p>One weekend per month is intentionally blank — with a grab-and-go list if you want it.</p>
     </div>
-    <div class="principle">
-      <div class="icon">📊</div>
-      <h4>Feedback That Learns</h4>
-      <p>After activities, quick feedback captures not just what worked but why. Recommendations get smarter over time.</p>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><polyline points="8,30 14,22 20,26 26,16 32,10"/><circle cx="32" cy="10" r="2"/></svg>
+      </div>
+      <h3>Learns Over Time</h3>
+      <p>Quick feedback captures not just what worked but why. Recommendations get smarter each cycle.</p>
     </div>
-    <div class="principle">
-      <div class="icon">🔄</div>
-      <h4>Living Preferences</h4>
-      <p>Quarterly check-ins, age milestones, and seasonal refreshes keep everything current as the family evolves.</p>
+    <div class="card">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><path d="M20 8a12 12 0 0 1 0 24 12 12 0 0 1 0-24"/><polyline points="20,8 20,20 28,24"/></svg>
+      </div>
+      <h3>Living Preferences</h3>
+      <p>Quarterly check-ins, age milestones, and seasonal refreshes keep everything current as the family grows.</p>
     </div>
   </div>
-</section>
+</div>
 
 <!-- SECURITY -->
-<section id="security">
-  <div class="section-label">Privacy & Security</div>
-  <h2>What Burt Can — and <em>Cannot</em> — Access</h2>
-  <p class="lead">This was designed with clear boundaries. Burt has only the minimum context needed to coordinate logistics — nothing more.</p>
+<div class="container" id="security">
+  <div class="sh">
+    <div class="sh-label">Privacy & Security</div>
+    <h2>Clear Boundaries</h2>
+    <p>Burt has only the minimum context needed to coordinate logistics. Nothing more.</p>
+  </div>
 
-  <div class="security-grid">
-    <div class="sec-card safe">
-      <h4>✅ What Burt Has Access To</h4>
-      <ul>
-        <li>First names and birthdays (family + friends)</li>
-        <li>School calendar (public MPMS feed)</li>
+  <div class="bento" style="grid-template-columns: 1fr 1fr;">
+    <div class="card" style="border-left: 3px solid #22c55e;">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><path d="M20 6l12 4v10c0 8-5 14-12 16C13 34 8 28 8 20V10z"/><polyline points="14,20 18,24 26,16"/></svg>
+      </div>
+      <h3>What Burt Knows</h3>
+      <ul class="sec-yes">
+        <li>First names and birthdays</li>
+        <li>School calendar (public feed)</li>
         <li>Home maintenance schedules</li>
         <li>Activity preferences and interests</li>
         <li>Friend names for social planning</li>
-        <li>Restaurant names and event info</li>
-        <li>General location (Corte Madera / Marin)</li>
+        <li>General location (Marin County)</li>
       </ul>
     </div>
-    <div class="sec-card none">
-      <h4>🚫 What Burt Has Zero Access To</h4>
-      <ul>
+    <div class="card" style="border-left: 3px solid #ef4444;">
+      <div class="card-icon">
+        <svg class="icon-svg" viewBox="0 0 40 40"><rect x="10" y="18" width="20" height="16" rx="2"/><path d="M14 18V14a6 6 0 0 1 12 0v4"/><line x1="20" y1="24" x2="20" y2="28"/></svg>
+      </div>
+      <h3>Zero Access To</h3>
+      <ul class="sec-no">
         <li>Email accounts (Gmail, iCloud, work)</li>
         <li>Bank accounts or financial info</li>
         <li>iCloud / Apple ID</li>
         <li>Medical portals or health records</li>
         <li>Social media accounts</li>
-        <li>Passwords or login credentials</li>
-        <li>Text messages or phone calls</li>
-        <li>Photos or personal files</li>
+        <li>Passwords, texts, photos, or files</li>
+      </ul>
+    </div>
+    <div class="card card-warm span-2">
+      <p>All information Burt has was explicitly shared by Brian in conversation — names, birthdays, school name, activity preferences. That's it. Burt cannot browse the internet on your behalf, log into any accounts, or access anything sensitive. When Burt needs information (like medical details or vendor contacts), he asks. That's what the questionnaire below is for.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px;">
+    <h3 style="font-size:0.88rem; font-weight:600; margin-bottom:8px;">Communication Priority</h3>
+    <div class="priority-row"><div class="dot dot-g"></div><div class="priority-label">FYI</div><div class="priority-desc">In the Sunday brief. Review when convenient.</div></div>
+    <div class="priority-row"><div class="dot dot-y"></div><div class="priority-label">Action</div><div class="priority-desc">Decision or task needed within 24 hours.</div></div>
+    <div class="priority-row"><div class="dot dot-r"></div><div class="priority-label">Urgent</div><div class="priority-desc">Time-sensitive. Immediate notification to Brian.</div></div>
+  </div>
+</div>
+
+<!-- ROLLOUT -->
+<div class="container" id="rollout">
+  <div class="sh">
+    <div class="sh-label">Rollout</div>
+    <h2>Built in Waves</h2>
+    <p>Start with the foundation. Layer on capability. Next wave when the last one is solid.</p>
+  </div>
+
+  <div class="bento">
+    <div class="card">
+      <div class="wave-badge">Wave 1 — Foundation</div>
+      <ul>
+        <li>School schedule tracking</li>
+        <li>Weekly routine template</li>
+        <li>Sunday coordination session</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="wave-badge">Wave 2 — High Impact</div>
+      <ul>
+        <li>Camp research & gap coverage</li>
+        <li>Weekend activity pipeline</li>
+        <li>Local events tracking</li>
+        <li>Home maintenance (Todoist)</li>
+        <li>Landscaper, Laura, medical</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="wave-badge">Wave 3 — Enrichment</div>
+      <ul>
+        <li>Vacation planning (12–18mo)</li>
+        <li>Friend & social planning</li>
+        <li>Date night execution</li>
+        <li>Holiday traditions</li>
+        <li>Kids fashion mood boards</li>
+        <li>School comms & dev tracking</li>
       </ul>
     </div>
   </div>
-
-  <p style="font-size: 0.9rem; color: var(--text-muted); font-weight: 300; margin-top: 16px;">
-    All information Burt has was explicitly shared by Brian in conversation — names, dates of birth, school name, and activity preferences. That's it. Burt cannot browse, log in, or access anything on the internet on your behalf. When Burt needs information (like medical details or vendor contacts), he asks — that's what the questionnaire below is for.
-  </p>
-
-  <h3 style="font-size: 1rem; margin: 40px 0 16px;">Communication Priority Levels</h3>
-
-  <div class="priority-list">
-    <div class="priority-item">
-      <div class="priority-dot" style="background: var(--green);"></div>
-      <div class="priority-label">FYI</div>
-      <div class="priority-desc">In the Sunday brief. Review when convenient.</div>
-    </div>
-    <div class="priority-item">
-      <div class="priority-dot" style="background: var(--yellow);"></div>
-      <div class="priority-label">Action Needed</div>
-      <div class="priority-desc">Decision or task required within 24 hours.</div>
-    </div>
-    <div class="priority-item">
-      <div class="priority-dot" style="background: var(--red);"></div>
-      <div class="priority-label">Urgent</div>
-      <div class="priority-desc">Time-sensitive. Immediate notification to Brian.</div>
-    </div>
-  </div>
-</section>
-
-<!-- WAVES -->
-<section id="waves">
-  <div class="section-label">Rollout</div>
-  <h2>Built in Waves</h2>
-  <p class="lead">We start with the foundation and layer on capability. Next wave starts when the current one is solid.</p>
-
-  <div class="wave">
-    <div class="wave-header">
-      <span class="wave-badge">Wave 1 — Foundation</span>
-    </div>
-    <ul class="wave-items">
-      <li>School schedule tracking (MPMS calendar synced)</li>
-      <li>Weekly routine template (daily drop-off/pickup defaults)</li>
-      <li>Sunday coordination session (Discord + email to Mairin)</li>
-    </ul>
-  </div>
-
-  <div class="wave">
-    <div class="wave-header">
-      <span class="wave-badge">Wave 2 — High Impact</span>
-    </div>
-    <ul class="wave-items">
-      <li>Camp research & gap coverage planning</li>
-      <li>Weekend activity pipeline (4-week rolling)</li>
-      <li>Local Marin events tracking</li>
-      <li>Home maintenance migration to Todoist</li>
-      <li>Landscaper, Laura, medical tracking — after Mairin download</li>
-    </ul>
-  </div>
-
-  <div class="wave">
-    <div class="wave-header">
-      <span class="wave-badge">Wave 3 — Enrichment</span>
-    </div>
-    <ul class="wave-items">
-      <li>Vacation planning (12–18 month horizon)</li>
-      <li>Friend & social planning with Roladex</li>
-      <li>Date night execution (Burt books)</li>
-      <li>Holiday traditions & seasonal planning</li>
-      <li>Kids fashion mood boards</li>
-      <li>School comms monitoring & development tracking</li>
-      <li>Emergency info document</li>
-    </ul>
-  </div>
-</section>
+</div>
 
 <!-- QUESTIONNAIRE -->
-<section id="questionnaire">
-  <div class="section-label">One-Time Download</div>
-  <h2>Mairin's Input Session</h2>
-  <p class="lead">One sit-down to give Burt what he needs. After this, Burt maintains everything going forward. No ongoing homework.</p>
+<div class="container" id="questionnaire">
+  <div class="sh">
+    <div class="sh-label">One-Time Input</div>
+    <h2>Mairin's Download Session</h2>
+    <p>One sit-down to give Burt what he needs. After this, Burt maintains everything. No ongoing homework.</p>
+  </div>
 
-  <div class="questionnaire">
-    <h3>🌿 Landscaper</h3>
+  <div class="card q-section" style="padding: 40px 36px;">
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><path d="M14 4v20"/><path d="M14 4c-4 4-8 6-8 12 0 4 3.5 8 8 8s8-4 8-8c0-6-4-8-8-12z"/></svg>
+      Landscaper
+    </h3>
     <ol>
       <li>Who is the landscaper? (Name / company / contact)</li>
-      <li>Current schedule? (Weekly? Biweekly? What day?)</li>
+      <li>Current schedule? (Weekly? Biweekly?)</li>
       <li>What do they do? (Mow, blow, trim, plant?)</li>
       <li>Payment details (amount, method, cadence)</li>
-      <li>Any upcoming projects or changes?</li>
+      <li>Upcoming projects or changes?</li>
     </ol>
 
-    <h3>🪟 Window Cleaners</h3>
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><rect x="4" y="4" width="20" height="20" rx="2"/><line x1="4" y1="14" x2="24" y2="14"/><line x1="14" y1="4" x2="14" y2="24"/></svg>
+      Window Cleaners
+    </h3>
     <ol>
       <li>Who does window cleaning?</li>
       <li>Current schedule?</li>
       <li>Payment details?</li>
     </ol>
 
-    <h3>👩‍👧‍👦 Laura (Nanny)</h3>
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><circle cx="14" cy="10" r="5"/><path d="M6 26c0-5 3.5-9 8-9s8 4 8 9"/></svg>
+      Laura (Nanny)
+    </h3>
     <ol>
       <li>Pay rate?</li>
       <li>Fixed weekly or hourly?</li>
@@ -924,14 +722,20 @@
       <li>Days and hours?</li>
     </ol>
 
-    <h3>🌱 Plants & Grounds</h3>
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><path d="M14 24V12"/><path d="M14 12c-3-3-7-2-7 3"/><path d="M14 15c3-4 8-2 7 3"/><circle cx="14" cy="8" r="2"/></svg>
+      Plants & Grounds
+    </h3>
     <ol>
       <li>How many plants (indoor + outdoor)?</li>
       <li>Watering schedules?</li>
       <li>Seasonal care needs?</li>
     </ol>
 
-    <h3>🩺 Medical / Dental</h3>
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><path d="M8 24V12a6 6 0 0 1 12 0v12"/><line x1="8" y1="18" x2="20" y2="18"/><circle cx="14" cy="8" r="2"/></svg>
+      Medical / Dental
+    </h3>
     <ol>
       <li>Pediatrician name and practice?</li>
       <li>Dentist name and practice?</li>
@@ -943,7 +747,10 @@
       <li>Vaccinations up to date?</li>
     </ol>
 
-    <h3>🚨 Emergency Info</h3>
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><path d="M14 4l8 3v7c0 6-3.5 10-8 12-4.5-2-8-6-8-12V7z"/><line x1="14" y1="12" x2="14" y2="16"/><circle cx="14" cy="19" r="1"/></svg>
+      Emergency Info
+    </h3>
     <ol>
       <li>Health insurance provider + policy number?</li>
       <li>Emergency contacts beyond Brian & Mairin?</li>
@@ -951,39 +758,41 @@
       <li>Does Laura have a signed medical authorization?</li>
     </ol>
 
-    <h3>💬 General</h3>
+    <h3>
+      <svg class="icon-svg sm" viewBox="0 0 28 28"><path d="M4 20l6-6 4 4 6-6 4 4"/><rect x="4" y="4" width="20" height="20" rx="2"/></svg>
+      General
+    </h3>
     <ol>
-      <li>Anything else you currently track that Brian should know about?</li>
+      <li>Anything else you track that Brian should know about?</li>
       <li>Recurring appointments not yet captured?</li>
       <li>How should Burt flag things to you — through Brian, or directly?</li>
     </ol>
   </div>
-</section>
+</div>
 
-<!-- FEEDBACK -->
-<section>
-  <div class="cta">
+<!-- CTA + OPEN Q -->
+<div class="container" style="padding-bottom: 40px;">
+  <div class="cta-card" style="margin-top: 80px;">
     <h2>What Do You Think?</h2>
-    <p>This is a draft. We want your input before building anything. What's missing? What doesn't feel right? What would actually make your life easier? Talk to Brian — we'll incorporate everything.</p>
+    <p>This is a draft. We want your input before building. What's missing? What doesn't feel right? What would actually make your life easier?</p>
   </div>
 
-  <div class="open-questions">
-    <div class="section-label" style="margin-top: 48px;">Open Questions</div>
-
+  <div style="margin-top: 40px;">
+    <div class="sh-label">Open Questions</div>
     <div class="oq">
       <h4>Family Dashboard</h4>
-      <p>Should we build a website where both of us can see the full plan, calendar, and schedules in one place?</p>
+      <p>Should we build a website where both of us see the full plan, calendar, and schedules in one place?</p>
     </div>
     <div class="oq">
       <h4>Direct Channel</h4>
-      <p>Beyond calendar invites and weekly emails — would you want any way to interact with the system directly?</p>
+      <p>Beyond calendar invites and weekly emails — would you want any way to interact with the system?</p>
     </div>
     <div class="oq">
       <h4>Kid Participation</h4>
-      <p>At what age should Charlie and Mac start having a voice in the planning process?</p>
+      <p>At what age should Charlie and Mac start having a voice in the planning?</p>
     </div>
   </div>
-</section>
+</div>
 
 <footer>
   <div class="logo">HomeBase</div>
