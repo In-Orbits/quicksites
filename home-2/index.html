@@ -6,116 +6,119 @@
 <title>HomeBase — Head Family</title>
 <link href="https://unpkg.com/lucide-static@latest/font/lucide.css" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
   :root {
-    --bg: #fafafa;
+    --bg: #f9f9f9;
     --surface: #ffffff;
-    --border: #e8e8e8;
-    --border-hover: #d0d0d0;
-    --text: #111111;
-    --text-muted: #666666;
-    --text-light: #999999;
-    --accent: #111111;
-    --accent-warm: #c8a97e;
-    --radius: 16px;
-    --radius-sm: 12px;
+    --surface-dark: #0a0a0a;
+    --border: #e5e5e5;
+    --border-hover: #c0c0c0;
+    --text: #0a0a0a;
+    --text-2: #525252;
+    --text-3: #a3a3a3;
+    --text-inv: #fafafa;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --text-xl: 24px;
+    --text-lg: 16px;
+    --text-md: 14px;
+    --text-sm: 12px;
+    --text-xs: 11px;
+    --text-xxs: 10px;
+    --gap: 8px;
+    --pad: 20px;
+    --section-gap: 64px;
+    --r-lg: 10px;
+    --r-sm: 2px;
+    --r-pill: 9999px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: var(--font);
     background: var(--bg);
     color: var(--text);
-    line-height: 1.65;
+    font-size: var(--text-sm);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
-
-  ::selection { background: #111; color: #fff; }
+  ::selection { background: var(--text); color: var(--bg); }
 
   /* ---- ICONS ---- */
-  .card-icon i,
-  .q-section h3 i {
-    font-size: 24px;
-    color: var(--text);
-  }
-  .card-icon {
-    margin-bottom: 20px;
-  }
-  .card-dark .card-icon i { color: #fff; }
-  .hero-icon i { font-size: 36px; color: #fff; }
+  .card-icon i { font-size: 20px; color: var(--text); }
+  .card-icon { margin-bottom: 12px; }
+  .card-dark .card-icon i { color: var(--text-inv); }
 
   /* ---- NAV ---- */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 16px 32px;
+    padding: 12px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(250,250,250,0.85);
+    background: rgba(255,255,255,0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
   }
   .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-size: var(--text-md);
     font-weight: 600;
     color: var(--text);
   }
   .nav-links {
     display: flex;
-    gap: 28px;
+    gap: 20px;
     list-style: none;
   }
   .nav-links a {
-    color: var(--text-muted);
+    color: var(--text-3);
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: var(--text-xs);
     font-weight: 500;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
+    transition: color 0.15s;
   }
   .nav-links a:hover { color: var(--text); }
   @media (max-width: 700px) {
-    nav { padding: 14px 16px; }
-    .nav-links { gap: 14px; }
-    .nav-links a { font-size: 0.7rem; }
+    nav { padding: 12px 16px; }
+    .nav-links { gap: 12px; }
+    .nav-links a { font-size: var(--text-xxs); }
   }
 
   /* ---- HERO ---- */
   .hero {
-    padding: 160px 24px 100px;
+    padding: 120px 24px 64px;
     text-align: center;
-    max-width: 720px;
+    max-width: 640px;
     margin: 0 auto;
   }
   .hero-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 20px;
+    color: var(--text-3);
+    margin-bottom: 12px;
     font-weight: 500;
   }
   .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-size: var(--text-xl);
     font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
-    margin-bottom: 24px;
+    line-height: 1.5;
+    margin-bottom: 8px;
   }
   .hero-sub {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 520px;
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    max-width: 480px;
     margin: 0 auto;
-    font-weight: 300;
-    line-height: 1.75;
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   /* ---- CONTAINER ---- */
@@ -127,212 +130,258 @@
 
   /* ---- SECTION HEADERS ---- */
   .sh {
-    padding: 100px 0 40px;
+    padding: var(--section-gap) 0 20px;
   }
   .sh-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 12px;
+    color: var(--text-3);
+    margin-bottom: 8px;
     font-weight: 500;
   }
   .sh h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-size: var(--text-xl);
     font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    margin-bottom: 12px;
+    line-height: 1.5;
+    margin-bottom: 6px;
   }
   .sh p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
+    font-size: var(--text-sm);
+    color: var(--text-2);
     max-width: 560px;
-    font-weight: 300;
-    line-height: 1.75;
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   /* ---- BENTO GRID ---- */
   .bento {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: var(--gap);
   }
   @media (max-width: 700px) {
     .bento { grid-template-columns: 1fr; }
-    .bento .span-2 { grid-column: span 1; }
+    .bento .span-2, .bento .span-3 { grid-column: span 1; }
   }
   .bento .span-2 { grid-column: span 2; }
   .bento .span-3 { grid-column: span 3; }
-  @media (max-width: 700px) {
-    .bento .span-3 { grid-column: span 1; }
-  }
 
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 28px;
-    transition: border-color 0.25s;
+    border-radius: var(--r-lg);
+    padding: var(--pad);
+    transition: border-color 0.15s;
   }
   .card:hover { border-color: var(--border-hover); }
 
   .card h3 {
-    font-size: 0.95rem;
+    font-size: var(--text-md);
     font-weight: 600;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
+    margin-bottom: 4px;
   }
   .card p {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    line-height: 1.7;
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    font-weight: 400;
+    line-height: 1.5;
   }
   .card ul {
     list-style: none;
     padding: 0;
-    margin-top: 8px;
+    margin-top: 6px;
   }
   .card li {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    padding: 3px 0;
-    font-weight: 300;
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    padding: 2px 0;
+    font-weight: 400;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
   }
-  .card li::before {
-    content: "→ ";
-    color: var(--text-light);
+  .card li .s {
+    font-size: 12px;
+    color: var(--text);
+    flex-shrink: 0;
+    width: 14px;
+    text-align: center;
   }
 
   /* ---- CARD VARIANTS ---- */
   .card-dark {
-    background: var(--text);
-    color: #fff;
-    border-color: var(--text);
+    background: var(--surface-dark);
+    color: var(--text-inv);
+    border-color: var(--surface-dark);
   }
   .card-dark:hover { border-color: #333; }
-  .card-dark h3 { color: #fff; }
-  .card-dark p { color: #aaa; }
+  .card-dark h3 { color: var(--text-inv); }
+  .card-dark p { color: #737373; }
 
-  .card-warm {
-    background: #f8f3ed;
-    border-color: #ece4d9;
-  }
-  .card-warm:hover { border-color: #d9cfc2; }
-
-  /* ---- STEPS (bento style) ---- */
+  /* ---- STEPS ---- */
   .step-card .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: var(--text-lg);
     font-weight: 400;
-    color: var(--text-light);
+    color: var(--text-3);
     line-height: 1;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    font-family: var(--mono);
   }
 
-  /* ---- SECURITY GRID ---- */
-  .sec-yes li::before { content: "✓ "; color: #22c55e; font-weight: 600; }
-  .sec-no li::before { content: "✕ "; color: #ef4444; font-weight: 600; }
+  /* ---- SECURITY ---- */
+  .sec-yes li .s { color: var(--green); }
+  .sec-no li .s { color: var(--red); }
 
   /* ---- PRIORITY ---- */
-  .priority-row {
+  .pri {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 14px 0;
+    gap: 10px;
+    padding: 8px 0;
     border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
+    font-size: var(--text-sm);
   }
-  .priority-row:last-child { border: none; }
-  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-  .dot-g { background: #22c55e; }
-  .dot-y { background: #eab308; }
-  .dot-r { background: #ef4444; }
-  .priority-label { font-weight: 600; min-width: 100px; }
-  .priority-desc { color: var(--text-muted); font-weight: 300; }
+  .pri:last-child { border: none; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-g { background: var(--green); }
+  .dot-y { background: var(--yellow); }
+  .dot-r { background: var(--red); }
+  .pri-l { font-weight: 600; min-width: 60px; }
+  .pri-d { color: var(--text-2); }
 
-  /* ---- WAVE BADGES ---- */
-  .wave-badge {
+  /* ---- BADGES ---- */
+  .badge {
     display: inline-block;
     border: 1px solid var(--border);
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: var(--r-pill);
+    font-size: var(--text-xxs);
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
-    margin-bottom: 16px;
+    color: var(--text-2);
+    margin-bottom: 12px;
   }
+
+  /* ---- FEATURE LIST ---- */
+  .feature-list {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  .feature-item {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: var(--text-sm);
+    transition: background 0.1s;
+  }
+  .feature-item:last-child { border-bottom: none; }
+  .feature-item:hover { background: var(--bg); }
+  .feature-item .sym { font-size: 12px; }
+  .feature-item.active { font-weight: 600; }
+
+  /* ---- DATA TABLE ---- */
+  .table-wrap {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+  }
+  .data-table th {
+    text-align: left;
+    font-weight: 500;
+    font-size: var(--text-xxs);
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-2);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .val { font-family: var(--mono); font-size: var(--text-xs); color: var(--text); font-weight: 500; }
 
   /* ---- QUESTIONNAIRE ---- */
   .q-section h3 {
-    font-size: 0.9rem;
+    font-size: var(--text-md);
     font-weight: 600;
-    margin: 28px 0 10px;
+    margin: 20px 0 8px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
   .q-section h3:first-of-type { margin-top: 0; }
+  .q-section h3 .sym { font-size: 12px; }
   .q-section ol {
     padding-left: 20px;
     margin-bottom: 4px;
   }
   .q-section li {
-    font-size: 0.84rem;
-    color: var(--text-muted);
-    padding: 3px 0;
-    font-weight: 300;
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    padding: 2px 0;
+    font-weight: 400;
   }
 
   /* ---- CTA ---- */
   .cta-card {
-    background: var(--text);
-    color: #fff;
-    border-radius: var(--radius);
-    padding: 56px 48px;
+    background: var(--surface-dark);
+    color: var(--text-inv);
+    border-radius: var(--r-lg);
+    padding: 40px 32px;
     text-align: center;
-    margin: 12px 0 0;
+    margin: var(--gap) 0 0;
   }
   .cta-card h2 {
-    font-family: 'Playfair Display', serif;
-    color: #fff;
-    font-size: 1.6rem;
-    margin-bottom: 12px;
+    color: var(--text-inv);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    margin-bottom: 8px;
   }
   .cta-card p {
-    font-size: 0.9rem;
-    color: #aaa;
+    font-size: var(--text-sm);
+    color: #737373;
     max-width: 480px;
     margin: 0 auto;
-    font-weight: 300;
-    line-height: 1.75;
+    font-weight: 400;
+    line-height: 1.5;
   }
 
   /* ---- FOOTER ---- */
   footer {
     text-align: center;
-    padding: 60px 24px;
-    color: var(--text-light);
-    font-size: 0.78rem;
+    padding: 48px 24px;
+    color: var(--text-3);
+    font-size: var(--text-xxs);
   }
   footer .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
     color: var(--text);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   /* ---- OPEN Q ---- */
   .oq {
-    padding: 20px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
   }
   .oq:last-child { border: none; }
-  .oq h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 4px; }
-  .oq p { font-size: 0.84rem; color: var(--text-muted); font-weight: 300; }
+  .oq h4 { font-size: var(--text-md); font-weight: 600; margin-bottom: 2px; }
+  .oq p { font-size: var(--text-sm); color: var(--text-2); font-weight: 400; }
 </style>
 </head>
 <body>
@@ -433,50 +482,64 @@
     <p>Planning, fun, home ops, and kids — all through a single weekly rhythm.</p>
   </div>
 
-  <div class="bento" style="grid-template-columns: 1fr 1fr;">
-    <div class="card">
-      <div class="card-icon"><i class="lucide-calendar"></i></div>
-      <h3>Planning & Logistics</h3>
-      <ul>
-        <li>School schedule (MPMS synced)</li>
-        <li>Camp research & registration</li>
-        <li>Vacation planning (12–18 month horizon)</li>
-        <li>Weekly routine template</li>
-        <li>Sunday coordination session</li>
-      </ul>
+  <div style="display:grid; grid-template-columns: 240px 1fr; gap: var(--gap);">
+    <!-- Feature sidebar list -->
+    <div class="feature-list" style="height:fit-content;">
+      <div class="feature-item active"><span class="sym">◆</span> School schedule tracking</div>
+      <div class="feature-item"><span class="sym">◇</span> Camp research & registration</div>
+      <div class="feature-item"><span class="sym">★</span> Weekend activity pipeline</div>
+      <div class="feature-item"><span class="sym">▲</span> Home maintenance</div>
+      <div class="feature-item"><span class="sym">●</span> Medical & dental tracking</div>
+      <div class="feature-item"><span class="sym">◐</span> Meal planning</div>
+      <div class="feature-item"><span class="sym">■</span> Emergency info document</div>
     </div>
-    <div class="card">
-      <div class="card-icon"><i class="lucide-star"></i></div>
-      <h3>Vibes & Fun</h3>
-      <ul>
-        <li>Weekend activities (4-week pipeline)</li>
-        <li>Local Marin events tracking</li>
-        <li>Friend & social planning</li>
-        <li>Date nights (Burt books)</li>
-        <li>Holiday & seasonal traditions</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="lucide-home"></i></div>
-      <h3>Home Operations</h3>
-      <ul>
-        <li>Maintenance schedules & reminders</li>
-        <li>Landscaper coordination</li>
-        <li>Laura payment automation</li>
-        <li>Plant & grill schedules</li>
-        <li>Vendor management</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-icon"><i class="lucide-users"></i></div>
-      <h3>Kids</h3>
-      <ul>
-        <li>Fashion & wardrobe curation</li>
-        <li>Medical & dental tracking</li>
-        <li>School comms monitoring</li>
-        <li>Development & interests log</li>
-        <li>Emergency info document</li>
-      </ul>
+
+    <!-- Domain cards -->
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--gap);">
+      <div class="card">
+        <div class="card-icon"><i class="lucide-calendar"></i></div>
+        <h3>◆ Planning & ◇ Logistics</h3>
+        <ul>
+          <li><span class="s">◆</span> School schedule (MPMS synced)</li>
+          <li><span class="s">◇</span> Camp research & registration</li>
+          <li><span class="s">◆</span> Vacation planning (12–18 month horizon)</li>
+          <li><span class="s">◇</span> Weekly routine template</li>
+          <li><span class="s">◆</span> Sunday coordination session</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="lucide-star"></i></div>
+        <h3>★ Vibes & Fun</h3>
+        <ul>
+          <li><span class="s">★</span> Weekend activities (4-week pipeline)</li>
+          <li><span class="s">★</span> Local Marin events tracking</li>
+          <li><span class="s">★</span> Friend & social planning</li>
+          <li><span class="s">★</span> Date nights (Burt books)</li>
+          <li><span class="s">★</span> Holiday & seasonal traditions</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="lucide-home"></i></div>
+        <h3>▲ Home Operations</h3>
+        <ul>
+          <li><span class="s">▲</span> Maintenance schedules & reminders</li>
+          <li><span class="s">▲</span> Landscaper coordination</li>
+          <li><span class="s">▲</span> Laura payment automation</li>
+          <li><span class="s">▲</span> Plant & grill schedules</li>
+          <li><span class="s">▲</span> Vendor management</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="lucide-users"></i></div>
+        <h3>● Kids</h3>
+        <ul>
+          <li><span class="s">●</span> Fashion & wardrobe curation</li>
+          <li><span class="s">●</span> Medical & dental tracking</li>
+          <li><span class="s">●</span> School comms monitoring</li>
+          <li><span class="s">●</span> Development & interests log</li>
+          <li><span class="s">●</span> Emergency info document</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -521,35 +584,58 @@
   </div>
 
   <div class="bento" style="grid-template-columns: 1fr 1fr;">
-    <div class="card card-dark span-2" style="text-align:center; padding: 48px 32px;">
-      <div class="card-icon hero-icon" style="display:flex;justify-content:center;margin-bottom:24px;">
-        <i class="lucide-bot" style="font-size:48px;"></i>
+    <div class="card card-dark span-2" style="text-align:center; padding: 32px 24px;">
+      <div class="card-icon" style="display:flex;justify-content:center;margin-bottom:16px;">
+        <i class="lucide-bot" style="font-size:32px; color:var(--text-inv);"></i>
       </div>
-      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:400; margin-bottom:12px;">Your AI Chief of Staff</h3>
-      <p style="max-width:480px; margin:0 auto 8px;">Burt is an AI assistant Brian set up to run family logistics. Think of him as a tireless personal assistant who never forgets a deadline, always has weekend ideas, and keeps the whole machine running.</p>
-      <p style="max-width:480px; margin:0 auto; color: #888;">Brian talks to Burt via Discord. Mairin gets a weekly email + Google Calendar invites. No new apps required.</p>
+      <h3 style="font-size:var(--text-lg); font-weight:400; margin-bottom:8px;">Your AI Chief of Staff</h3>
+      <p style="max-width:480px; margin:0 auto 6px;">Burt is an AI assistant Brian set up to run family logistics. Think of him as a tireless personal assistant who never forgets a deadline, always has weekend ideas, and keeps the whole machine running.</p>
+      <p style="max-width:480px; margin:0 auto; color: #525252;">Brian talks to Burt via Discord. Mairin gets a weekly email + Google Calendar invites. No new apps required.</p>
     </div>
 
     <div class="card">
       <div class="card-icon"><i class="lucide-users"></i></div>
-      <h3>Kid Voice</h3>
+      <h3>● Kid Voice</h3>
       <p>Charlie and eventually Mac get input on weekend plans and vacation ideas. Plans with kids, not just for them.</p>
     </div>
     <div class="card">
       <div class="card-icon"><i class="lucide-dice-3"></i></div>
-      <h3>Spontaneity Valve</h3>
+      <h3>★ Spontaneity Valve</h3>
       <p>One weekend per month is intentionally blank — with a grab-and-go list if you want it.</p>
     </div>
     <div class="card">
       <div class="card-icon"><i class="lucide-trending-up"></i></div>
-      <h3>Learns Over Time</h3>
+      <h3>▣ Learns Over Time</h3>
       <p>Quick feedback captures not just what worked but why. Recommendations get smarter each cycle.</p>
     </div>
     <div class="card">
       <div class="card-icon"><i class="lucide-clock"></i></div>
-      <h3>Living Preferences</h3>
+      <h3>◆ Living Preferences</h3>
       <p>Quarterly check-ins, age milestones, and seasonal refreshes keep everything current as the family grows.</p>
     </div>
+  </div>
+</div>
+
+<!-- HOME MAINTENANCE TABLE -->
+<div class="container">
+  <div class="sh">
+    <div class="sh-label">▲ Home Ops</div>
+    <h2>Maintenance Schedule</h2>
+    <p>Burt tracks recurring home tasks and surfaces them before they're overdue.</p>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Task</th><th>Cadence</th><th>Next Due</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Wash windows</td><td>6 months</td><td class="val">4/28/26</td><td><span class="dot dot-g" style="display:inline-block;"></span></td></tr>
+        <tr><td>Change air filters</td><td>3 months</td><td class="val">4/15/26</td><td><span class="dot dot-g" style="display:inline-block;"></span></td></tr>
+        <tr><td>Rotate Henry</td><td>3 months</td><td class="val">2/27/26</td><td><span class="dot dot-y" style="display:inline-block;"></span></td></tr>
+        <tr><td>Take out trash</td><td>Weekly</td><td class="val">Mon 6 PM</td><td><span class="dot dot-g" style="display:inline-block;"></span></td></tr>
+        <tr><td>Grill deep clean</td><td>Quarterly</td><td class="val">3/15/26</td><td><span class="dot dot-g" style="display:inline-block;"></span></td></tr>
+        <tr><td>Landscaper payment</td><td>Monthly</td><td class="val">3/01/26</td><td><span class="dot dot-g" style="display:inline-block;"></span></td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -562,40 +648,40 @@
   </div>
 
   <div class="bento" style="grid-template-columns: 1fr 1fr;">
-    <div class="card" style="border-left: 3px solid #22c55e;">
+    <div class="card" style="border-left: 2px solid var(--green);">
       <div class="card-icon"><i class="lucide-shield-check"></i></div>
       <h3>What Burt Knows</h3>
       <ul class="sec-yes">
-        <li>First names and birthdays</li>
-        <li>School calendar (public feed)</li>
-        <li>Home maintenance schedules</li>
-        <li>Activity preferences and interests</li>
-        <li>Friend names for social planning</li>
-        <li>General location (Marin County)</li>
+        <li><span class="s">✓</span> First names and birthdays</li>
+        <li><span class="s">✓</span> School calendar (public feed)</li>
+        <li><span class="s">✓</span> Home maintenance schedules</li>
+        <li><span class="s">✓</span> Activity preferences and interests</li>
+        <li><span class="s">✓</span> Friend names for social planning</li>
+        <li><span class="s">✓</span> General location (Marin County)</li>
       </ul>
     </div>
-    <div class="card" style="border-left: 3px solid #ef4444;">
+    <div class="card" style="border-left: 2px solid var(--red);">
       <div class="card-icon"><i class="lucide-lock"></i></div>
       <h3>Zero Access To</h3>
       <ul class="sec-no">
-        <li>Email accounts (Gmail, iCloud, work)</li>
-        <li>Bank accounts or financial info</li>
-        <li>iCloud / Apple ID</li>
-        <li>Medical portals or health records</li>
-        <li>Social media accounts</li>
-        <li>Passwords, texts, photos, or files</li>
+        <li><span class="s">✕</span> Email accounts (Gmail, iCloud, work)</li>
+        <li><span class="s">✕</span> Bank accounts or financial info</li>
+        <li><span class="s">✕</span> iCloud / Apple ID</li>
+        <li><span class="s">✕</span> Medical portals or health records</li>
+        <li><span class="s">✕</span> Social media accounts</li>
+        <li><span class="s">✕</span> Passwords, texts, photos, or files</li>
       </ul>
     </div>
-    <div class="card card-warm span-2">
+    <div class="card span-2" style="background:var(--bg);">
       <p>All information Burt has was explicitly shared by Brian in conversation — names, birthdays, school name, activity preferences. That's it. Burt cannot browse the internet on your behalf, log into any accounts, or access anything sensitive. When Burt needs information (like medical details or vendor contacts), he asks. That's what the questionnaire below is for.</p>
     </div>
   </div>
 
-  <div style="margin-top: 32px;">
-    <h3 style="font-size:0.88rem; font-weight:600; margin-bottom:8px;">Communication Priority</h3>
-    <div class="priority-row"><div class="dot dot-g"></div><div class="priority-label">FYI</div><div class="priority-desc">In the Sunday brief. Review when convenient.</div></div>
-    <div class="priority-row"><div class="dot dot-y"></div><div class="priority-label">Action</div><div class="priority-desc">Decision or task needed within 24 hours.</div></div>
-    <div class="priority-row"><div class="dot dot-r"></div><div class="priority-label">Urgent</div><div class="priority-desc">Time-sensitive. Immediate notification to Brian.</div></div>
+  <div style="margin-top: 20px;">
+    <div class="sh-label" style="margin-bottom:8px;">Communication Priority</div>
+    <div class="pri"><div class="dot dot-g"></div><div class="pri-l">FYI</div><div class="pri-d">In the Sunday brief. Review when convenient.</div></div>
+    <div class="pri"><div class="dot dot-y"></div><div class="pri-l">Action</div><div class="pri-d">Decision or task needed within 24 hours.</div></div>
+    <div class="pri"><div class="dot dot-r"></div><div class="pri-l">Urgent</div><div class="pri-d">Time-sensitive. Immediate notification to Brian.</div></div>
   </div>
 </div>
 
@@ -609,32 +695,32 @@
 
   <div class="bento">
     <div class="card">
-      <div class="wave-badge">Wave 1 — Foundation</div>
+      <div class="badge">Wave 1 — Foundation</div>
       <ul>
-        <li>School schedule tracking</li>
-        <li>Weekly routine template</li>
-        <li>Sunday coordination session</li>
+        <li><span class="s">◆</span> School schedule tracking</li>
+        <li><span class="s">◇</span> Weekly routine template</li>
+        <li><span class="s">◆</span> Sunday coordination session</li>
       </ul>
     </div>
     <div class="card">
-      <div class="wave-badge">Wave 2 — High Impact</div>
+      <div class="badge">Wave 2 — High Impact</div>
       <ul>
-        <li>Camp research & gap coverage</li>
-        <li>Weekend activity pipeline</li>
-        <li>Local events tracking</li>
-        <li>Home maintenance (Todoist)</li>
-        <li>Landscaper, Laura, medical</li>
+        <li><span class="s">◇</span> Camp research & gap coverage</li>
+        <li><span class="s">★</span> Weekend activity pipeline</li>
+        <li><span class="s">★</span> Local events tracking</li>
+        <li><span class="s">▲</span> Home maintenance (Todoist)</li>
+        <li><span class="s">▲</span> Landscaper, Laura, medical</li>
       </ul>
     </div>
     <div class="card">
-      <div class="wave-badge">Wave 3 — Enrichment</div>
+      <div class="badge">Wave 3 — Enrichment</div>
       <ul>
-        <li>Vacation planning (12–18mo)</li>
-        <li>Friend & social planning</li>
-        <li>Date night execution</li>
-        <li>Holiday traditions</li>
-        <li>Kids fashion mood boards</li>
-        <li>School comms & dev tracking</li>
+        <li><span class="s">◆</span> Vacation planning (12–18mo)</li>
+        <li><span class="s">★</span> Friend & social planning</li>
+        <li><span class="s">★</span> Date night execution</li>
+        <li><span class="s">★</span> Holiday traditions</li>
+        <li><span class="s">●</span> Kids fashion mood boards</li>
+        <li><span class="s">●</span> School comms & dev tracking</li>
       </ul>
     </div>
   </div>
@@ -648,8 +734,8 @@
     <p>One sit-down to give Burt what he needs. After this, Burt maintains everything. No ongoing homework.</p>
   </div>
 
-  <div class="card q-section" style="padding: 40px 36px;">
-    <h3><i class="lucide-sprout"></i> Landscaper</h3>
+  <div class="card q-section" style="padding: 28px 24px;">
+    <h3><span class="sym">▲</span> Landscaper</h3>
     <ol>
       <li>Who is the landscaper? (Name / company / contact)</li>
       <li>Current schedule? (Weekly? Biweekly?)</li>
@@ -658,14 +744,14 @@
       <li>Upcoming projects or changes?</li>
     </ol>
 
-    <h3><i class="lucide-grid-3x3"></i> Window Cleaners</h3>
+    <h3><span class="sym">▲</span> Window Cleaners</h3>
     <ol>
       <li>Who does window cleaning?</li>
       <li>Current schedule?</li>
       <li>Payment details?</li>
     </ol>
 
-    <h3><i class="lucide-user"></i> Laura (Nanny)</h3>
+    <h3><span class="sym">◇</span> Laura (Nanny)</h3>
     <ol>
       <li>Pay rate?</li>
       <li>Fixed weekly or hourly?</li>
@@ -674,14 +760,14 @@
       <li>Days and hours?</li>
     </ol>
 
-    <h3><i class="lucide-sprout"></i> Plants & Grounds</h3>
+    <h3><span class="sym">▲</span> Plants & Grounds</h3>
     <ol>
       <li>How many plants (indoor + outdoor)?</li>
       <li>Watering schedules?</li>
       <li>Seasonal care needs?</li>
     </ol>
 
-    <h3><i class="lucide-stethoscope"></i> Medical / Dental</h3>
+    <h3><span class="sym">●</span> Medical / Dental</h3>
     <ol>
       <li>Pediatrician name and practice?</li>
       <li>Dentist name and practice?</li>
@@ -693,7 +779,7 @@
       <li>Vaccinations up to date?</li>
     </ol>
 
-    <h3><i class="lucide-shield-alert"></i> Emergency Info</h3>
+    <h3><span class="sym">■</span> Emergency Info</h3>
     <ol>
       <li>Health insurance provider + policy number?</li>
       <li>Emergency contacts beyond Brian & Mairin?</li>
@@ -701,7 +787,7 @@
       <li>Does Laura have a signed medical authorization?</li>
     </ol>
 
-    <h3><i class="lucide-activity"></i> General</h3>
+    <h3><span class="sym">◆</span> General</h3>
     <ol>
       <li>Anything else you track that Brian should know about?</li>
       <li>Recurring appointments not yet captured?</li>
@@ -711,14 +797,14 @@
 </div>
 
 <!-- CTA + OPEN Q -->
-<div class="container" style="padding-bottom: 40px;">
-  <div class="cta-card" style="margin-top: 80px;">
+<div class="container" style="padding-bottom: 32px;">
+  <div class="cta-card" style="margin-top: var(--section-gap);">
     <h2>What Do You Think?</h2>
     <p>This is a draft. We want your input before building. What's missing? What doesn't feel right? What would actually make your life easier?</p>
   </div>
 
-  <div style="margin-top: 40px;">
-    <div class="sh-label">Open Questions</div>
+  <div style="margin-top: 24px;">
+    <div class="sh-label" style="margin-bottom:8px;">Open Questions</div>
     <div class="oq">
       <h4>Family Dashboard</h4>
       <p>Should we build a website where both of us see the full plan, calendar, and schedules in one place?</p>
