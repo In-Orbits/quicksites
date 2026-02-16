@@ -211,6 +211,36 @@
         </div>
       </div>
     </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">Project Westfall — Material Buffer at Scale</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">MERAKI</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">Meraki scaling fast ($330M→$870M+). Sales requesting production upsides with lead times shorter than component procurement cycles. Long-lead components (>6wk LT) couldn't be procured fast enough. Every upside = fire drill.</span>
+          <span class="star-label">T</span><span class="star-text">Design material buffer program enabling JDMs to support upsides within 8 weeks vs. 20+ week standard production cycle.</span>
+          <span class="star-label">A</span><span class="star-text">Built buffer framework: 2X avg PO size of long-lead components at each JDM. FIFO replenishment so material rotates (no aging). Chipset buffers separated (highest cost/LT). Excluded mechanicals/PCBs — worked those suppliers to compress LTs under 6 weeks instead. RFP'd JDMs for implementation plans, storage costs, bi-weekly Material Backlog reporting. Buffer levels revised every 6 months with SCM.</span>
+          <span class="star-label">R</span><span class="star-text">Upsides supported in 8 weeks vs. 20+. Framework scaled from $330M to $870M+. Bi-weekly reporting gave full visibility into buffer health across all JDMs. Production flexibility transformed from fire drill to process execution.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-card">
+      <div class="story-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="story-title">Strategic Deposit Draw-Down — Post-COVID</span>
+        <div style="display:flex;gap:8px;align-items:center;"><span class="story-tag">VERGESENSE</span><span class="chevron">▸</span></div>
+      </div>
+      <div class="story-body">
+        <div class="star-grid">
+          <span class="star-label">S</span><span class="star-text">COVID-era strategic deposit with WNC securing component supply. Post-COVID: deposit = tied-up capital needing draw-down, but too fast risks supply gaps at a startup where cash is existential.</span>
+          <span class="star-label">T</span><span class="star-text">Recover capital while maintaining supply continuity — calibrate draw-down to actual supply conditions.</span>
+          <span class="star-label">A</span><span class="star-text">Monitored component LTs against deposit positions — drew down only when supply supported it. Negotiated terms protecting both sides. Where new risks emerged (DDR4 tightening, Chinese export regs), held or added positions instead of drawing down (Variscite risk buy, 25K magnet buy).</span>
+          <span class="star-label">R</span><span class="star-text">Capital recovered as supply normalized. Zero supply disruptions. Build-during-crisis / draw-during-recovery became a repeatable playbook.</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section>
@@ -220,6 +250,7 @@
       <li><strong>Meraki:</strong> $330M → $870M+ JDM portfolio. Managed 8+ JDMs with differentiated strategies per partner.</li>
       <li><strong>Meraki:</strong> WiFi 7 allocation model — $1.36B COGS, 8M units, 6 product tiers. Strategic JDM assignments.</li>
       <li><strong>Meraki:</strong> Closed Loop JDM, Bill of Rights, collaborative BOMs, SE Asia diversification.</li>
+      <li><strong>Meraki:</strong> Project Westfall — designed material buffer program from scratch. 2X buffer, FIFO replenishment, 8-week upside support vs. 20+. Scaled across all JDMs.</li>
       <li><strong>VS:</strong> Promoted to Sr. Director. Joined eStaff after VP Eng/Ops departed. Operating as de facto VP Ops.</li>
       <li><strong>VS:</strong> 10x reduction in outbound fulfillment costs (3PL re-architecture). Built API integrations myself.</li>
       <li><strong>VS:</strong> WNC MPA — 24-month negotiation. IP protection, liability caps. M&A-ready asset.</li>
@@ -230,12 +261,32 @@
   </section>
 
   <section>
-    <h2>Ask Brandon</h2>
+    <h2>Ask Brandon — Team & Management</h2>
+    <ul class="ask-list">
+      <li>"Who's on the team today — how many people, what functions, how long have they been here? Anyone from Sapria's era still around?"</li>
+      <li>"What do you look for in a manager for this team? What style works here vs. what doesn't?"</li>
+      <li>"If I started tomorrow, what's the first 90-day problem you'd want me to own?"</li>
+      <li>"Patrick mentioned the team went from swagging cost percentages to penny-level tracking in 4 years. What's the next maturity leap you want this team to make?"</li>
+      <li>"Kyle mentioned he'd love ops to take more ownership post-prod start. Is that something you're designing for in this role?"</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ask Brandon — Role & Growth</h2>
     <ul class="ask-list">
       <li>"Last time you mentioned exciting things on the product roadmap. Can you give a sense of NPI velocity — how many new platforms in the next 12-18 months?"</li>
       <li>"If the other panelists gave you feedback on me, what would you want them to have seen?"</li>
       <li>"What does the growth path look like for this role? Trajectory to Senior Director or VP as the function matures?"</li>
       <li>"You've been at Samsara almost three years. What's kept you, and what still frustrates you the most?"</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>⚠️ Panel Feedback — Likely Probes</h2>
+    <ul class="ask-list" style="font-size:14px;">
+      <li><strong>Cost Depth:</strong> Patrick probed bottoms-up should-cost vs. RFQ-level. Lead with NTE engine, Frisbee BOM model, MVA forensics (222s vs 360s).</li>
+      <li><strong>Supply Assurance:</strong> Patrick flagged materials/parts chasing as current pain. Kyle flagged Greenwaves blindspot. Lead with Variscite risk buy, magnet risk buy, Four Pillars Supply Continuity + Meraki materials story.</li>
+      <li><strong>Scale:</strong> All 3 panelists noticed VergeSense→Samsara gap. Lead with Meraki-scale stories (WiFi 7 $1.36B, Portfolio $870M). VergeSense = color, not headline.</li>
     </ul>
   </section>
 </div>
