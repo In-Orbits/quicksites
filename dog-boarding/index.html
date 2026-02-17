@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boarding Options for Henry 🐕</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #faf9f6; color: #1a1a1a; line-height: 1.6; }
+  
+  .hero {
+    background: linear-gradient(135deg, #2d5016 0%, #4a7c28 100%);
+    color: white;
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+  
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+  
+  .context {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  .context strong { color: #1a1a1a; }
+  
+  .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+  
+  .card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+  
+  .card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-body { padding: 1.5rem; }
+  .card-body h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .card-body .location { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
+  .card-body .location a { color: #4a7c28; text-decoration: none; }
+  
+  .price-tag {
+    display: inline-block;
+    background: #f0f7e6;
+    color: #2d5016;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  .price-tag.tbd {
+    background: #fff3e0;
+    color: #e65100;
+  }
+  
+  .details { margin-bottom: 1rem; }
+  .details h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 0.5rem; }
+  .details ul { list-style: none; padding: 0; }
+  .details li { padding: 0.3rem 0; font-size: 0.95rem; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .details li::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4a7c28; margin-top: 0.5rem; flex-shrink: 0; }
+  
+  .badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .badge-indoor { background: #e3f2fd; color: #1565c0; }
+  .badge-outdoor { background: #e8f5e9; color: #2e7d32; }
+  .badge-photos { background: #fce4ec; color: #c62828; }
+  
+  .onboarding {
+    background: #f8f8f8;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .onboarding h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 0.5rem; }
+  .onboarding p { font-size: 0.9rem; color: #555; }
+  
+  .contact-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #4a7c28;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .contact-link:hover { text-decoration: underline; }
+  
+  .comparison {
+    margin-top: 2.5rem;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+  .comparison h2 { font-size: 1.2rem; margin-bottom: 1rem; }
+  .comparison table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 600px; }
+  .comparison th { text-align: left; padding: 0.6rem 0.8rem; border-bottom: 2px solid #e5e5e5; color: #666; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .comparison td { padding: 0.6rem 0.8rem; border-bottom: 1px solid #f0f0f0; }
+  .comparison tr:last-child td { border-bottom: none; }
+  .comparison td:first-child { font-weight: 600; }
+  .check { color: #2e7d32; }
+  .x { color: #ccc; }
+  
+  .footer { text-align: center; padding: 2rem; color: #aaa; font-size: 0.8rem; }
+
+  .drive-badge { font-size: 0.8rem; color: #888; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🐾 New Boarding Home for Henry</h1>
+  <p>Camp K-9 is closing after 23 years. Here are four great options nearby — let's pick the right fit.</p>
+</div>
+
+<div class="container">
+
+  <div class="context">
+    <strong>About Henry:</strong> 8-year-old Golden Retriever, neutered, well-socialized, calm & easy-going. Camp K-9 veteran of 8 years. Lives in Corte Madera. All four places responded positively and are ready to get him started.
+  </div>
+
+  <div class="grid">
+
+    <!-- Park-A-Pup -->
+    <div class="card">
+      <img class="card-img" src="https://images.squarespace-cdn.com/content/v1/5ecc4489764d4f4613208ebc/1610394429044-6MWS5B2L5NAXWFBSMBF8/park-a-pup-hero.jpg" alt="Park-A-Pup" onerror="this.style.background='#e8f5e9';this.style.display='flex';this.alt='Park-A-Pup';this.style.alignItems='center';this.style.justifyContent='center';this.style.fontSize='1.5rem';this.innerHTML='🏡 Park-A-Pup'">
+      <div class="card-body">
+        <h2>Park-A-Pup</h2>
+        <div class="location">
+          📍 Novato & San Rafael (2 locations)<br>
+          <a href="https://maps.google.com/?q=58+Gary+Place+San+Rafael+CA" target="_blank">58 Gary Place, San Rafael</a> (~10 min) &
+          <a href="https://maps.google.com/?q=7586+Redwood+Blvd+Novato+CA" target="_blank">7586 Redwood Blvd, Novato</a> (~20 min)
+        </div>
+        
+        <div class="price-tag">$55/night</div>
+        <span class="drive-badge">Henry = medium/large (31-80 lbs)</span>
+        
+        <div class="details">
+          <h3>Pricing Details</h3>
+          <ul>
+            <li>Small dog (1-30 lbs): $50/night</li>
+            <li>Medium/Large (31-80 lbs): $55/night</li>
+            <li>XL (81+ lbs): $60/night</li>
+            <li>7-13 nights: 5% off · 14-20: 10% off · 21+: 15% off</li>
+            <li>Daycare: $39/day</li>
+          </ul>
+        </div>
+        
+        <div>
+          <span class="badge badge-indoor">Indoor</span>
+          <span class="badge badge-outdoor">Outdoor</span>
+        </div>
+        
+        <div class="onboarding">
+          <h3>Getting Started</h3>
+          <p>Call to go over requirements and process. Friendly and straightforward — Jamie responded quickly and welcomed Henry.</p>
+        </div>
+        
+        <a class="contact-link" href="tel:4154535234">📞 (415) 453-5234</a> · 
+        <a class="contact-link" href="https://www.parkapup.com" target="_blank">Website →</a>
+      </div>
+    </div>
+
+    <!-- AlphaDog Lodging -->
+    <div class="card">
+      <img class="card-img" src="https://alphadoglodging.com/wp-content/uploads/Angus-B-Chloe-D.png" alt="AlphaDog Lodging" onerror="this.style.background='#e3f2fd';this.style.display='flex';this.alt='AlphaDog';this.style.alignItems='center';this.style.justifyContent='center';this.style.fontSize='1.5rem';this.innerHTML='🐕 AlphaDog Lodging'">
+      <div class="card-body">
+        <h2>AlphaDog Lodging</h2>
+        <div class="location">
+          📍 Mill Valley (~12 min)<br>
+          <a href="https://maps.google.com/?q=230+Shoreline+Highway+Mill+Valley+CA" target="_blank">230 Shoreline Highway, Mill Valley</a>
+        </div>
+        
+        <div class="price-tag">$90/night</div>
+        <span class="drive-badge">Flat rate, all sizes</span>
+        
+        <div class="details">
+          <h3>Pricing Details</h3>
+          <ul>
+            <li>Boarding: $90/night (24hr from drop-off + 2hr grace)</li>
+            <li>2+ dogs: $81/night each</li>
+            <li>11-night pkg: $900 (1 free night = ~$82/night)</li>
+            <li>17-night pkg: $1,350 (2 free nights = ~$79/night)</li>
+            <li>Daycare: $61/day · Late pickup: $20 fee</li>
+          </ul>
+        </div>
+        
+        <div>
+          <span class="badge badge-outdoor">Outdoor Play</span>
+          <span class="badge badge-photos">Pupdates 📸</span>
+        </div>
+        
+        <div class="onboarding">
+          <h3>Getting Started</h3>
+          <p><strong>Most structured process.</strong> Requires: completed application, vet records (Bordetella, DHPP, Rabies, K9 Influenza), negative fecal test for Giardia & Ova Parasites, proof of flea/tick medication. Then schedule an introductory assessment. ~1 week to get started.</p>
+        </div>
+        
+        <a class="contact-link" href="tel:4153832111">📞 (415) 383-2111</a> · 
+        <a class="contact-link" href="https://alphadoglodging.com" target="_blank">Website →</a>
+      </div>
+    </div>
+
+    <!-- Planet Canine -->
+    <div class="card">
+      <img class="card-img" src="https://s3-media0.fl.yelpcdn.com/bphoto/MxhEl9v6jLGcBVWvKV3R8Q/o.jpg" alt="Planet Canine" onerror="this.style.background='#fff3e0';this.style.display='flex';this.alt='Planet Canine';this.style.alignItems='center';this.style.justifyContent='center';this.style.fontSize='1.5rem';this.innerHTML='🌍 Planet Canine'">
+      <div class="card-body">
+        <h2>Planet Canine</h2>
+        <div class="location">
+          📍 San Rafael (~8 min)<br>
+          <a href="https://maps.google.com/?q=1123+Francisco+Blvd+E+San+Rafael+CA" target="_blank">1123 Francisco Blvd E, San Rafael</a>
+        </div>
+        
+        <div class="price-tag tbd">Call for pricing</div>
+        <span class="drive-badge">Known for reasonable rates</span>
+        
+        <div class="details">
+          <h3>What We Know</h3>
+          <ul>
+            <li>Pricing not published online — call to inquire</li>
+            <li>Described as "not fancy but reasonable" by neighbors</li>
+            <li>Established facility with pack-based play model</li>
+            <li>Requires: Rabies, DHLPP, Bordetella vaccines</li>
+            <li>Must be spayed/neutered (6+ months)</li>
+          </ul>
+        </div>
+        
+        <div>
+          <span class="badge badge-outdoor">Outdoor Pack Play</span>
+        </div>
+        
+        <div class="onboarding">
+          <h3>Getting Started</h3>
+          <p>Steve responded personally and wants to learn more about Henry. Next step is a phone call. Feels like a smaller, relationship-driven operation.</p>
+        </div>
+        
+        <a class="contact-link" href="tel:4154596130">📞 (415) 459-6130</a> · 
+        <a class="contact-link" href="https://planetcanine.com" target="_blank">Website →</a>
+      </div>
+    </div>
+
+    <!-- The Tail Haven -->
+    <div class="card">
+      <img class="card-img" src="https://images.squarespace-cdn.com/content/v1/60ae56c5e04def581c4e3be4/1632773399883-boarding-hero.jpg" alt="The Tail Haven" onerror="this.style.background='#fce4ec';this.style.display='flex';this.alt='Tail Haven';this.style.alignItems='center';this.style.justifyContent='center';this.style.fontSize='1.5rem';this.innerHTML='🏨 The Tail Haven'">
+      <div class="card-body">
+        <h2>The Tail Haven</h2>
+        <div class="location">
+          📍 San Rafael (~10 min)<br>
+          <a href="https://maps.google.com/?q=The+Tail+Haven+San+Rafael+CA" target="_blank">San Rafael location</a>
+        </div>
+        
+        <div class="price-tag">$106/night</div>
+        <span class="drive-badge">Henry = large (46-85 lbs)</span>
+        
+        <div class="details">
+          <h3>Pricing Details</h3>
+          <ul>
+            <li>Small (≤25 lbs): $84/night</li>
+            <li>Medium (26-45 lbs): $95/night</li>
+            <li>Large (46-85 lbs): $106/night</li>
+            <li>XL (86+ lbs): $134/night</li>
+            <li>Long-term (30+ days): contract rates available</li>
+          </ul>
+        </div>
+        
+        <div>
+          <span class="badge badge-indoor">Indoor</span>
+          <span class="badge badge-outdoor">Outdoor</span>
+          <span class="badge badge-photos">Daily Photos 📸</span>
+        </div>
+        
+        <div class="onboarding">
+          <h3>Getting Started</h3>
+          <p><strong>Slow integration process.</strong> Register online first, then schedule a 3-hour temperament test. They take time to get to know each dog before group play. Most polished/professional operation. Requires all standard vaccines + Leptospirosis. Staffed 7 days/week.</p>
+        </div>
+        
+        <a class="contact-link" href="tel:4159644473">📞 (415) 964-4473</a> · 
+        <a class="contact-link" href="https://www.thetailhaven.com" target="_blank">Website →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Comparison Table -->
+  <div class="comparison">
+    <h2>📊 Side-by-Side</h2>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Park-A-Pup</th>
+          <th>AlphaDog</th>
+          <th>Planet Canine</th>
+          <th>Tail Haven</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nightly Rate</td>
+          <td><strong>$55</strong></td>
+          <td>$90</td>
+          <td>TBD</td>
+          <td>$106</td>
+        </tr>
+        <tr>
+          <td>7-Night Cost</td>
+          <td><strong>~$366</strong></td>
+          <td>$630</td>
+          <td>TBD</td>
+          <td>$742</td>
+        </tr>
+        <tr>
+          <td>Drive from Home</td>
+          <td>~10 min (SR)</td>
+          <td>~12 min</td>
+          <td><strong>~8 min</strong></td>
+          <td>~10 min</td>
+        </tr>
+        <tr>
+          <td>Indoor Space</td>
+          <td class="check">✓</td>
+          <td class="x">—</td>
+          <td class="x">—</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Outdoor Play</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Daily Photos</td>
+          <td>$2/request</td>
+          <td>Free (sign up)</td>
+          <td>Unknown</td>
+          <td class="check">✓ Included</td>
+        </tr>
+        <tr>
+          <td>Hours</td>
+          <td>Call</td>
+          <td>7am–7pm (late til 10pm +$20)</td>
+          <td>Call</td>
+          <td>7 days/week</td>
+        </tr>
+        <tr>
+          <td>Onboarding</td>
+          <td>Phone call</td>
+          <td>App + vet docs + assessment (~1 wk)</td>
+          <td>Phone call</td>
+          <td>Register + 3hr temperament test</td>
+        </tr>
+        <tr>
+          <td>Vibe</td>
+          <td>Home-style, family-run</td>
+          <td>Professional, structured</td>
+          <td>Old-school, pack-focused</td>
+          <td>Premium, high-touch</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top: 2rem; background: #fff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 1.5rem;">
+    <h2 style="font-size: 1.2rem; margin-bottom: 0.75rem;">💭 Quick Take</h2>
+    <ul style="list-style: none; padding: 0;">
+      <li style="padding: 0.4rem 0;"><strong>Best value:</strong> Park-A-Pup — nearly half the price of Tail Haven, two locations, family-run feel</li>
+      <li style="padding: 0.4rem 0;"><strong>Most premium:</strong> The Tail Haven — highest price but most thorough integration, daily photos included, very polished</li>
+      <li style="padding: 0.4rem 0;"><strong>Most structured:</strong> AlphaDog — extensive paperwork but strong reputation, "Pupdates" photo program</li>
+      <li style="padding: 0.4rem 0;"><strong>Most chill:</strong> Planet Canine — closest, relationship-driven, likely competitive pricing</li>
+    </ul>
+    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">All four welcomed Henry warmly. Next step for any of them is a phone call to get the ball rolling.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Made with 🐾 for the Head family · February 2026
+</div>
+
+</body>
+</html>
