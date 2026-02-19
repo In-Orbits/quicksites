@@ -3,141 +3,251 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Costanoa Coastal Escape — Feb 2026</title>
+<title>Costanoa — Feb 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --sand:#f5f0e8;--sand-dark:#e8e0d0;--ocean:#3a7ca5;--ocean-light:#d6eaf8;
-  --ocean-dark:#2c5f7c;--white:#ffffff;--text:#3a3a3a;--text-light:#6b6b6b;
-  --coral:#e07a5f;--green:#81b29a;
+  --bg:#f0f0f0;
+  --white:#ffffff;
+  --text:#1a1a1a;
+  --text-2:#555555;
+  --text-3:#888888;
+  --teal:#5bb5a2;
+  --teal-light:#e8f5f1;
+  --coral:#e07a5f;
+  --coral-light:#fdf0ec;
+  --green:#6aaa7e;
+  --green-light:#edf6f0;
+  --radius:20px;
+  --shadow:0 2px 16px rgba(0,0,0,.06);
 }
-body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
-.container{max-width:540px;margin:0 auto;padding:16px}
+body{
+  font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.7;-webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+}
+.container{max-width:560px;margin:0 auto;padding:20px 16px 40px}
 
-/* Wave header */
-.hero{background:linear-gradient(135deg,var(--ocean) 0%,var(--ocean-dark) 100%);color:white;text-align:center;padding:48px 24px 64px;position:relative}
-.hero h1{font-size:1.9rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
-.hero .dates{font-size:1.1rem;font-weight:400;opacity:.9}
-.hero .location{font-size:.85rem;opacity:.7;margin-top:6px}
-.wave{display:block;width:100%;height:40px;margin-top:-1px}
-.wave path{fill:var(--sand)}
+/* Header */
+.header{
+  background:var(--white);border-radius:var(--radius);
+  padding:40px 28px 36px;margin-bottom:16px;
+  box-shadow:var(--shadow);text-align:center;
+}
+.header h1{font-size:2rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;margin-bottom:8px}
+.header .dates{font-size:1.15rem;color:var(--teal);font-weight:600}
+.header .location{font-size:1rem;color:var(--text-3);margin-top:4px}
+
+/* Cards */
+.card{
+  background:var(--white);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+.card-label{
+  display:inline-block;font-size:.8rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.08em;
+  padding:4px 12px;border-radius:20px;margin-bottom:14px;
+}
+.label-teal{background:var(--teal-light);color:var(--teal)}
+.label-coral{background:var(--coral-light);color:var(--coral)}
+.label-green{background:var(--green-light);color:var(--green)}
 
 /* Crew */
-.crew-card{background:var(--white);border-radius:16px;padding:20px 20px 16px;margin:20px 0;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.crew-card h2{font-size:1rem;font-weight:600;color:var(--ocean);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
-.crew-item{margin-bottom:8px;font-size:.93rem}
-.crew-item strong{font-weight:600}
-.crew-item .detail{color:var(--text-light);font-size:.85rem}
+.crew-person{margin-bottom:14px}
+.crew-person:last-child{margin-bottom:0}
+.crew-name{font-size:1.15rem;font-weight:600}
+.crew-detail{font-size:1rem;color:var(--text-2)}
 
-/* Day cards */
-.day-card{background:var(--white);border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 2px 12px rgba(0,0,0,.06);border-left:4px solid var(--ocean)}
-.day-card.saturday{border-left-color:var(--coral)}
-.day-card.sunday{border-left-color:var(--green)}
-.day-card h2{font-size:1.05rem;font-weight:700;margin-bottom:4px}
-.day-card .day-date{font-size:.82rem;color:var(--text-light);margin-bottom:14px}
-.event{margin-bottom:14px}
-.event:last-child{margin-bottom:0}
-.event .time{font-weight:600;color:var(--ocean);font-size:.85rem;display:block;margin-bottom:2px}
-.day-card.saturday .time{color:var(--coral)}
-.day-card.sunday .time{color:var(--green)}
-.event .desc{font-size:.93rem}
-.event .desc a{color:var(--ocean-dark);text-decoration:underline;text-underline-offset:2px}
-.sub-options{margin:8px 0 0 12px;font-size:.88rem;color:var(--text-light)}
-.sub-options li{margin-bottom:5px;list-style:none;padding-left:16px;position:relative}
-.sub-options li::before{content:'·';position:absolute;left:0;font-weight:700;color:var(--coral)}
-.sub-items{margin:6px 0 0 12px;font-size:.88rem;color:var(--text-light)}
-.sub-items li{margin-bottom:3px;list-style:disc inside}
+/* Events */
+.event{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #f0f0f0}
+.event:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.event-time{
+  font-size:.85rem;font-weight:600;
+  display:inline-block;padding:3px 10px;border-radius:12px;
+  margin-bottom:6px;
+}
+.time-teal{background:var(--teal-light);color:var(--teal)}
+.time-coral{background:var(--coral-light);color:var(--coral)}
+.time-green{background:var(--green-light);color:var(--green)}
+.event-desc{font-size:1.1rem;line-height:1.6}
+.event-desc a{color:var(--teal);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* Activity options */
+.activities{margin-top:12px}
+.activity{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:12px 14px;margin-bottom:8px;
+  background:#fafafa;border-radius:14px;
+}
+.activity-emoji{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.activity-text{font-size:1.05rem;line-height:1.5}
+.activity-text strong{font-weight:600}
+
+/* Dinner sub-items */
+.dinner-items{margin-top:10px}
+.dinner-item{
+  font-size:1rem;color:var(--text-2);
+  padding:4px 0 4px 20px;position:relative;
+}
+.dinner-item::before{content:'•';position:absolute;left:4px;color:var(--coral)}
 
 /* Links */
-.links-card{background:var(--ocean-light);border-radius:16px;padding:20px;margin:16px 0}
-.links-card h2{font-size:1rem;font-weight:600;color:var(--ocean-dark);margin-bottom:12px}
-.links-card a{display:block;padding:10px 14px;margin-bottom:8px;background:var(--white);border-radius:10px;color:var(--ocean-dark);text-decoration:none;font-weight:500;font-size:.93rem;transition:transform .15s}
-.links-card a:active{transform:scale(.98)}
-.links-card a span{float:right;opacity:.4}
+.link-btn{
+  display:block;padding:16px 18px;margin-bottom:10px;
+  background:#fafafa;border-radius:14px;
+  color:var(--text);text-decoration:none;
+  font-size:1.05rem;font-weight:500;
+  transition:background .15s;
+}
+.link-btn:active{background:#f0f0f0}
+.link-btn span{float:right;color:var(--text-3);font-size:1.2rem}
 
 /* Weather */
-.weather{background:var(--white);border-radius:16px;padding:18px 20px;margin:16px 0;text-align:center;font-size:.9rem;color:var(--text-light);box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.weather strong{color:var(--text)}
+.weather{
+  text-align:center;font-size:1.05rem;color:var(--text-2);
+  padding:20px;
+}
 
 /* Footer */
-footer{text-align:center;padding:28px 16px 36px;font-size:.8rem;color:var(--text-light)}
+footer{text-align:center;padding:8px 16px 32px;font-size:.85rem;color:var(--text-3)}
 </style>
 </head>
 <body>
 
-<div class="hero">
-  <h1>Costanoa Coastal Escape</h1>
-  <div class="dates">February 20–22, 2026</div>
-  <div class="location">Pescadero, California</div>
-</div>
-<svg class="wave" viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0,20 C360,45 720,-5 1440,20 L1440,40 L0,40Z"/></svg>
-
 <div class="container">
 
-  <div class="crew-card">
-    <h2>The Crew</h2>
-    <div class="crew-item"><strong>Brian, Mairin, Charlie (5) &amp; Mac (3)</strong><br><span class="detail">Airstream, Site S23</span></div>
-    <div class="crew-item"><strong>Don &amp; Meg</strong> <span class="detail">— Mairin's parents</span><br><span class="detail">Lodge, Fri &amp; Sat night</span></div>
-    <div class="crew-item"><strong>Bob &amp; Cynthia</strong> <span class="detail">— Brian's parents</span><br><span class="detail">Cabin, Friday night</span></div>
+  <div class="header">
+    <h1>Costanoa Coastal Escape</h1>
+    <div class="dates">February 20–22, 2026</div>
+    <div class="location">Pescadero, California</div>
   </div>
 
-  <div class="day-card">
-    <h2>Friday</h2>
-    <div class="day-date">February 20</div>
-    <div class="event"><span class="time">4:00 PM</span><span class="desc">Arrive at Costanoa, set up camp</span></div>
-    <div class="event"><span class="time">5:30 PM</span><span class="desc">Apps &amp; drinks at the Airstream — charcuterie, wine, beers 🥂</span></div>
-    <div class="event"><span class="time">7:00 PM</span><span class="desc">Dinner at <a href="https://www.costanoa.com/dining">Pine Tent</a> at Costanoa</span></div>
-  </div>
-
-  <div class="day-card saturday">
-    <h2>Saturday</h2>
-    <div class="day-date">February 21</div>
-    <div class="event"><span class="time">Morning</span><span class="desc">Breakfast on your own — Pine Tent or BYO at your spot ☕</span></div>
-    <div class="event">
-      <span class="time">Late Morning</span>
-      <span class="desc">Adventure time! Options:</span>
-      <ul class="sub-options">
-        <li><strong>Pigeon Point Lighthouse</strong> — 5 min south, iconic coastal views 🌊</li>
-        <li><strong>Harley Farms Goat Dairy</strong> — Pescadero, farm tour with baby goats 🐐</li>
-        <li><strong>Año Nuevo State Park</strong> — elephant seals, guided walks (~15 min south) 🦭</li>
-        <li><strong>Pescadero State Beach</strong> — easy coastal walk, tide pools 🐚</li>
-      </ul>
+  <!-- Crew -->
+  <div class="card">
+    <div class="card-label label-teal">The Crew</div>
+    <div class="crew-person">
+      <div class="crew-name">Brian, Mairin, Charlie &amp; Mac</div>
+      <div class="crew-detail">Airstream, Site S23</div>
     </div>
-    <div class="event"><span class="time">12:30 PM</span><span class="desc">Lunch at <a href="https://www.duartestavern.com">Duarte's Tavern</a> in Pescadero — est. 1894, famous artichoke soup &amp; Saturday cioppino 🥣</span></div>
-    <div class="event"><span class="time">After Lunch</span><span class="desc">Bob &amp; Cynthia head home 👋</span></div>
-    <div class="event"><span class="time">1:00 PM</span><span class="desc">Kids nap time 😴</span></div>
-    <div class="event"><span class="time">Afternoon</span><span class="desc">Free time — beach, relax at camp</span></div>
-    <div class="event">
-      <span class="time">6:00 PM</span>
-      <span class="desc">Grill dinner at the Airstream 🔥</span>
-      <ul class="sub-items">
-        <li>Burgers (beef + turkey) &amp; hot dogs</li>
-        <li>Trish's Pasta Salad &amp; Sweet Green Coleslaw</li>
-        <li>S'mores around the fire pit</li>
-      </ul>
+    <div class="crew-person">
+      <div class="crew-name">Don &amp; Meg</div>
+      <div class="crew-detail">Lodge — Friday &amp; Saturday night</div>
+    </div>
+    <div class="crew-person">
+      <div class="crew-name">Bob &amp; Cynthia</div>
+      <div class="crew-detail">Cabin — Friday night</div>
     </div>
   </div>
 
-  <div class="day-card sunday">
-    <h2>Sunday</h2>
-    <div class="day-date">February 22</div>
-    <div class="event"><span class="time">Morning</span><span class="desc">Coffee, pack up, head home ☀️</span></div>
+  <!-- Friday -->
+  <div class="card">
+    <div class="card-label label-teal">Friday, February 20</div>
+
+    <div class="event">
+      <div class="event-time time-teal">4:00 PM</div>
+      <div class="event-desc">Arrive at Costanoa, set up camp</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-teal">5:30 PM</div>
+      <div class="event-desc">Apps &amp; drinks at the Airstream — charcuterie, wine, beers</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-teal">7:00 PM</div>
+      <div class="event-desc">Dinner at <a href="https://www.costanoa.com/dining">Pine Tent</a> at Costanoa</div>
+    </div>
   </div>
 
-  <div class="links-card">
-    <h2>Useful Links</h2>
-    <a href="https://www.costanoa.com">Costanoa <span>→</span></a>
-    <a href="https://www.costanoa.com/dining">Pine Tent Restaurant <span>→</span></a>
-    <a href="https://www.duartestavern.com">Duarte's Tavern <span>→</span></a>
-    <a href="https://harleyfarms.com">Harley Farms <span>→</span></a>
-    <a href="https://www.parks.ca.gov/?page_id=523">Año Nuevo State Park <span>→</span></a>
-    <a href="https://www.parks.ca.gov/?page_id=533">Pigeon Point Lighthouse <span>→</span></a>
+  <!-- Saturday -->
+  <div class="card">
+    <div class="card-label label-coral">Saturday, February 21</div>
+
+    <div class="event">
+      <div class="event-time time-coral">Morning</div>
+      <div class="event-desc">Breakfast on your own — Pine Tent or BYO at your spot</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-coral">Late Morning</div>
+      <div class="event-desc">Adventure time — pick your own!</div>
+      <div class="activities">
+        <div class="activity">
+          <div class="activity-emoji">🌊</div>
+          <div class="activity-text"><strong>Pigeon Point Lighthouse</strong><br>5 min south, iconic coastal views</div>
+        </div>
+        <div class="activity">
+          <div class="activity-emoji">🐐</div>
+          <div class="activity-text"><strong>Harley Farms Goat Dairy</strong><br>Farm tour with baby goats in Pescadero</div>
+        </div>
+        <div class="activity">
+          <div class="activity-emoji">🦭</div>
+          <div class="activity-text"><strong>Año Nuevo State Park</strong><br>Elephant seals, guided walks — 15 min south</div>
+        </div>
+        <div class="activity">
+          <div class="activity-emoji">🐚</div>
+          <div class="activity-text"><strong>Pescadero State Beach</strong><br>Easy coastal walk, tide pools</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-coral">12:30 PM</div>
+      <div class="event-desc">Lunch at <a href="https://www.duartestavern.com">Duarte's Tavern</a> in Pescadero — est. 1894, famous artichoke soup &amp; Saturday cioppino</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-coral">After Lunch</div>
+      <div class="event-desc">Bob &amp; Cynthia head home</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-coral">1:00 PM</div>
+      <div class="event-desc">Kids nap time</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-coral">Afternoon</div>
+      <div class="event-desc">Free time — beach, relax at camp</div>
+    </div>
+
+    <div class="event">
+      <div class="event-time time-coral">6:00 PM</div>
+      <div class="event-desc">Grill dinner at the Airstream</div>
+      <div class="dinner-items">
+        <div class="dinner-item">Burgers (beef + turkey) &amp; hot dogs</div>
+        <div class="dinner-item">Trish's Pasta Salad &amp; Sweet Green Coleslaw</div>
+        <div class="dinner-item">S'mores around the fire pit</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sunday -->
+  <div class="card">
+    <div class="card-label label-green">Sunday, February 22</div>
+
+    <div class="event">
+      <div class="event-time time-green">Morning</div>
+      <div class="event-desc">Coffee, pack up, head home</div>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="card">
+    <div class="card-label label-teal">Useful Links</div>
+    <a class="link-btn" href="https://www.costanoa.com">Costanoa <span>→</span></a>
+    <a class="link-btn" href="https://www.costanoa.com/dining">Pine Tent Restaurant <span>→</span></a>
+    <a class="link-btn" href="https://www.duartestavern.com">Duarte's Tavern <span>→</span></a>
+    <a class="link-btn" href="https://harleyfarms.com">Harley Farms <span>→</span></a>
+    <a class="link-btn" href="https://www.parks.ca.gov/?page_id=523">Año Nuevo State Park <span>→</span></a>
+    <a class="link-btn" href="https://www.parks.ca.gov/?page_id=533">Pigeon Point Lighthouse <span>→</span></a>
   </div>
 
   <div class="weather">
-    🌤 <strong>Check weather before heading out</strong> — coastal fog is common, layers recommended!
+    Check weather before heading out — coastal fog is common, layers recommended!
   </div>
 
 </div>
