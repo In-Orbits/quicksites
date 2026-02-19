@@ -9,14 +9,20 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#fafafa;
+  --bg:#f5f5f5;
   --text:#111;
-  --text-2:#444;
-  --text-3:#999;
-  --line:#e0e0e0;
+  --text-2:#333;
+  --text-3:#777;
+  --line:#d0d0d0;
   --accent:#6b8cce;
   --accent-light:#eef2fb;
   --white:#fff;
+  --fri:#1a5f7a;
+  --fri-bg:#e3f0f5;
+  --sat:#b5451b;
+  --sat-bg:#fceee8;
+  --sun:#2d6a4f;
+  --sun-bg:#e8f3ed;
   --mono:'DM Mono',monospace;
   --sans:'DM Sans',sans-serif;
 }
@@ -59,11 +65,14 @@ header .meta{font-family:var(--mono);font-size:.85rem;color:var(--text-3);margin
 
 /* Day */
 .day-header{
-  display:flex;justify-content:space-between;align-items:baseline;
-  border-bottom:1px solid var(--text);padding-bottom:8px;margin-bottom:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;margin-bottom:24px;
 }
+.day-header.fri{background:var(--fri);color:#fff}
+.day-header.sat{background:var(--sat);color:#fff}
+.day-header.sun{background:var(--sun);color:#fff}
 .day-name{font-size:1.5rem;font-weight:700}
-.day-date{font-family:var(--mono);font-size:.9rem;color:var(--text-3)}
+.day-date{font-family:var(--mono);font-size:.95rem;opacity:.85}
 
 /* Event */
 .event{
@@ -75,10 +84,13 @@ header .meta{font-family:var(--mono);font-size:.85rem;color:var(--text-3);margin
   .event{grid-template-columns:1fr;gap:4px}
 }
 .event-time{
-  font-family:var(--mono);font-size:.9rem;font-weight:500;
-  color:var(--accent);padding-top:3px;
+  font-family:var(--mono);font-size:.95rem;font-weight:500;
+  padding-top:3px;
 }
-.event-body{font-size:1.15rem;line-height:1.6}
+.event-time.fri{color:var(--fri)}
+.event-time.sat{color:var(--sat)}
+.event-time.sun{color:var(--sun)}
+.event-body{font-size:1.2rem;line-height:1.6}
 .event-body a{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:3px}
 
 /* Activities */
@@ -156,37 +168,37 @@ footer{
   <div class="section">
     <div class="section-label"><span class="section-num">02</span> Schedule</div>
 
-    <div class="day-header">
+    <div class="day-header fri">
       <div class="day-name">Friday</div>
       <div class="day-date">Feb 20</div>
     </div>
 
     <div class="event">
-      <div class="event-time">4:00 PM</div>
+      <div class="event-time fri">4:00 PM</div>
       <div class="event-body">Arrive at Costanoa, set up camp</div>
     </div>
     <div class="event">
-      <div class="event-time">5:30 PM</div>
+      <div class="event-time fri">5:30 PM</div>
       <div class="event-body">Apps &amp; drinks at the Airstream — charcuterie, wine, beers</div>
     </div>
     <div class="event">
-      <div class="event-time">7:00 PM</div>
+      <div class="event-time fri">7:00 PM</div>
       <div class="event-body">Dinner at <a href="https://www.costanoa.com/dining">Pine Tent</a> at Costanoa</div>
     </div>
 
     <!-- Saturday -->
-    <div class="day-header" style="margin-top:40px">
+    <div class="day-header sat" style="margin-top:40px">
       <div class="day-name">Saturday</div>
       <div class="day-date">Feb 21</div>
     </div>
 
     <div class="event">
-      <div class="event-time">Morning</div>
+      <div class="event-time sat">Morning</div>
       <div class="event-body">Breakfast on your own — Pine Tent or BYO at your spot</div>
     </div>
 
     <div class="event">
-      <div class="event-time">Late Morning</div>
+      <div class="event-time sat">Late Morning</div>
       <div class="event-body">
         Adventure time — pick your own
         <div class="activity-grid">
@@ -211,23 +223,23 @@ footer{
     </div>
 
     <div class="event">
-      <div class="event-time">12:30 PM</div>
+      <div class="event-time sat">12:30 PM</div>
       <div class="event-body">Lunch at <a href="https://www.duartestavern.com">Duarte's Tavern</a> — est. 1894, famous artichoke soup &amp; Saturday cioppino</div>
     </div>
     <div class="event">
-      <div class="event-time">After Lunch</div>
+      <div class="event-time sat">After Lunch</div>
       <div class="event-body">Bob &amp; Cynthia head home</div>
     </div>
     <div class="event">
-      <div class="event-time">1:00 PM</div>
+      <div class="event-time sat">1:00 PM</div>
       <div class="event-body">Kids nap time</div>
     </div>
     <div class="event">
-      <div class="event-time">Afternoon</div>
+      <div class="event-time sat">Afternoon</div>
       <div class="event-body">Free time — beach, relax at camp</div>
     </div>
     <div class="event">
-      <div class="event-time">6:00 PM</div>
+      <div class="event-time sat">6:00 PM</div>
       <div class="event-body">
         Grill dinner at the Airstream
         <ul class="dinner-list">
@@ -239,13 +251,13 @@ footer{
     </div>
 
     <!-- Sunday -->
-    <div class="day-header" style="margin-top:40px">
+    <div class="day-header sun" style="margin-top:40px">
       <div class="day-name">Sunday</div>
       <div class="day-date">Feb 22</div>
     </div>
 
     <div class="event">
-      <div class="event-time">Morning</div>
+      <div class="event-time sun">Morning</div>
       <div class="event-body">Coffee, pack up, head home</div>
     </div>
   </div>
