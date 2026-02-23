@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BHS 40 — Todos Santos, Mexico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sand:       #D4B896;
+      --terra:      #C2704E;
+      --charcoal:   #2C2C2C;
+      --ocean:      #4A7C8F;
+      --cream:      #F5F0E8;
+      --cream-dark: #EDE5D8;
+      --white:      #FFFFFF;
+      --serif:      'DM Serif Display', Georgia, serif;
+      --sans:       'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay on entire page */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ===== PASSWORD GATE ===== */
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    #gate::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('assets/hero.webp') center / cover no-repeat;
+      opacity: 0.15;
+    }
+    .gate-inner {
+      position: relative;
+      text-align: center;
+      max-width: 380px;
+      width: 90%;
+      padding: 3rem 2.5rem;
+      background: rgba(44, 44, 44, 0.88);
+      border: 1px solid rgba(212, 184, 150, 0.25);
+      border-radius: 4px;
+      backdrop-filter: blur(12px);
+    }
+    .gate-inner .gate-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+    .gate-inner h1 {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .gate-inner p {
+      font-size: 0.85rem;
+      color: rgba(245, 240, 232, 0.55);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+    .gate-inner input {
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(212, 184, 150, 0.3);
+      border-radius: 3px;
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-transform: uppercase;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 0.75rem;
+    }
+    .gate-inner input::placeholder { color: rgba(255,255,255,0.25); letter-spacing: 0.1em; text-transform: none; }
+    .gate-inner input:focus { border-color: var(--sand); }
+    .gate-inner button {
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      background: var(--terra);
+      border: none;
+      border-radius: 3px;
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
+    }
+    .gate-inner button:hover { background: #a85c3e; }
+    .gate-error {
+      font-size: 0.75rem;
+      color: #e87a6a;
+      margin-top: 0.5rem;
+      min-height: 1em;
+    }
+    #gate.hidden { display: none; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: transparent;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(44, 44, 44, 0.96);
+      box-shadow: 0 1px 0 rgba(212,184,150,0.15);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--sand); border-bottom-color: var(--sand); }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--charcoal);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .mobile-menu a:hover { color: var(--sand); }
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      height: 100dvh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('assets/hero.webp') center 35% / cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(44,44,44,0.15) 0%,
+        rgba(44,44,44,0.05) 30%,
+        rgba(44,44,44,0.55) 70%,
+        rgba(44,44,44,0.82) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw 6vh;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1rem;
+    }
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(4.5rem, 12vw, 10rem);
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(245,240,232,0.85);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+    }
+    .hero-dates {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-top: 1.25rem;
+    }
+    .hero-dates span {
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      background: var(--sand);
+      vertical-align: middle;
+      margin: 0 0.75rem;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 5vw;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ===== SECTIONS COMMON ===== */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 5vw;
+    }
+    .section-eyebrow {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .section-title.light { color: var(--white); }
+    .section-eyebrow.light { color: var(--sand); }
+
+    /* ===== DIVIDER IMAGE ===== */
+    .img-divider {
+      height: clamp(280px, 45vw, 520px);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* ===== THE CREW ===== */
+    #crew {
+      background: var(--cream);
+    }
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5px;
+      margin-top: 3rem;
+      border: 1.5px solid var(--sand);
+    }
+    .crew-card {
+      padding: 2rem 1.5rem;
+      background: var(--cream);
+      text-align: center;
+      border: 1.5px solid var(--sand);
+      transition: background 0.3s;
+    }
+    .crew-card:hover { background: var(--cream-dark); }
+    .crew-num {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 0.6rem;
+    }
+    .crew-name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--charcoal);
+      line-height: 1.3;
+    }
+    .crew-name em {
+      display: block;
+      font-style: normal;
+      font-size: 0.7rem;
+      font-family: var(--sans);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-top: 0.35rem;
+    }
+    .crew-intro {
+      max-width: 580px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #5a5248;
+    }
+
+    /* ===== AGENDA ===== */
+    #agenda {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+    .agenda-days {
+      margin-top: 3.5rem;
+      display: grid;
+      gap: 0;
+    }
+    .agenda-day {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(212,184,150,0.15);
+      align-items: start;
+    }
+    .agenda-day:last-child { border-bottom: none; }
+    .agenda-day-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sand);
+      padding-top: 4px;
+    }
+    .agenda-day-date {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-top: 0.25rem;
+    }
+    .agenda-events { display: flex; flex-direction: column; gap: 1rem; }
+    .agenda-event {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .agenda-time {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--terra);
+      text-transform: uppercase;
+      min-width: 52px;
+      padding-top: 3px;
+    }
+    .agenda-desc {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: rgba(245,240,232,0.8);
+    }
+    .agenda-desc strong { color: var(--white); font-weight: 600; }
+    .agenda-desc em { color: var(--sand); font-style: normal; }
+
+    /* ===== THE VILLA ===== */
+    #villa {
+      background: var(--cream);
+    }
+    .villa-intro {
+      max-width: 620px;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #5a5248;
+      margin-bottom: 3rem;
+    }
+    .villa-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2px;
+      margin-bottom: 3.5rem;
+    }
+    .villa-feature {
+      padding: 2rem 1.5rem;
+      background: var(--cream-dark);
+      border-left: 3px solid var(--terra);
+    }
+    .villa-feature h4 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .villa-feature p {
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #6b6158;
+    }
+    .villa-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 3.5rem;
+    }
+    .amenity-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      border: 1px solid var(--ocean);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+    }
+    .villa-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      margin-bottom: 3rem;
+    }
+    .villa-images img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .villa-images img:first-child {
+      grid-column: span 2;
+      height: 360px;
+    }
+    .villa-sheet-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--charcoal);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .villa-sheet-cta:hover { background: var(--terra); }
+    .villa-sheet-cta svg { flex-shrink: 0; }
+
+    /* ===== THE MONEY ===== */
+    #money {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+    .money-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2px;
+      margin: 3rem 0;
+    }
+    .money-card {
+      padding: 2.5rem 2rem;
+      background: rgba(255,255,255,0.04);
+      border-top: 2px solid var(--terra);
+    }
+    .money-card-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 0.75rem;
+    }
+    .money-card-value {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .money-card-desc {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: rgba(245,240,232,0.6);
+    }
+    .money-note {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.7);
+      max-width: 600px;
+      padding: 2rem;
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid var(--sand);
+      margin-bottom: 2.5rem;
+    }
+    .money-note strong { color: var(--white); }
+    .money-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--terra);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .money-cta:hover { background: #a85c3e; }
+
+    /* ===== TODOS SANTOS ===== */
+    #todos-santos {
+      background: var(--cream);
+    }
+    .ts-intro {
+      max-width: 620px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #5a5248;
+      margin-bottom: 3.5rem;
+    }
+    .ts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+    }
+    .ts-card {
+      position: relative;
+      overflow: hidden;
+    }
+    .ts-card-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .ts-card:hover .ts-card-img { transform: scale(1.04); }
+    .ts-card-body {
+      padding: 1.5rem;
+      background: var(--cream-dark);
+    }
+    .ts-card-label {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.5rem;
+    }
+    .ts-card h4 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .ts-card p {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: #6b6158;
+    }
+    .ts-highlight {
+      margin-top: 3.5rem;
+      padding: 3rem;
+      background: var(--charcoal);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .ts-highlight h3 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .ts-highlight p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(245,240,232,0.7);
+    }
+    .ts-highlight img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #1a1a1a;
+      padding: 3rem 5vw;
+      text-align: center;
+      border-top: 1px solid rgba(212,184,150,0.1);
+    }
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .footer-sub {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 2rem;
+    }
+    .footer-links a {
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+    .footer-links a:hover { color: var(--sand); }
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+      margin-top: 2rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .agenda-day { grid-template-columns: 1fr; gap: 1rem; }
+
+      .ts-highlight { grid-template-columns: 1fr; gap: 2rem; }
+      .ts-highlight img { order: -1; }
+
+      .villa-images img:first-child { grid-column: span 2; height: 220px; }
+      .villa-images img { height: 180px; }
+
+      .section-inner { padding: 4rem 1.25rem; }
+      .img-divider { background-attachment: scroll; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div id="gate">
+    <div class="gate-inner">
+      <div class="gate-eyebrow">Boulder High School &mdash; Class Reunion</div>
+      <h1>BHS 40</h1>
+      <p>Todos Santos, Mexico &mdash; February 2026</p>
+      <input type="password" id="gate-input" placeholder="Enter password" autocomplete="off" />
+      <button id="gate-btn" onclick="checkPass()">Enter</button>
+      <div class="gate-error" id="gate-error"></div>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
+    <a href="#crew" onclick="closeMobileMenu()">The Crew</a>
+    <a href="#agenda" onclick="closeMobileMenu()">Agenda</a>
+    <a href="#villa" onclick="closeMobileMenu()">The Villa</a>
+    <a href="#money" onclick="closeMobileMenu()">The Money</a>
+    <a href="#todos-santos" onclick="closeMobileMenu()">Todos Santos</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#hero">BHS 40</a>
+    <ul class="nav-links">
+      <li><a href="#crew">The Crew</a></li>
+      <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#villa">The Villa</a></li>
+      <li><a href="#money">The Money</a></li>
+      <li><a href="#todos-santos">Todos Santos</a></li>
+    </ul>
+    <button class="nav-hamburger" onclick="openMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Boulder High School &mdash; Turning 40 &mdash; Baja California Sur</div>
+      <h1 class="hero-title">BHS<br>40</h1>
+      <p class="hero-tagline">No kids. No rules. Todos Santos.</p>
+      <div class="hero-dates">
+        Feb 26 <span></span> Mar 1, 2026
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="img-divider" style="background-image: url('assets/drone.jpg'); background-position: center 40%;"></div>
+
+  <!-- THE CREW -->
+  <section id="crew">
+    <div class="section-inner">
+      <div class="section-eyebrow">Who&rsquo;s Coming</div>
+      <h2 class="section-title">The Crew</h2>
+      <p class="crew-intro">Nine couples. Friends since before driver&rsquo;s licenses, braces, and better judgment. Elementary school hallways to Baja rooftops &mdash; here we are.</p>
+      <div class="crew-grid">
+        <div class="crew-card"><div class="crew-num">01</div><div class="crew-name">Brian &amp; Mairin<em>Head</em></div></div>
+        <div class="crew-card"><div class="crew-num">02</div><div class="crew-name">Logan &amp; Alexandrea<em>Welley</em></div></div>
+        <div class="crew-card"><div class="crew-num">03</div><div class="crew-name">Benny &amp; Carly<em>Swan</em></div></div>
+        <div class="crew-card"><div class="crew-num">04</div><div class="crew-name">Rick &amp; Nell<em>Thomas</em></div></div>
+        <div class="crew-card"><div class="crew-num">05</div><div class="crew-name">Chris &amp; Kelly<em>Molnar</em></div></div>
+        <div class="crew-card"><div class="crew-num">06</div><div class="crew-name">Kirk &amp; Katie<em>Spowart</em></div></div>
+        <div class="crew-card"><div class="crew-num">07</div><div class="crew-name">Rob Kleinberg<br>&amp; Ella Sweeney</div></div>
+        <div class="crew-card"><div class="crew-num">08</div><div class="crew-name">Drew &amp; Lexi<em>Bienvenu</em></div></div>
+        <div class="crew-card"><div class="crew-num">09</div><div class="crew-name">Sam &amp; Maria<em>Matlin</em></div></div>
+        <div class="crew-card"><div class="crew-num">10</div><div class="crew-name">Warren Forster<br>&amp; Vanessa Brown</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="img-divider" style="background-image: url('assets/pool.webp'); background-position: center 60%;"></div>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="section-inner">
+      <div class="section-eyebrow light">The Plan</div>
+      <h2 class="section-title light">The Agenda</h2>
+      <div class="agenda-days">
+
+        <div class="agenda-day">
+          <div>
+            <div class="agenda-day-label">Day 1 &mdash; Thursday</div>
+            <div class="agenda-day-date">Feb 26</div>
+          </div>
+          <div class="agenda-events">
+            <div class="agenda-event">
+              <div class="agenda-time">All day</div>
+              <div class="agenda-desc"><strong>Arrive &amp; settle in.</strong> Drop bags, hit the hot tub, remember what relaxing feels like.</div>
+            </div>
+            <div class="agenda-event">
+              <div class="agenda-time">5:00 PM</div>
+              <div class="agenda-desc"><strong>Dinner at The Green Room</strong> &mdash; <em>On-site at Villa Santa Cruz, beachfront.</em> First night together. Walk straight from your room.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agenda-day">
+          <div>
+            <div class="agenda-day-label">Day 2 &mdash; Friday</div>
+            <div class="agenda-day-date">Feb 27</div>
+          </div>
+          <div class="agenda-events">
+            <div class="agenda-event">
+              <div class="agenda-time">Morning</div>
+              <div class="agenda-desc"><strong>Explore Todos Santos.</strong> Art galleries, surf culture, wander the streets, find trouble.</div>
+            </div>
+            <div class="agenda-event">
+              <div class="agenda-time">7:00 PM</div>
+              <div class="agenda-desc"><strong>Dinner at Jazamango</strong> &mdash; <em>Los Naranjos s/n, Fraccionamiento La Huerta.</em> Farm-to-table legend. One of the best tables in Baja.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agenda-day">
+          <div>
+            <div class="agenda-day-label">Day 3 &mdash; Saturday</div>
+            <div class="agenda-day-date">Feb 28</div>
+          </div>
+          <div class="agenda-events">
+            <div class="agenda-event">
+              <div class="agenda-time">Open</div>
+              <div class="agenda-desc"><strong>Your day, your way.</strong> Beach, pool, horseback riding at the on-site stables, treatments at Almarena Spa &mdash; or all of the above.</div>
+            </div>
+            <div class="agenda-event">
+              <div class="agenda-time">Evening</div>
+              <div class="agenda-desc"><strong>Farewell night &mdash; TBD.</strong> We&rsquo;ll figure it out together. It&rsquo;ll be good.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agenda-day">
+          <div>
+            <div class="agenda-day-label">Day 4 &mdash; Sunday</div>
+            <div class="agenda-day-date">Mar 1</div>
+          </div>
+          <div class="agenda-events">
+            <div class="agenda-event">
+              <div class="agenda-time">Morning</div>
+              <div class="agenda-desc"><strong>Check out &amp; flights home.</strong> Rehydrate. Hug it out. Promise to do this again sooner next time.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="img-divider" style="background-image: url('assets/sol-rooftop.webp');"></div>
+
+  <!-- THE VILLA -->
+  <section id="villa">
+    <div class="section-inner">
+      <div class="section-eyebrow">Where We&rsquo;re Staying</div>
+      <h2 class="section-title">The Villa</h2>
+      <p class="villa-intro">Villa Santa Cruz&rsquo;s Rooftop Villas are the newest and most elevated suites on property. Every unit has a private rooftop with a hot tub. All eight villas share a sleek infinity lap pool and the Serenity Pool. This is not a budget compromise &mdash; it&rsquo;s the good stuff.</p>
+
+      <div class="villa-images">
+        <img src="assets/villa-exterior.webp" alt="Rooftop Villa exterior with pool" />
+        <img src="assets/hottub.webp" alt="Private rooftop hot tub" />
+        <img src="assets/sol-pano.webp" alt="Villa panoramic view" />
+      </div>
+
+      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:1.5rem;color:var(--charcoal);">Room Types</h3>
+      <div class="villa-features">
+        <div class="villa-feature">
+          <h4>King</h4>
+          <p>1 King bed + 1 Daybed. Private rooftop. Perfect for couples who like their own space.</p>
+        </div>
+        <div class="villa-feature">
+          <h4>Two Queens</h4>
+          <p>2 Queen beds. Same private rooftop, same hot tub. Flexible for the group.</p>
+        </div>
+        <div class="villa-feature">
+          <h4>Two Bed / Two Bath</h4>
+          <p>Adjoining rooms with a kitchenette. Maximum square footage. The premium option.</p>
+        </div>
+      </div>
+
+      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:1.25rem;color:var(--charcoal);">Property Amenities</h3>
+      <div class="villa-amenities">
+        <span class="amenity-tag">Private Rooftop Hot Tubs</span>
+        <span class="amenity-tag">Infinity Lap Pool</span>
+        <span class="amenity-tag">Serenity Pool</span>
+        <span class="amenity-tag">The Green Room (beachfront bar &amp; dining)</span>
+        <span class="amenity-tag">Caracara Restaurant</span>
+        <span class="amenity-tag">Almarena Spa &amp; Wellness</span>
+        <span class="amenity-tag">On-Site Stables &amp; Horseback Riding</span>
+        <span class="amenity-tag">Private Beach</span>
+        <span class="amenity-tag">Organic Farm</span>
+      </div>
+
+      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:1.25rem;color:var(--charcoal);">Room Assignments</h3>
+      <p style="font-size:0.95rem;line-height:1.75;color:#6b6158;max-width:520px;margin-bottom:1.5rem;">Who&rsquo;s in which room &mdash; all the details are in the shared sheet.</p>
+      <a class="villa-sheet-cta" href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M8 12h8"/></svg>
+        View Room Assignments
+      </a>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="img-divider" style="background-image: url('assets/dining.webp'); background-position: center 55%;"></div>
+
+  <!-- THE MONEY -->
+  <section id="money">
+    <div class="section-inner">
+      <div class="section-eyebrow light">Logistics</div>
+      <h2 class="section-title light">The Money</h2>
+
+      <div class="money-grid">
+        <div class="money-card">
+          <div class="money-card-label">Nightly Rate</div>
+          <div class="money-card-value">$915</div>
+          <div class="money-card-desc">Per room, per night. Flattened average &mdash; Kings and Queens equalized so nobody&rsquo;s doing math on arrival.</div>
+        </div>
+        <div class="money-card">
+          <div class="money-card-label">Deposit</div>
+          <div class="money-card-value">33%</div>
+          <div class="money-card-desc">Of your total room cost, due at booking. Locks in your room. No deposit, no room.</div>
+        </div>
+        <div class="money-card">
+          <div class="money-card-label">F&amp;B Minimum</div>
+          <div class="money-card-value">$40</div>
+          <div class="money-card-desc">Per person, per day. Use it or lose it &mdash; daily. Cocktails, dinner, breakfast. This is not a burden.</div>
+        </div>
+      </div>
+
+      <div class="money-note">
+        <strong>How to book:</strong> Pay the hotel directly using booking code <strong>BHS40</strong>. That&rsquo;s how they know you&rsquo;re with the group and apply the group rate. Any questions, route them through the organizers &mdash; not the hotel &mdash; first.
+      </div>
+
+      <a class="money-cta" href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M8 12h8"/></svg>
+        Full Financial Breakdown
+      </a>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="img-divider" style="background-image: url('assets/horses.webp'); background-position: center 50%;"></div>
+
+  <!-- TODOS SANTOS -->
+  <section id="todos-santos">
+    <div class="section-inner">
+      <div class="section-eyebrow">The Destination</div>
+      <h2 class="section-title">Todos Santos</h2>
+      <p class="ts-intro">A small Pacific town where surf culture, art galleries, and farm-to-table food coexist with total remoteness. The Tropic of Cancer runs right through it. The light hits differently here &mdash; golden hour lasts two hours. Desert meets ocean. Most people who visit want to stay forever.</p>
+
+      <div class="ts-grid">
+        <div class="ts-card">
+          <img class="ts-card-img" src="assets/stables.webp" alt="Horseback riding at stables" />
+          <div class="ts-card-body">
+            <div class="ts-card-label">On the Property</div>
+            <h4>Stables &amp; Riding</h4>
+            <p>Sunset rides across the dunes. Full-moon beach rides. Or just hanging with the horses. The Villa Santa Cruz stables are a ten-minute walk from your room.</p>
+          </div>
+        </div>
+        <div class="ts-card">
+          <img class="ts-card-img" src="assets/models-day1.jpg" alt="Pool and ocean views" />
+          <div class="ts-card-body">
+            <div class="ts-card-label">The Town</div>
+            <h4>Todos Santos Town</h4>
+            <p>Art galleries, taco stands, cold beer on warm patios. The kind of town that feels discovered but somehow still secret. Spend a morning wandering &mdash; you won&rsquo;t be bored.</p>
+          </div>
+        </div>
+        <div class="ts-card">
+          <img class="ts-card-img" src="assets/site-general.jpg" alt="Villa Santa Cruz aerial" />
+          <div class="ts-card-body">
+            <div class="ts-card-label">Adventure</div>
+            <h4>Whale Sharks in La Paz</h4>
+            <p>One hour north, La Paz Bay is one of the few places on earth where you can swim with whale sharks. Optional day trip &mdash; absolutely worth it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ts-highlight">
+        <div>
+          <h3>Caracara &amp; The Green Room</h3>
+          <p>Two restaurants on property, both exceptional. Caracara is the fine-dining flagship &mdash; farm-to-table, sourced from the Villa&rsquo;s own gardens. The Green Room is where you end up after the pool closes, watching the Pacific go dark with a drink in hand.</p>
+          <br />
+          <p style="color:var(--sand);font-size:0.8rem;letter-spacing:0.1em;">Also: Almarena Spa &mdash; book your treatments early. They fill up.</p>
+        </div>
+        <img src="assets/villa-sept.jpg" alt="Villa Santa Cruz oceanfront" />
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">BHS 40</div>
+    <div class="footer-sub">Boulder High School &mdash; Todos Santos, Mexico &mdash; Feb 26&ndash;Mar 1, 2026</div>
+    <div class="footer-links">
+      <a href="https://villasantacruzbaja.com/" target="_blank" rel="noopener">Villa Santa Cruz</a>
+      <a href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">Room Sheet</a>
+    </div>
+    <div class="footer-copy">For the crew. By the crew. Class of &rsquo;04.</div>
+  </footer>
+
+  <script>
+    // ===== PASSWORD GATE =====
+    const PASS = 'BHS40';
+    const COOKIE_NAME = 'bhs40_auth';
+
+    function getCookie(name) {
+      const v = document.cookie.split('; ').find(r => r.startsWith(name + '='));
+      return v ? v.split('=')[1] : null;
+    }
+    function setCookie(name, val, days) {
+      const d = new Date();
+      d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+      document.cookie = name + '=' + val + ';expires=' + d.toUTCString() + ';path=/';
+    }
+
+    if (getCookie(COOKIE_NAME) === '1') {
+      document.getElementById('gate').classList.add('hidden');
+    }
+
+    function checkPass() {
+      const val = document.getElementById('gate-input').value.trim().toUpperCase();
+      if (val === PASS) {
+        setCookie(COOKIE_NAME, '1', 365);
+        const gate = document.getElementById('gate');
+        gate.style.transition = 'opacity 0.5s';
+        gate.style.opacity = '0';
+        setTimeout(() => gate.classList.add('hidden'), 500);
+      } else {
+        const err = document.getElementById('gate-error');
+        err.textContent = 'Incorrect password. Try again.';
+        document.getElementById('gate-input').value = '';
+        document.getElementById('gate-input').focus();
+        setTimeout(() => err.textContent = '', 3000);
+      }
+    }
+
+    document.getElementById('gate-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkPass();
+    });
+
+    // ===== NAV SCROLL =====
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+      updateActiveNav();
+    }, { passive: true });
+
+    function updateActiveNav() {
+      const sections = document.querySelectorAll('section[id]');
+      const links = document.querySelectorAll('.nav-links a');
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      links.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    // ===== MOBILE MENU =====
+    function openMobileMenu() {
+      document.getElementById('mobile-menu').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobile-menu').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ===== INTERSECTION OBSERVER for fade-in =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.crew-card, .agenda-day, .villa-feature, .money-card, .ts-card').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
