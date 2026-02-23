@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gigi's Guide — Charlie & Mac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:#fff;color:#1d1d1f;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;
+}
+.page{max-width:600px;margin:0 auto;padding:0 20px 60px}
+
+.hero{text-align:center;padding:48px 20px 40px}
+.hero h1{font-size:2.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px}
+.hero .dates{font-size:1.25rem;color:#6e6e73;font-weight:500}
+
+.divider{height:1px;background:#d2d2d7;margin:0 0 32px}
+
+.section{margin-bottom:36px}
+.section-title{
+  font-size:.85rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.08em;color:#86868b;margin-bottom:16px;
+}
+
+.crew{display:flex;flex-direction:column;gap:12px}
+.crew-row{
+  padding:16px 20px;background:#f5f5f7;border-radius:14px;
+}
+.crew-name{font-size:1.15rem;font-weight:600}
+.crew-detail{font-size:1rem;color:#6e6e73;margin-top:2px}
+.crew-sub{font-size:.9rem;color:#86868b;margin-top:2px}
+
+.day{margin-bottom:32px}
+.day-banner{
+  padding:12px 20px;border-radius:14px;margin-bottom:20px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.day-banner.tue{background:#8e44ad;color:#fff}
+.day-banner.wed{background:#0071e3;color:#fff}
+.day-banner.thufri{background:#248a3d;color:#fff}
+.day-banner.sat{background:#bf4800;color:#fff}
+.day-banner.sun{background:#e3002c;color:#fff}
+.day-banner.weekday{background:#6e6e73;color:#fff}
+.day-label{font-size:1.3rem;font-weight:700}
+.day-date{font-size:1rem;font-weight:500;opacity:.9}
+
+.timeline{padding-left:0}
+.tl-item{
+  display:flex;gap:16px;padding:14px 0;
+  border-bottom:1px solid #f0f0f0;
+}
+.tl-item:last-child{border-bottom:none}
+.tl-time{
+  flex-shrink:0;width:110px;
+  font-size:.95rem;font-weight:600;padding-top:2px;
+}
+.tl-content{flex:1;font-size:1.15rem}
+
+.act{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;background:#f5f5f7;border-radius:12px;
+  margin-top:8px;
+}
+.act-icon{font-size:1.3rem;flex-shrink:0}
+.act-text{font-size:1.05rem}
+.act-text strong{font-weight:600}
+.act-text span{color:#6e6e73}
+
+.sub{margin-top:8px;padding-left:2px}
+.sub li{font-size:1.05rem;color:#6e6e73;margin-bottom:4px;list-style:none;padding-left:16px;position:relative}
+.sub li::before{content:'·';position:absolute;left:0;font-weight:700;font-size:1.3rem;line-height:1;color:#6e6e73}
+
+.note{
+  padding:16px 20px;background:#f5f5f7;border-radius:14px;
+  font-size:1.05rem;color:#6e6e73;text-align:center;margin-top:32px;
+}
+.note-important{
+  padding:16px 20px;background:#fff3e0;border-radius:14px;
+  font-size:1.05rem;color:#1d1d1f;margin-top:12px;
+}
+
+footer{text-align:center;padding:32px 20px;font-size:.85rem;color:#86868b}
+
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem}
+  .tl-item{flex-direction:column;gap:2px}
+  .tl-time{width:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="hero">
+    <h1>Gigi's Guide — Charlie &amp; Mac</h1>
+    <div class="dates">February 25 – March 1, 2026</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Emergency Contacts -->
+  <div class="section">
+    <div class="section-title">Emergency Contacts</div>
+    <div class="crew">
+      <div class="crew-row">
+        <div class="crew-name">📱 Brian</div>
+        <div class="crew-detail">Brian's Cell</div>
+        <div class="crew-sub">Works in Mexico</div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">📱 Mairin</div>
+        <div class="crew-detail">Mairin's Cell</div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">🏨 Hotel San Cristóbal</div>
+        <div class="crew-detail"><a href="tel:+526121751530" style="color:#0071e3;text-decoration:none;font-weight:600">+52 612 175 1530</a></div>
+        <div class="crew-sub">Carr. Federal 19 Km 54, 23300 Todos Santos, BCS, Mexico</div>
+        <div class="crew-sub">Room: Rooftop Villa King "Orion"</div>
+        <div class="crew-sub"><a href="https://bunkhousehotels.com/hotel-san-cristobal" style="color:#0071e3;text-decoration:none">bunkhousehotels.com</a></div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">👩‍⚕️ Dr. Suzanne Christie</div>
+        <div class="crew-detail"><a href="tel:4153808700" style="color:#0071e3;text-decoration:none;font-weight:600">(415) 380-8700</a></div>
+        <div class="crew-sub">Magnolia Pediatrics of Marin</div>
+        <div class="crew-sub">655 Redwood Hwy #216, Mill Valley, CA 94941</div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">🏫 MPMS (School)</div>
+        <div class="crew-detail"><a href="tel:4159242608" style="color:#0071e3;text-decoration:none;font-weight:600">(415) 924-2608</a></div>
+        <div class="crew-sub">Marin Primary &amp; Middle School</div>
+        <div class="crew-sub">20 Magnolia Ave, Larkspur, CA 94939</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Daily Schedule -->
+  <div class="section">
+    <div class="section-title">Daily Schedule (Wed–Fri)</div>
+    <div class="day weekday">
+      <div class="day-banner weekday">
+        <div class="day-label">Every Weekday</div>
+        <div class="day-date">Wed – Fri</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">7:00 AM</div>
+          <div class="tl-content">Boys wake up</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">7:30 AM</div>
+          <div class="tl-content">Laura arrives (nanny — helps with morning routine, leaves ~10-11 AM)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Breakfast</div>
+          <div class="tl-content">
+            <div class="act">
+              <div class="act-icon">🥣</div>
+              <div class="act-text"><strong>Mac:</strong> <span>Cheerios only</span></div>
+            </div>
+            <div class="act">
+              <div class="act-icon">🥣</div>
+              <div class="act-text"><strong>Charlie:</strong> <span>Oatmeal or Cheerios</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">7:45–8:30</div>
+          <div class="tl-content">
+            School dropoff at MPMS
+            <ul class="sub">
+              <li>Charlie goes to the library (or runs around outside). No formal handoff — staff watches kids as they arrive. Charlie knows the drill, just ask him.</li>
+              <li>Mac goes to his classroom</li>
+            </ul>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">School day</div>
+          <div class="tl-content">Hot lunches ordered Wed–Fri (already handled)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">3:30–6:00</div>
+          <div class="tl-content">Pickup window at MPMS</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">7:00 PM</div>
+          <div class="tl-content">Bath time starts → bedtime routine (Gigi knows it)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day by Day -->
+  <div class="section">
+    <div class="section-title">Day by Day</div>
+
+    <div class="day">
+      <div class="day-banner tue">
+        <div class="day-label">Tuesday</div>
+        <div class="day-date">February 24</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">Evening</div>
+          <div class="tl-content">Gigi arrives</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time"></div>
+          <div class="tl-content">Transfer car seats to Gigi's car</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-banner wed">
+        <div class="day-label">Wednesday</div>
+        <div class="day-date">February 25</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">9:00 AM</div>
+          <div class="tl-content">✈️ Brian &amp; Mairin depart SFO (UA 1189 → San José del Cabo, arrives 1:15 PM)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">All day</div>
+          <div class="tl-content">Regular school day for boys</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-banner thufri">
+        <div class="day-label">Thursday &amp; Friday</div>
+        <div class="day-date">Feb 26–27</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">All day</div>
+          <div class="tl-content">Regular school days</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">Morning</div>
+          <div class="tl-content">Laura arrives as usual</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-banner sat">
+        <div class="day-label">Saturday</div>
+        <div class="day-date">February 28</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">All day</div>
+          <div class="tl-content">No school — full day with Gigi! Plan something fun 🎉</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-banner sun">
+        <div class="day-label">Sunday</div>
+        <div class="day-date">March 1</div>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-time">2:20 PM</div>
+          <div class="tl-content">✈️ Brian &amp; Mairin depart SJD (UA 1931)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">4:42 PM</div>
+          <div class="tl-content">Arrive SFO</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">~6:00 PM</div>
+          <div class="tl-content">Home!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meals -->
+  <div class="section">
+    <div class="section-title">Meals — Kid Favorites</div>
+    <div class="crew">
+      <div class="crew-row">
+        <div class="crew-name">🍳 Easy Dinners</div>
+        <div class="crew-detail">Mac &amp; cheese · Chicken nuggets &amp; fries · Quesadillas · Costco pizza (basement fridge)</div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">📱 DoorDash Go-Tos</div>
+        <div class="crew-detail"><strong>Super Duper</strong> — burgers</div>
+        <div class="crew-detail"><strong>Gott's</strong> — burgers &amp; hot dogs</div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">💡 Tips</div>
+        <div class="crew-detail">Fresh fruit with most meals — gets them eating and keeps them at the table</div>
+        <div class="crew-detail">They expect dessert after dinner (only if good manners at the table)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Henry -->
+  <div class="section">
+    <div class="section-title">🐕 Henry (the dog)</div>
+    <div class="crew">
+      <div class="crew-row">
+        <div class="crew-detail">2 meals/day: breakfast and dinner — 1 scoop per meal</div>
+        <div class="crew-detail">Regular walks</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Important Notes -->
+  <div class="section">
+    <div class="section-title">Important Notes</div>
+    <div class="note-important">
+      ✅ No medications or allergies for either boy<br>
+      📱 Brian's cell works in Mexico<br>
+      🍽️ School hot lunches are pre-ordered Wed–Fri
+    </div>
+  </div>
+
+  <!-- Flights -->
+  <div class="section">
+    <div class="section-title">Flight Details</div>
+    <div class="crew">
+      <div class="crew-row">
+        <div class="crew-name">✈️ Outbound</div>
+        <div class="crew-detail">Wed Feb 25 · UA 1189 · SFO → SJD</div>
+        <div class="crew-sub">Depart 9:00 AM — Arrive 1:15 PM</div>
+      </div>
+      <div class="crew-row">
+        <div class="crew-name">✈️ Return</div>
+        <div class="crew-detail">Sun Mar 1 · UA 1931 · SJD → SFO</div>
+        <div class="crew-sub">Depart 2:20 PM — Arrive 4:42 PM</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    You've got this, Gigi! 💛 Call anytime.
+  </div>
+
+</div>
+
+<footer>Made with ❤️</footer>
+
+</body>
+</html>
