@@ -311,6 +311,14 @@
     }
     .section-title.light { color: var(--white); }
 
+    /* Desktop: left-align everything except hero & footer */
+    @media (min-width: 768px) {
+      .section-inner { text-align: left; }
+      .crew-card { text-align: left; }
+      .money-top { justify-content: flex-start; }
+      .hotel-facts { justify-content: flex-start; }
+    }
+
     /* Light sections */
     .bg-white { background: var(--white); }
     .bg-cream  { background: var(--cream); }
