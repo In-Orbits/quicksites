@@ -14,13 +14,13 @@
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --sand:       #7D8B7A;
+      --sand:       #F3D7AC;
       --terra:      #D97A62;
-      --charcoal:   #2C2B29;
-      --ocean:      #4A6B7C;
-      --cream:      #F4F0EA;
-      --cream-dark: #E8E4DD;
-      --white:      #F4F0EA;
+      --charcoal:   #22252A;
+      --ocean:      #16A38C;
+      --cream:      #FAF4EA;
+      --cream-dark: #F3D7AC;
+      --white:      #FAF4EA;
       --neon-magenta: #FF007F;
       --neon-cyan:  #00F0FF;
       --serif:      'DM Serif Display', Georgia, serif;
@@ -145,7 +145,7 @@
       transition: background 0.3s, box-shadow 0.3s;
     }
     nav.scrolled {
-      background: rgba(44, 43, 41, 0.97);
+      background: rgba(22, 163, 140, 0.95);
       border-bottom: 2px solid var(--neon-cyan);
     }
     .nav-logo {
@@ -190,7 +190,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: var(--charcoal);
+      background: var(--ocean);
       z-index: 99;
       flex-direction: column;
       align-items: center;
@@ -308,7 +308,7 @@
     /* Light sections */
     .bg-white { background: var(--white); }
     .bg-cream  { background: var(--cream); }
-    .bg-dark   { background: var(--charcoal); color: var(--cream); }
+    .bg-dark   { background: var(--ocean); color: var(--cream); }
 
     /* ===== TABLES (shared) ===== */
     .table-wrap {
@@ -325,8 +325,8 @@
       min-width: 520px;
     }
     thead th {
-      background: var(--charcoal);
-      color: var(--sand);
+      background: var(--ocean);
+      color: var(--cream);
       font-size: 0.62rem;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -414,7 +414,7 @@
     .hotel-fact-val a:hover { text-decoration: underline; }
 
     /* ===== AGENDA ===== */
-    #agenda { background: var(--charcoal); }
+    #agenda { background: var(--ocean); }
     .agenda-table th,
     .agenda-table td { vertical-align: middle; }
     .day-badge {
@@ -501,8 +501,8 @@
       align-items: center;
       gap: 0.6rem;
       padding: 0.8rem 1.5rem;
-      background: var(--charcoal);
-      color: var(--white);
+      background: var(--ocean);
+      color: var(--cream);
       font-size: 0.68rem;
       font-weight: 600;
       letter-spacing: 0.18em;
@@ -535,10 +535,10 @@
 
     /* ===== FOOTER ===== */
     footer {
-      background: #1a1a1a;
+      background: var(--charcoal);
       padding: 2.5rem 5vw;
       text-align: center;
-      border-top: 1px solid rgba(212,184,150,0.1);
+      border-top: 3px solid var(--ocean);
     }
     .footer-logo {
       font-family: var(--serif);
