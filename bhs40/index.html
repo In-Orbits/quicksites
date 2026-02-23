@@ -225,9 +225,9 @@
     #hero {
       position: relative;
       height: 20dvh;
-      min-height: 160px;
+      min-height: 220px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: flex-start;
       overflow: hidden;
     }
@@ -253,11 +253,12 @@
       position: relative;
       z-index: 2;
       text-align: left;
-      padding: 1rem 5vw;
+      padding: 0 5vw 1.5rem;
+      padding-top: 60px;
       width: 100%;
     }
     .hero-eyebrow {
-      font-size: 0.55rem;
+      display: none;
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -266,10 +267,10 @@
     }
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      line-height: 1;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1.05;
       color: var(--white);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
     .hero-tagline {
       font-size: clamp(0.8rem, 2vw, 0.95rem);
