@@ -14,13 +14,15 @@
     /* ===== RESET & BASE ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --sand:       #C4A77D;
-      --terra:      #BF6B4A;
-      --charcoal:   #2A2118;
-      --ocean:      #6B9E8A;
-      --cream:      #F5F0E6;
-      --cream-dark: #E8DFCF;
-      --white:      #FDFAF5;
+      --sand:       #7D8B7A;
+      --terra:      #D97A62;
+      --charcoal:   #2C2B29;
+      --ocean:      #4A6B7C;
+      --cream:      #F4F0EA;
+      --cream-dark: #E8E4DD;
+      --white:      #F4F0EA;
+      --neon-magenta: #FF007F;
+      --neon-cyan:  #00F0FF;
       --serif:      'DM Serif Display', Georgia, serif;
       --sans:       'Inter', system-ui, sans-serif;
     }
@@ -106,19 +108,20 @@
     .gate-inner button {
       width: 100%;
       padding: 0.85rem 1.25rem;
-      background: var(--terra);
-      border: none;
+      background: transparent;
+      border: 2px solid var(--neon-magenta);
       border-radius: 3px;
-      color: var(--white);
+      color: var(--neon-magenta);
+      box-shadow: 0 0 8px rgba(255, 0, 127, 0.4);
       font-family: var(--sans);
       font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: all 0.2s ease-in-out;
     }
-    .gate-inner button:hover { background: #a85c3e; }
+    .gate-inner button:hover { background: var(--neon-magenta); color: var(--cream); box-shadow: 0 0 16px rgba(255, 0, 127, 0.8); }
     .gate-error {
       font-size: 0.75rem;
       color: #e87a6a;
@@ -142,8 +145,8 @@
       transition: background 0.3s, box-shadow 0.3s;
     }
     nav.scrolled {
-      background: rgba(44, 44, 44, 0.97);
-      box-shadow: 0 1px 0 rgba(212,184,150,0.15);
+      background: rgba(44, 43, 41, 0.97);
+      border-bottom: 2px solid var(--neon-cyan);
     }
     .nav-logo {
       font-family: var(--serif);
@@ -165,7 +168,7 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--sand); }
+    .nav-links a:hover { color: var(--neon-cyan); }
 
     /* Hamburger */
     .nav-hamburger {
@@ -508,7 +511,7 @@
       transition: background 0.2s;
       border-radius: 2px;
     }
-    .link-btn:hover { background: var(--terra); }
+    .link-btn:hover { background: var(--neon-magenta); box-shadow: 0 0 12px rgba(255, 0, 127, 0.5); }
 
     /* ===== TODOS SANTOS ===== */
     #todos-santos { background: var(--cream); }
