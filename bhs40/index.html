@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BHS 40 — Todos Santos, Mexico</title>
+  <title>Todos or Nothing — Todos Santos, Feb 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -25,20 +25,9 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--sans);
-      background: var(--cream);
+      background: var(--white);
       color: var(--charcoal);
       overflow-x: hidden;
-    }
-
-    /* Grain overlay on entire page */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.025;
-      pointer-events: none;
-      z-index: 9999;
     }
 
     /* ===== PASSWORD GATE ===== */
@@ -82,9 +71,9 @@
     }
     .gate-inner h1 {
       font-family: var(--serif);
-      font-size: 3.5rem;
+      font-size: 3rem;
       color: var(--white);
-      line-height: 1;
+      line-height: 1.1;
       margin-bottom: 0.5rem;
     }
     .gate-inner p {
@@ -124,7 +113,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       cursor: pointer;
-      transition: background 0.2s, opacity 0.2s;
+      transition: background 0.2s;
     }
     .gate-inner button:hover { background: #a85c3e; }
     .gate-error {
@@ -145,40 +134,35 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.1rem 2.5rem;
+      padding: 1rem 2.5rem;
       background: transparent;
-      transition: background 0.4s, box-shadow 0.4s;
+      transition: background 0.3s, box-shadow 0.3s;
     }
     nav.scrolled {
-      background: rgba(44, 44, 44, 0.96);
+      background: rgba(44, 44, 44, 0.97);
       box-shadow: 0 1px 0 rgba(212,184,150,0.15);
-      backdrop-filter: blur(12px);
     }
     .nav-logo {
       font-family: var(--serif);
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       color: var(--white);
       text-decoration: none;
-      letter-spacing: 0.03em;
     }
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.75rem;
       list-style: none;
     }
     .nav-links a {
       font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.65);
       text-decoration: none;
       transition: color 0.2s;
-      padding-bottom: 2px;
-      border-bottom: 1px solid transparent;
     }
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--sand); border-bottom-color: var(--sand); }
+    .nav-links a:hover { color: var(--sand); }
 
     /* Hamburger */
     .nav-hamburger {
@@ -195,7 +179,6 @@
       width: 24px;
       height: 2px;
       background: var(--white);
-      transition: all 0.3s;
     }
     .mobile-menu {
       display: none;
@@ -231,7 +214,7 @@
     #hero {
       position: relative;
       height: 100dvh;
-      min-height: 600px;
+      min-height: 560px;
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
@@ -248,7 +231,7 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(44,44,44,0.15) 0%,
+        rgba(44,44,44,0.10) 0%,
         rgba(44,44,44,0.05) 30%,
         rgba(44,44,44,0.55) 70%,
         rgba(44,44,44,0.82) 100%
@@ -270,16 +253,16 @@
     }
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(4.5rem, 12vw, 10rem);
+      font-size: clamp(4rem, 11vw, 9rem);
       line-height: 0.95;
       color: var(--white);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
     .hero-tagline {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       font-weight: 300;
       color: rgba(245,240,232,0.85);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       margin-bottom: 0.5rem;
     }
     .hero-dates {
@@ -290,456 +273,304 @@
       color: var(--sand);
       margin-top: 1.25rem;
     }
-    .hero-dates span {
-      display: inline-block;
-      width: 30px;
-      height: 1px;
-      background: var(--sand);
-      vertical-align: middle;
-      margin: 0 0.75rem;
-    }
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      right: 5vw;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-    .scroll-hint span {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      writing-mode: vertical-rl;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.1); }
-    }
 
-    /* ===== SECTIONS COMMON ===== */
+    /* ===== SECTION BASE ===== */
     section { position: relative; }
     .section-inner {
-      max-width: 1100px;
+      max-width: 1060px;
       margin: 0 auto;
-      padding: 5rem 5vw;
+      padding: 4rem 5vw;
     }
-    .section-eyebrow {
-      font-size: 0.62rem;
+    .section-label {
+      font-size: 0.6rem;
       font-weight: 600;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--terra);
-      margin-bottom: 1rem;
+      margin-bottom: 0.6rem;
     }
+    .section-label.light { color: var(--sand); }
     .section-title {
       font-family: var(--serif);
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      line-height: 1.1;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       color: var(--charcoal);
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.1;
     }
     .section-title.light { color: var(--white); }
-    .section-eyebrow.light { color: var(--sand); }
 
-    /* ===== DIVIDER IMAGE ===== */
-    .img-divider {
-      height: clamp(280px, 45vw, 520px);
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+    /* Light sections */
+    .bg-white { background: var(--white); }
+    .bg-cream  { background: var(--cream); }
+    .bg-dark   { background: var(--charcoal); color: var(--cream); }
+
+    /* ===== TABLES (shared) ===== */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 2rem;
+      border: 1px solid #e0d9ce;
+      border-radius: 3px;
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      min-width: 520px;
+    }
+    thead th {
+      background: var(--charcoal);
+      color: var(--sand);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      white-space: nowrap;
+    }
+    tbody tr:nth-child(even) { background: #f7f3ed; }
+    tbody tr:nth-child(odd)  { background: var(--white); }
+    .bg-dark .table-wrap { border-color: rgba(212,184,150,0.2); }
+    .bg-dark tbody tr:nth-child(even) { background: rgba(255,255,255,0.06); }
+    .bg-dark tbody tr:nth-child(odd)  { background: rgba(255,255,255,0.02); }
+    .bg-dark tbody td { color: rgba(245,240,232,0.88); }
+    tbody td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #ede5d8;
+      line-height: 1.45;
+      vertical-align: top;
+    }
+    .bg-dark tbody td { border-bottom-color: rgba(212,184,150,0.1); }
+    tbody tr:last-child td { border-bottom: none; }
+    td strong { font-weight: 600; }
 
     /* ===== THE CREW ===== */
-    #crew {
-      background: var(--cream);
-    }
+    #crew { background: var(--white); }
     .crew-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5px;
-      margin-top: 3rem;
-      border: 1.5px solid var(--sand);
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      background: #e0d9ce;
+      border: 1px solid #e0d9ce;
+      border-radius: 2px;
     }
     .crew-card {
-      padding: 2rem 1.5rem;
-      background: var(--cream);
+      background: var(--white);
+      padding: 1.5rem 1.25rem;
       text-align: center;
-      border: 1.5px solid var(--sand);
-      transition: background 0.3s;
     }
-    .crew-card:hover { background: var(--cream-dark); }
     .crew-num {
-      font-size: 0.55rem;
+      font-size: 0.52rem;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--sand);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.4rem;
     }
     .crew-name {
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--charcoal);
       line-height: 1.3;
     }
-    .crew-name em {
-      display: block;
-      font-style: normal;
-      font-size: 0.7rem;
-      font-family: var(--sans);
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--terra);
-      margin-top: 0.35rem;
-    }
-    .crew-intro {
-      max-width: 580px;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: #5a5248;
-    }
 
-    /* ===== AGENDA ===== */
-    #agenda {
-      background: var(--charcoal);
-      color: var(--cream);
-    }
-    .agenda-days {
-      margin-top: 3.5rem;
+    /* ===== HOTEL ===== */
+    #hotel { background: var(--cream); }
+    .hotel-facts {
       display: grid;
-      gap: 0;
-    }
-    .agenda-day {
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: 2rem;
-      padding: 2.5rem 0;
-      border-bottom: 1px solid rgba(212,184,150,0.15);
-      align-items: start;
-    }
-    .agenda-day:last-child { border-bottom: none; }
-    .agenda-day-label {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--sand);
-      padding-top: 4px;
-    }
-    .agenda-day-date {
-      font-family: var(--serif);
-      font-size: 1.6rem;
-      color: var(--white);
-      margin-top: 0.25rem;
-    }
-    .agenda-events { display: flex; flex-direction: column; gap: 1rem; }
-    .agenda-event {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .agenda-time {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      color: var(--terra);
-      text-transform: uppercase;
-      min-width: 52px;
-      padding-top: 3px;
-    }
-    .agenda-desc {
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: rgba(245,240,232,0.8);
-    }
-    .agenda-desc strong { color: var(--white); font-weight: 600; }
-    .agenda-desc em { color: var(--sand); font-style: normal; }
-
-    /* ===== THE VILLA ===== */
-    #villa {
-      background: var(--cream);
-    }
-    .villa-intro {
-      max-width: 620px;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #5a5248;
-      margin-bottom: 3rem;
-    }
-    .villa-features {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 2px;
-      margin-bottom: 3.5rem;
-    }
-    .villa-feature {
-      padding: 2rem 1.5rem;
-      background: var(--cream-dark);
-      border-left: 3px solid var(--terra);
-    }
-    .villa-feature h4 {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      color: var(--charcoal);
-      margin-bottom: 0.5rem;
-    }
-    .villa-feature p {
-      font-size: 0.85rem;
-      line-height: 1.6;
-      color: #6b6158;
-    }
-    .villa-amenities {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 3.5rem;
-    }
-    .amenity-tag {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--ocean);
-      border: 1px solid var(--ocean);
-      padding: 0.4rem 0.9rem;
-      border-radius: 2px;
-    }
-    .villa-images {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-      margin-bottom: 3rem;
-    }
-    .villa-images img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      display: block;
-    }
-    .villa-images img:first-child {
-      grid-column: span 2;
-      height: 360px;
-    }
-    .villa-sheet-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: var(--charcoal);
-      color: var(--white);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s;
-    }
-    .villa-sheet-cta:hover { background: var(--terra); }
-    .villa-sheet-cta svg { flex-shrink: 0; }
-
-    /* ===== THE MONEY ===== */
-    #money {
-      background: var(--charcoal);
-      color: var(--cream);
-    }
-    .money-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2px;
-      margin: 3rem 0;
-    }
-    .money-card {
-      padding: 2.5rem 2rem;
-      background: rgba(255,255,255,0.04);
-      border-top: 2px solid var(--terra);
-    }
-    .money-card-label {
-      font-size: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--sand);
-      margin-bottom: 0.75rem;
-    }
-    .money-card-value {
-      font-family: var(--serif);
-      font-size: 2.4rem;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 0.75rem;
-    }
-    .money-card-desc {
-      font-size: 0.85rem;
-      line-height: 1.65;
-      color: rgba(245,240,232,0.6);
-    }
-    .money-note {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: rgba(245,240,232,0.7);
-      max-width: 600px;
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
-      border-left: 3px solid var(--sand);
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 2.5rem;
     }
-    .money-note strong { color: var(--white); }
-    .money-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 1rem 2rem;
-      background: var(--terra);
-      color: var(--white);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.2s;
+    .hotel-fact {
+      padding: 1.25rem 1.5rem;
+      background: var(--white);
+      border-left: 3px solid var(--terra);
     }
-    .money-cta:hover { background: #a85c3e; }
-
-    /* ===== TODOS SANTOS ===== */
-    #todos-santos {
-      background: var(--cream);
-    }
-    .ts-intro {
-      max-width: 620px;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #5a5248;
-      margin-bottom: 3.5rem;
-    }
-    .ts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2px;
-    }
-    .ts-card {
-      position: relative;
-      overflow: hidden;
-    }
-    .ts-card-img {
-      width: 100%;
-      height: 260px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.6s ease;
-    }
-    .ts-card:hover .ts-card-img { transform: scale(1.04); }
-    .ts-card-body {
-      padding: 1.5rem;
-      background: var(--cream-dark);
-    }
-    .ts-card-label {
-      font-size: 0.6rem;
+    .hotel-fact-label {
+      font-size: 0.58rem;
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--terra);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
-    .ts-card h4 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
+    .hotel-fact-val {
+      font-size: 0.9rem;
+      line-height: 1.55;
       color: var(--charcoal);
-      margin-bottom: 0.5rem;
     }
-    .ts-card p {
-      font-size: 0.85rem;
-      line-height: 1.65;
+    .hotel-fact-val a {
+      color: var(--ocean);
+      text-decoration: none;
+    }
+    .hotel-fact-val a:hover { text-decoration: underline; }
+
+    /* ===== AGENDA ===== */
+    #agenda { background: var(--charcoal); }
+    .agenda-table th,
+    .agenda-table td { vertical-align: middle; }
+    .day-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sand);
+      background: rgba(212,184,150,0.12);
+      border: 1px solid rgba(212,184,150,0.25);
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .agenda-note { font-size: 0.8rem; color: rgba(245,240,232,0.55); margin-top: 0.25rem; }
+
+    /* ===== MONEY ===== */
+    #money { background: var(--white); }
+    .money-top {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .money-stat {
+      padding: 1.25rem 2rem;
+      background: var(--cream);
+      border-top: 3px solid var(--terra);
+      min-width: 160px;
+    }
+    .money-stat-label {
+      font-size: 0.58rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 0.3rem;
+    }
+    .money-stat-val {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+    .money-stat-sub {
+      font-size: 0.78rem;
       color: #6b6158;
+      margin-top: 0.3rem;
     }
-    .ts-highlight {
-      margin-top: 3.5rem;
-      padding: 3rem;
+    .callout {
+      padding: 1.25rem 1.5rem;
+      background: var(--cream);
+      border-left: 3px solid var(--sand);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #4a4540;
+      margin-bottom: 2rem;
+    }
+    .callout strong { color: var(--charcoal); }
+
+    .venmo-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .venmo-list li {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--charcoal);
+      padding: 0.6rem 1rem;
+      background: var(--cream);
+      border-left: 3px solid var(--ocean);
+    }
+    .venmo-list li strong { color: var(--charcoal); }
+    .venmo-list li em { color: var(--ocean); font-style: normal; font-weight: 600; }
+
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.5rem;
       background: var(--charcoal);
       color: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+      border-radius: 2px;
     }
-    .ts-highlight h3 {
-      font-family: var(--serif);
-      font-size: 2rem;
-      color: var(--white);
-      margin-bottom: 1rem;
+    .link-btn:hover { background: var(--terra); }
+
+    /* ===== TODOS SANTOS ===== */
+    #todos-santos { background: var(--cream); }
+    .ts-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
-    .ts-highlight p {
+    .ts-bullets li {
       font-size: 0.95rem;
-      line-height: 1.75;
-      color: rgba(245,240,232,0.7);
+      line-height: 1.6;
+      color: var(--charcoal);
+      padding: 0.75rem 1rem 0.75rem 1.25rem;
+      background: var(--white);
+      border-left: 3px solid var(--terra);
     }
-    .ts-highlight img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
+    .ts-bullets li strong { color: var(--terra); }
 
     /* ===== FOOTER ===== */
     footer {
       background: #1a1a1a;
-      padding: 3rem 5vw;
+      padding: 2.5rem 5vw;
       text-align: center;
       border-top: 1px solid rgba(212,184,150,0.1);
     }
     .footer-logo {
       font-family: var(--serif);
-      font-size: 2rem;
+      font-size: 1.6rem;
       color: var(--white);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
     }
     .footer-sub {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--sand);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
+    .footer-links { margin-bottom: 1.5rem; }
     .footer-links a {
       font-size: 0.62rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.35);
       text-decoration: none;
-      margin: 0 1rem;
+      margin: 0 0.75rem;
     }
     .footer-links a:hover { color: var(--sand); }
     .footer-copy {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       color: rgba(255,255,255,0.2);
-      margin-top: 2rem;
     }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
+    @media (max-width: 700px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-
-      .agenda-day { grid-template-columns: 1fr; gap: 1rem; }
-
-      .ts-highlight { grid-template-columns: 1fr; gap: 2rem; }
-      .ts-highlight img { order: -1; }
-
-      .villa-images img:first-child { grid-column: span 2; height: 220px; }
-      .villa-images img { height: 180px; }
-
-      .section-inner { padding: 4rem 1.25rem; }
-      .img-divider { background-attachment: scroll; }
+      .section-inner { padding: 3rem 1.25rem; }
+      .hotel-facts { grid-template-columns: 1fr; }
+      .money-top { flex-direction: column; gap: 1rem; }
+      .money-stat { min-width: unset; }
     }
   </style>
 </head>
@@ -749,7 +580,7 @@
   <div id="gate">
     <div class="gate-inner">
       <div class="gate-eyebrow">Boulder High School &mdash; Class Reunion</div>
-      <h1>BHS 40</h1>
+      <h1>Todos or Nothing</h1>
       <p>Todos Santos, Mexico &mdash; February 2026</p>
       <input type="password" id="gate-input" placeholder="Enter password" autocomplete="off" />
       <button id="gate-btn" onclick="checkPass()">Enter</button>
@@ -761,20 +592,20 @@
   <div class="mobile-menu" id="mobile-menu">
     <button class="mobile-menu-close" onclick="closeMobileMenu()">&times;</button>
     <a href="#crew" onclick="closeMobileMenu()">The Crew</a>
-    <a href="#agenda" onclick="closeMobileMenu()">Agenda</a>
-    <a href="#villa" onclick="closeMobileMenu()">The Villa</a>
-    <a href="#money" onclick="closeMobileMenu()">The Money</a>
+    <a href="#hotel" onclick="closeMobileMenu()">The Hotel</a>
+    <a href="#agenda" onclick="closeMobileMenu()">Schedule</a>
+    <a href="#money" onclick="closeMobileMenu()">Money</a>
     <a href="#todos-santos" onclick="closeMobileMenu()">Todos Santos</a>
   </div>
 
   <!-- NAV -->
   <nav id="nav">
-    <a class="nav-logo" href="#hero">BHS 40</a>
+    <a class="nav-logo" href="#hero">Todos or Nothing</a>
     <ul class="nav-links">
       <li><a href="#crew">The Crew</a></li>
-      <li><a href="#agenda">Agenda</a></li>
-      <li><a href="#villa">The Villa</a></li>
-      <li><a href="#money">The Money</a></li>
+      <li><a href="#hotel">Hotel</a></li>
+      <li><a href="#agenda">Schedule</a></li>
+      <li><a href="#money">Money</a></li>
       <li><a href="#todos-santos">Todos Santos</a></li>
     </ul>
     <button class="nav-hamburger" onclick="openMobileMenu()">
@@ -787,270 +618,325 @@
     <div class="hero-bg"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">Boulder High School &mdash; Turning 40 &mdash; Baja California Sur</div>
-      <h1 class="hero-title">BHS<br>40</h1>
+      <h1 class="hero-title">Todos<br>or<br>Nothing</h1>
       <p class="hero-tagline">No kids. No rules. Todos Santos.</p>
-      <div class="hero-dates">
-        Feb 26 <span></span> Mar 1, 2026
-      </div>
-    </div>
-    <div class="scroll-hint">
-      <span>Scroll</span>
-      <div class="scroll-line"></div>
+      <div class="hero-dates">Feb 26 &ndash; Mar 1, 2026</div>
     </div>
   </section>
-
-  <!-- DIVIDER -->
-  <div class="img-divider" style="background-image: url('assets/drone.jpg'); background-position: center 40%;"></div>
 
   <!-- THE CREW -->
   <section id="crew">
-    <div class="section-inner">
-      <div class="section-eyebrow">Who&rsquo;s Coming</div>
+    <div class="section-inner bg-white">
+      <div class="section-label">Who's Coming</div>
       <h2 class="section-title">The Crew</h2>
-      <p class="crew-intro">Nine couples. Friends since before driver&rsquo;s licenses, braces, and better judgment. Elementary school hallways to Baja rooftops &mdash; here we are.</p>
       <div class="crew-grid">
-        <div class="crew-card"><div class="crew-num">01</div><div class="crew-name">Brian &amp; Mairin<em>Head</em></div></div>
-        <div class="crew-card"><div class="crew-num">02</div><div class="crew-name">Logan &amp; Alexandrea<em>Welley</em></div></div>
-        <div class="crew-card"><div class="crew-num">03</div><div class="crew-name">Benny &amp; Carly<em>Swan</em></div></div>
-        <div class="crew-card"><div class="crew-num">04</div><div class="crew-name">Rick &amp; Nell<em>Thomas</em></div></div>
-        <div class="crew-card"><div class="crew-num">05</div><div class="crew-name">Chris &amp; Kelly<em>Molnar</em></div></div>
-        <div class="crew-card"><div class="crew-num">06</div><div class="crew-name">Kirk &amp; Katie<em>Spowart</em></div></div>
-        <div class="crew-card"><div class="crew-num">07</div><div class="crew-name">Rob Kleinberg<br>&amp; Ella Sweeney</div></div>
-        <div class="crew-card"><div class="crew-num">08</div><div class="crew-name">Drew &amp; Lexi<em>Bienvenu</em></div></div>
-        <div class="crew-card"><div class="crew-num">09</div><div class="crew-name">Sam &amp; Maria<em>Matlin</em></div></div>
-        <div class="crew-card"><div class="crew-num">10</div><div class="crew-name">Warren Forster<br>&amp; Vanessa Brown</div></div>
+        <div class="crew-card"><div class="crew-num">01</div><div class="crew-name">Brian &amp; Mairin</div></div>
+        <div class="crew-card"><div class="crew-num">02</div><div class="crew-name">Logan &amp; Alexandrea</div></div>
+        <div class="crew-card"><div class="crew-num">03</div><div class="crew-name">Benny &amp; Carly</div></div>
+        <div class="crew-card"><div class="crew-num">04</div><div class="crew-name">Rick &amp; Nell</div></div>
+        <div class="crew-card"><div class="crew-num">05</div><div class="crew-name">Chris &amp; Kelly</div></div>
+        <div class="crew-card"><div class="crew-num">06</div><div class="crew-name">Kirk &amp; Katie</div></div>
+        <div class="crew-card"><div class="crew-num">07</div><div class="crew-name">Rob &amp; Ella</div></div>
+        <div class="crew-card"><div class="crew-num">08</div><div class="crew-name">Drew &amp; Lexi</div></div>
+        <div class="crew-card"><div class="crew-num">09</div><div class="crew-name">Sam &amp; Maria</div></div>
+        <div class="crew-card"><div class="crew-num">10</div><div class="crew-name">Warren &amp; Vanessa</div></div>
       </div>
     </div>
   </section>
 
-  <!-- DIVIDER -->
-  <div class="img-divider" style="background-image: url('assets/pool.webp'); background-position: center 60%;"></div>
+  <!-- THE HOTEL -->
+  <section id="hotel">
+    <div class="section-inner bg-cream">
+      <div class="section-label">Where We're Staying</div>
+      <h2 class="section-title">The Hotel</h2>
 
-  <!-- AGENDA -->
+      <div class="hotel-facts">
+        <div class="hotel-fact">
+          <div class="hotel-fact-label">Hotel</div>
+          <div class="hotel-fact-val"><strong>Villa Santa Cruz</strong><br>Todos Santos, Baja California Sur, Mexico</div>
+        </div>
+        <div class="hotel-fact">
+          <div class="hotel-fact-label">Address</div>
+          <div class="hotel-fact-val">Camino A Las Playitas<br>23300 Todos Santos, B.C.S.</div>
+        </div>
+        <div class="hotel-fact">
+          <div class="hotel-fact-label">Phone</div>
+          <div class="hotel-fact-val">
+            Mexico: <a href="tel:+526121439230">+52 612 143 9230</a><br>
+            US: <a href="tel:+17602305557">+1 760 230 5557</a>
+          </div>
+        </div>
+        <div class="hotel-fact">
+          <div class="hotel-fact-label">Website</div>
+          <div class="hotel-fact-val"><a href="https://villasantacruzbaja.com/" target="_blank" rel="noopener">villasantacruzbaja.com</a></div>
+        </div>
+      </div>
+
+      <p style="font-size:0.9rem;color:#5a5248;margin-bottom:2rem;">All rooms are <strong>Rooftop Villas</strong> around the Serenity Pool.</p>
+
+      <h3 style="font-family:var(--serif);font-size:1.3rem;color:var(--charcoal);margin-bottom:1rem;">Room Assignments</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Villa Name</th>
+              <th>Type</th>
+              <th>Couple(s)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong></td>
+              <td>Sol &amp; Solecito</td>
+              <td>Two Bedroom</td>
+              <td>Chris &amp; Kelly + Logan &amp; Alexandrea</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td>Cielo &amp; Cielito</td>
+              <td>Two Bedroom</td>
+              <td>Drew &amp; Lexi + Rob &amp; Ella</td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td>Osa Mayor &amp; Osa Menor</td>
+              <td>Two Bedroom</td>
+              <td>Warren &amp; Vanessa + Benny &amp; Carly</td>
+            </tr>
+            <tr>
+              <td><strong>4</strong></td>
+              <td>Orion</td>
+              <td>King</td>
+              <td>Brian &amp; Mairin</td>
+            </tr>
+            <tr>
+              <td><strong>5</strong></td>
+              <td>Leo</td>
+              <td>King</td>
+              <td>Rick &amp; Nell</td>
+            </tr>
+            <tr>
+              <td><strong>6</strong></td>
+              <td>Calisto</td>
+              <td>King</td>
+              <td>Warren &amp; Vanessa</td>
+            </tr>
+            <tr>
+              <td><strong>7</strong></td>
+              <td>Venus</td>
+              <td>Two Queens</td>
+              <td>Sam &amp; Maria</td>
+            </tr>
+            <tr>
+              <td><strong>8</strong></td>
+              <td>Aurora</td>
+              <td>Two Queens</td>
+              <td>Kirk &amp; Katie</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
   <section id="agenda">
-    <div class="section-inner">
-      <div class="section-eyebrow light">The Plan</div>
-      <h2 class="section-title light">The Agenda</h2>
-      <div class="agenda-days">
+    <div class="section-inner bg-dark">
+      <div class="section-label light">The Plan</div>
+      <h2 class="section-title light">Schedule</h2>
 
-        <div class="agenda-day">
-          <div>
-            <div class="agenda-day-label">Day 1 &mdash; Thursday</div>
-            <div class="agenda-day-date">Feb 26</div>
-          </div>
-          <div class="agenda-events">
-            <div class="agenda-event">
-              <div class="agenda-time">All day</div>
-              <div class="agenda-desc"><strong>Arrive &amp; settle in.</strong> Drop bags, hit the hot tub, remember what relaxing feels like.</div>
-            </div>
-            <div class="agenda-event">
-              <div class="agenda-time">5:00 PM</div>
-              <div class="agenda-desc"><strong>Dinner at The Green Room</strong> &mdash; <em>On-site at Villa Santa Cruz, beachfront.</em> First night together. Walk straight from your room.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="agenda-day">
-          <div>
-            <div class="agenda-day-label">Day 2 &mdash; Friday</div>
-            <div class="agenda-day-date">Feb 27</div>
-          </div>
-          <div class="agenda-events">
-            <div class="agenda-event">
-              <div class="agenda-time">Morning</div>
-              <div class="agenda-desc"><strong>Explore Todos Santos.</strong> Art galleries, surf culture, wander the streets, find trouble.</div>
-            </div>
-            <div class="agenda-event">
-              <div class="agenda-time">7:00 PM</div>
-              <div class="agenda-desc"><strong>Dinner at Jazamango</strong> &mdash; <em>Los Naranjos s/n, Fraccionamiento La Huerta.</em> Farm-to-table legend. One of the best tables in Baja.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="agenda-day">
-          <div>
-            <div class="agenda-day-label">Day 3 &mdash; Saturday</div>
-            <div class="agenda-day-date">Feb 28</div>
-          </div>
-          <div class="agenda-events">
-            <div class="agenda-event">
-              <div class="agenda-time">Open</div>
-              <div class="agenda-desc"><strong>Your day, your way.</strong> Beach, pool, horseback riding at the on-site stables, treatments at Almarena Spa &mdash; or all of the above.</div>
-            </div>
-            <div class="agenda-event">
-              <div class="agenda-time">Evening</div>
-              <div class="agenda-desc"><strong>Farewell night &mdash; TBD.</strong> We&rsquo;ll figure it out together. It&rsquo;ll be good.</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="agenda-day">
-          <div>
-            <div class="agenda-day-label">Day 4 &mdash; Sunday</div>
-            <div class="agenda-day-date">Mar 1</div>
-          </div>
-          <div class="agenda-events">
-            <div class="agenda-event">
-              <div class="agenda-time">Morning</div>
-              <div class="agenda-desc"><strong>Check out &amp; flights home.</strong> Rehydrate. Hug it out. Promise to do this again sooner next time.</div>
-            </div>
-          </div>
-        </div>
-
+      <div class="table-wrap">
+        <table class="agenda-table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Date</th>
+              <th>What's Happening</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="day-badge">Thu</span></td>
+              <td style="white-space:nowrap;"><strong>Feb 26</strong></td>
+              <td>
+                Arrive &amp; check in.<br>
+                <strong>Dinner @ The Green Room — 5pm</strong>
+                <div class="agenda-note">On-site at Villa Santa Cruz. Walk from your room.</div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="day-badge">Fri</span></td>
+              <td style="white-space:nowrap;"><strong>Feb 27</strong></td>
+              <td>
+                Explore Todos Santos — town, galleries, tacos.<br>
+                <strong>Dinner @ Jazamango — 7pm</strong>
+                <div class="agenda-note">Los Naranjos s/n, Fraccionamiento La Huerta</div>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="day-badge">Sat</span></td>
+              <td style="white-space:nowrap;"><strong>Feb 28</strong></td>
+              <td>
+                Open day — beach, pool, horses, spa (Almarena).<br>
+                <strong>Evening TBD</strong>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="day-badge">Sun</span></td>
+              <td style="white-space:nowrap;"><strong>Mar 1</strong></td>
+              <td><strong>Check out. Fly home.</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </section>
-
-  <!-- DIVIDER -->
-  <div class="img-divider" style="background-image: url('assets/sol-rooftop.webp');"></div>
-
-  <!-- THE VILLA -->
-  <section id="villa">
-    <div class="section-inner">
-      <div class="section-eyebrow">Where We&rsquo;re Staying</div>
-      <h2 class="section-title">The Villa</h2>
-      <p class="villa-intro">Villa Santa Cruz&rsquo;s Rooftop Villas are the newest and most elevated suites on property. Every unit has a private rooftop with a hot tub. All eight villas share a sleek infinity lap pool and the Serenity Pool. This is not a budget compromise &mdash; it&rsquo;s the good stuff.</p>
-
-      <div class="villa-images">
-        <img src="assets/villa-exterior.webp" alt="Rooftop Villa exterior with pool" />
-        <img src="assets/hottub.webp" alt="Private rooftop hot tub" />
-        <img src="assets/sol-pano.webp" alt="Villa panoramic view" />
-      </div>
-
-      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:1.5rem;color:var(--charcoal);">Room Types</h3>
-      <div class="villa-features">
-        <div class="villa-feature">
-          <h4>King</h4>
-          <p>1 King bed + 1 Daybed. Private rooftop. Perfect for couples who like their own space.</p>
-        </div>
-        <div class="villa-feature">
-          <h4>Two Queens</h4>
-          <p>2 Queen beds. Same private rooftop, same hot tub. Flexible for the group.</p>
-        </div>
-        <div class="villa-feature">
-          <h4>Two Bed / Two Bath</h4>
-          <p>Adjoining rooms with a kitchenette. Maximum square footage. The premium option.</p>
-        </div>
-      </div>
-
-      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:1.25rem;color:var(--charcoal);">Property Amenities</h3>
-      <div class="villa-amenities">
-        <span class="amenity-tag">Private Rooftop Hot Tubs</span>
-        <span class="amenity-tag">Infinity Lap Pool</span>
-        <span class="amenity-tag">Serenity Pool</span>
-        <span class="amenity-tag">The Green Room (beachfront bar &amp; dining)</span>
-        <span class="amenity-tag">Caracara Restaurant</span>
-        <span class="amenity-tag">Almarena Spa &amp; Wellness</span>
-        <span class="amenity-tag">On-Site Stables &amp; Horseback Riding</span>
-        <span class="amenity-tag">Private Beach</span>
-        <span class="amenity-tag">Organic Farm</span>
-      </div>
-
-      <h3 style="font-family:var(--serif);font-size:1.4rem;margin-bottom:1.25rem;color:var(--charcoal);">Room Assignments</h3>
-      <p style="font-size:0.95rem;line-height:1.75;color:#6b6158;max-width:520px;margin-bottom:1.5rem;">Who&rsquo;s in which room &mdash; all the details are in the shared sheet.</p>
-      <a class="villa-sheet-cta" href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M8 12h8"/></svg>
-        View Room Assignments
-      </a>
-    </div>
-  </section>
-
-  <!-- DIVIDER -->
-  <div class="img-divider" style="background-image: url('assets/dining.webp'); background-position: center 55%;"></div>
 
   <!-- THE MONEY -->
   <section id="money">
-    <div class="section-inner">
-      <div class="section-eyebrow light">Logistics</div>
-      <h2 class="section-title light">The Money</h2>
+    <div class="section-inner bg-white">
+      <div class="section-label">Logistics</div>
+      <h2 class="section-title">The Money</h2>
 
-      <div class="money-grid">
-        <div class="money-card">
-          <div class="money-card-label">Nightly Rate</div>
-          <div class="money-card-value">$915</div>
-          <div class="money-card-desc">Per room, per night. Flattened average &mdash; Kings and Queens equalized so nobody&rsquo;s doing math on arrival.</div>
+      <div class="money-top">
+        <div class="money-stat">
+          <div class="money-stat-label">Flattened Nightly Rate</div>
+          <div class="money-stat-val">$915</div>
+          <div class="money-stat-sub">Kings &amp; Queens equalized — no math on arrival</div>
         </div>
-        <div class="money-card">
-          <div class="money-card-label">Deposit</div>
-          <div class="money-card-value">33%</div>
-          <div class="money-card-desc">Of your total room cost, due at booking. Locks in your room. No deposit, no room.</div>
+        <div class="money-stat">
+          <div class="money-stat-label">F&amp;B Minimum</div>
+          <div class="money-stat-val">$40</div>
+          <div class="money-stat-sub">Per person / per day. Use it or lose it daily.</div>
         </div>
-        <div class="money-card">
-          <div class="money-card-label">F&amp;B Minimum</div>
-          <div class="money-card-value">$40</div>
-          <div class="money-card-desc">Per person, per day. Use it or lose it &mdash; daily. Cocktails, dinner, breakfast. This is not a burden.</div>
+        <div class="money-stat">
+          <div class="money-stat-label">Booking Code</div>
+          <div class="money-stat-val" style="font-size:1.6rem;letter-spacing:0.08em;">BHS40</div>
+          <div class="money-stat-sub">Pay the hotel directly</div>
         </div>
       </div>
 
-      <div class="money-note">
-        <strong>How to book:</strong> Pay the hotel directly using booking code <strong>BHS40</strong>. That&rsquo;s how they know you&rsquo;re with the group and apply the group rate. Any questions, route them through the organizers &mdash; not the hotel &mdash; first.
+      <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);margin-bottom:1rem;">Room Costs</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Couple(s)</th>
+              <th>Total (3 nights)</th>
+              <th>Deposit (33%)</th>
+              <th>Due 9/1</th>
+              <th>Due at Checkin</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1</strong> (Two BR)</td>
+              <td>Molnars &amp; Welleys</td>
+              <td>$4,265.63</td>
+              <td>$1,421.88</td>
+              <td>$1,421.88</td>
+              <td>$1,421.88</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong> (Two BR)</td>
+              <td>Bienvenues &amp; Kleinbergs</td>
+              <td>$4,265.63</td>
+              <td>$1,421.88</td>
+              <td>$1,421.88</td>
+              <td>$1,421.88</td>
+            </tr>
+            <tr>
+              <td><strong>3</strong> (Two BR)</td>
+              <td>Forsters &amp; Swans</td>
+              <td>$4,265.63</td>
+              <td>$1,421.88</td>
+              <td>$1,421.88</td>
+              <td>$1,421.88</td>
+            </tr>
+            <tr>
+              <td><strong>4</strong> (King)</td>
+              <td>Heads</td>
+              <td>$2,985.94</td>
+              <td>$995.31</td>
+              <td>$995.31</td>
+              <td>$995.31</td>
+            </tr>
+            <tr>
+              <td><strong>5</strong> (King)</td>
+              <td>Thomases</td>
+              <td>$2,985.94</td>
+              <td>$995.31</td>
+              <td>$995.31</td>
+              <td>$995.31</td>
+            </tr>
+            <tr>
+              <td><strong>6</strong> (King)</td>
+              <td>Browns</td>
+              <td>$2,985.94</td>
+              <td>$995.31</td>
+              <td>$995.31</td>
+              <td>$995.31</td>
+            </tr>
+            <tr>
+              <td><strong>7</strong> (Queens)</td>
+              <td>Matlins</td>
+              <td>$3,327.19</td>
+              <td>$1,109.06</td>
+              <td>$1,109.06</td>
+              <td>$1,109.06</td>
+            </tr>
+            <tr>
+              <td><strong>8</strong> (Queens)</td>
+              <td>Spowarts</td>
+              <td>$3,327.19</td>
+              <td>$1,109.06</td>
+              <td>$1,109.06</td>
+              <td>$1,109.06</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <a class="money-cta" href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">
-        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 17H7A5 5 0 017 7h2M15 7h2a5 5 0 010 10h-2M8 12h8"/></svg>
-        Full Financial Breakdown
-      </a>
+      <h3 style="font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);margin-bottom:1rem;">Venmo Settlements <span style="font-family:var(--sans);font-size:0.8rem;font-weight:400;color:#6b6158;">(to flatten the rate)</span></h3>
+      <ul class="venmo-list">
+        <li><strong>Heads</strong> → pay Matlins <em>$136.50</em></li>
+        <li><strong>Thomases</strong> → pay Spowarts <em>$136.50</em></li>
+        <li><strong>Browns</strong> → pay Matlins <em>$68.25</em> AND Spowarts <em>$68.25</em></li>
+        <li><strong>Matlins</strong> receive <em>$204.75</em> total</li>
+        <li><strong>Spowarts</strong> receive <em>$204.75</em> total</li>
+      </ul>
+
+      <div class="callout">
+        <strong>Full spreadsheet</strong> — room-by-room breakdown, all the numbers:&nbsp;
+        <a href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener" style="color:var(--ocean);">View Google Sheet &rarr;</a>
+      </div>
     </div>
   </section>
 
-  <!-- DIVIDER -->
-  <div class="img-divider" style="background-image: url('assets/horses.webp'); background-position: center 50%;"></div>
-
   <!-- TODOS SANTOS -->
   <section id="todos-santos">
-    <div class="section-inner">
-      <div class="section-eyebrow">The Destination</div>
+    <div class="section-inner bg-cream">
+      <div class="section-label">The Destination</div>
       <h2 class="section-title">Todos Santos</h2>
-      <p class="ts-intro">A small Pacific town where surf culture, art galleries, and farm-to-table food coexist with total remoteness. The Tropic of Cancer runs right through it. The light hits differently here &mdash; golden hour lasts two hours. Desert meets ocean. Most people who visit want to stay forever.</p>
-
-      <div class="ts-grid">
-        <div class="ts-card">
-          <img class="ts-card-img" src="assets/stables.webp" alt="Horseback riding at stables" />
-          <div class="ts-card-body">
-            <div class="ts-card-label">On the Property</div>
-            <h4>Stables &amp; Riding</h4>
-            <p>Sunset rides across the dunes. Full-moon beach rides. Or just hanging with the horses. The Villa Santa Cruz stables are a ten-minute walk from your room.</p>
-          </div>
-        </div>
-        <div class="ts-card">
-          <img class="ts-card-img" src="assets/models-day1.jpg" alt="Pool and ocean views" />
-          <div class="ts-card-body">
-            <div class="ts-card-label">The Town</div>
-            <h4>Todos Santos Town</h4>
-            <p>Art galleries, taco stands, cold beer on warm patios. The kind of town that feels discovered but somehow still secret. Spend a morning wandering &mdash; you won&rsquo;t be bored.</p>
-          </div>
-        </div>
-        <div class="ts-card">
-          <img class="ts-card-img" src="assets/site-general.jpg" alt="Villa Santa Cruz aerial" />
-          <div class="ts-card-body">
-            <div class="ts-card-label">Adventure</div>
-            <h4>Whale Sharks in La Paz</h4>
-            <p>One hour north, La Paz Bay is one of the few places on earth where you can swim with whale sharks. Optional day trip &mdash; absolutely worth it.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ts-highlight">
-        <div>
-          <h3>Caracara &amp; The Green Room</h3>
-          <p>Two restaurants on property, both exceptional. Caracara is the fine-dining flagship &mdash; farm-to-table, sourced from the Villa&rsquo;s own gardens. The Green Room is where you end up after the pool closes, watching the Pacific go dark with a drink in hand.</p>
-          <br />
-          <p style="color:var(--sand);font-size:0.8rem;letter-spacing:0.1em;">Also: Almarena Spa &mdash; book your treatments early. They fill up.</p>
-        </div>
-        <img src="assets/villa-sept.jpg" alt="Villa Santa Cruz oceanfront" />
-      </div>
+      <ul class="ts-bullets">
+        <li><strong>Whale sharks in La Paz</strong> — ~1 hour drive north. One of the few places on earth you can swim with them. Day trip worth doing.</li>
+        <li><strong>Town</strong> — surf, art galleries, tacos, cold beers. Spend a morning wandering.</li>
+        <li><strong>On property</strong> — horseback riding, Almarena Spa (book early, fills up), pool, private beach.</li>
+      </ul>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">BHS 40</div>
-    <div class="footer-sub">Boulder High School &mdash; Todos Santos, Mexico &mdash; Feb 26&ndash;Mar 1, 2026</div>
+    <div class="footer-logo">Todos or Nothing</div>
+    <div class="footer-sub">Boulder High &mdash; Todos Santos, Mexico &mdash; Feb 26&ndash;Mar 1, 2026</div>
     <div class="footer-links">
       <a href="https://villasantacruzbaja.com/" target="_blank" rel="noopener">Villa Santa Cruz</a>
-      <a href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">Room Sheet</a>
+      <a href="https://docs.google.com/spreadsheets/d/1vVGoal2kjIOrRMs6YWMQrtMcv5f1lVJ2AzAlkHVejfY/edit?usp=sharing" target="_blank" rel="noopener">Full Spreadsheet</a>
     </div>
-    <div class="footer-copy">For the crew. By the crew. Class of &rsquo;04.</div>
+    <div class="footer-copy">For the crew. Class of &lsquo;04.</div>
   </footer>
 
   <script>
@@ -1077,9 +963,9 @@
       if (val === PASS) {
         setCookie(COOKIE_NAME, '1', 365);
         const gate = document.getElementById('gate');
-        gate.style.transition = 'opacity 0.5s';
+        gate.style.transition = 'opacity 0.4s';
         gate.style.opacity = '0';
-        setTimeout(() => gate.classList.add('hidden'), 500);
+        setTimeout(() => gate.classList.add('hidden'), 400);
       } else {
         const err = document.getElementById('gate-error');
         err.textContent = 'Incorrect password. Try again.';
@@ -1096,21 +982,8 @@
     // ===== NAV SCROLL =====
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60);
-      updateActiveNav();
+      nav.classList.toggle('scrolled', window.scrollY > 80);
     }, { passive: true });
-
-    function updateActiveNav() {
-      const sections = document.querySelectorAll('section[id]');
-      const links = document.querySelectorAll('.nav-links a');
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 120) current = s.id;
-      });
-      links.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-      });
-    }
 
     // ===== MOBILE MENU =====
     function openMobileMenu() {
@@ -1121,23 +994,6 @@
       document.getElementById('mobile-menu').classList.remove('open');
       document.body.style.overflow = '';
     }
-
-    // ===== INTERSECTION OBSERVER for fade-in =====
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.crew-card, .agenda-day, .villa-feature, .money-card, .ts-card').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
   </script>
 </body>
 </html>
