@@ -51,8 +51,9 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('assets/hero.webp') center / cover no-repeat;
-      opacity: 0.15;
+      background: url('surf-print.png') repeat;
+      background-size: 300px;
+      opacity: 0.2;
     }
     .gate-inner {
       position: relative;
@@ -229,7 +230,8 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('assets/hero.webp') center 35% / cover no-repeat;
+      background: url('surf-print.png') repeat;
+      background-size: 400px;
     }
     .hero-bg::after {
       content: '';
@@ -237,10 +239,10 @@
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(44,44,44,0.10) 0%,
-        rgba(44,44,44,0.05) 30%,
-        rgba(44,44,44,0.55) 70%,
-        rgba(44,44,44,0.82) 100%
+        rgba(22,163,140,0.15) 0%,
+        rgba(22,163,140,0.05) 40%,
+        rgba(34,37,42,0.6) 75%,
+        rgba(34,37,42,0.88) 100%
       );
     }
     .hero-content {
@@ -535,11 +537,21 @@
 
     /* ===== FOOTER ===== */
     footer {
-      background: var(--charcoal);
+      background: var(--ocean);
+      background-image: url('surf-print.png');
+      background-size: 250px;
+      background-repeat: repeat;
       padding: 2.5rem 5vw;
       text-align: center;
-      border-top: 3px solid var(--ocean);
+      position: relative;
     }
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(22,163,140,0.75);
+    }
+    footer > * { position: relative; z-index: 1; }
     .footer-logo {
       font-family: var(--serif);
       font-size: 1.6rem;
