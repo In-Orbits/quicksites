@@ -232,7 +232,7 @@
     /* ── CATEGORIES GRID ── */
     .cat-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 12px;
       align-items: start;
       width: 100%;
@@ -442,7 +442,7 @@
           <span class="toggle-icon" id="pk-icon">&#9658;</span>
           <span>Product Key</span>
         </button>
-        <div class="product-key-body peeking" id="pk-body">
+        <div class="product-key-body expanded" id="pk-body">
           <p class="pk-intro">VergeSense builds ceiling-mounted workplace occupancy sensors and IoT gateways for enterprise space management. Below are the products referenced throughout.</p>
 
           <div class="pk-section-title">Sensors</div>
@@ -1223,9 +1223,9 @@
       const pkBody   = document.getElementById('pk-body');
       const pkIcon   = document.getElementById('pk-icon');
 
-      // Always start in peeking state (shows ~120-140px with fade)
-      pkToggle.setAttribute('aria-expanded', 'false');
-      pkIcon.innerHTML = '&#9658;';
+      // Start fully expanded
+      pkToggle.setAttribute('aria-expanded', 'true');
+      pkIcon.innerHTML = '&#9660;';
 
       pkToggle.addEventListener('click', function() {
         const isPeeking = pkBody.classList.contains('peeking');
@@ -1254,19 +1254,19 @@
 
       CATEGORIES.forEach(function(cat, catIdx) {
         const catEl = document.createElement('div');
-        catEl.className = 'cat';
+        catEl.className = 'cat cat-expanded';
         catEl.setAttribute('role', 'listitem');
 
         // Header button
         const headerBtn = document.createElement('button');
         headerBtn.type = 'button';
         headerBtn.className = 'cat-header-btn';
-        headerBtn.setAttribute('aria-expanded', 'false');
+        headerBtn.setAttribute('aria-expanded', 'true');
         headerBtn.setAttribute('aria-controls', 'cat-content-' + catIdx);
 
         const toggleSpan = document.createElement('span');
         toggleSpan.className = 'cat-toggle';
-        toggleSpan.innerHTML = '&#9658;';
+        toggleSpan.innerHTML = '&#9660;';
         toggleSpan.setAttribute('aria-hidden', 'true');
 
         const nameSpan = document.createElement('span');
@@ -1320,18 +1320,18 @@
       const bodyId = 'proj-body-' + catIdx + '-' + projIdx;
 
       const projEl = document.createElement('div');
-      projEl.className = 'project-entry';
+      projEl.className = 'project-entry proj-expanded';
 
       const headerBtn = document.createElement('button');
       headerBtn.type = 'button';
       headerBtn.className = 'project-header-btn';
-      headerBtn.setAttribute('aria-expanded', 'false');
+      headerBtn.setAttribute('aria-expanded', 'true');
       headerBtn.setAttribute('aria-controls', bodyId);
       headerBtn.id = projId;
 
       const toggleSpan = document.createElement('span');
       toggleSpan.className = 'proj-toggle';
-      toggleSpan.innerHTML = '&#9658;';
+      toggleSpan.innerHTML = '&#9660;';
       toggleSpan.setAttribute('aria-hidden', 'true');
 
       const titleSpan = document.createElement('span');
