@@ -176,14 +176,28 @@
       padding: 16px 20px;
       font-size: 0.8rem;
       overflow: hidden;
-      transition: max-height 150ms ease, padding 150ms ease;
+      position: relative;
+      transition: max-height 300ms ease;
     }
 
-    .product-key-body.collapsed {
-      max-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
+    .product-key-body.peeking {
+      max-height: 140px;
       overflow: hidden;
+    }
+
+    .product-key-body.peeking::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: linear-gradient(to bottom, rgba(250,250,250,0), rgba(250,250,250,1));
+      pointer-events: none;
+    }
+
+    .product-key-body.expanded {
+      max-height: 3000px;
     }
 
     .pk-intro { color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
@@ -359,6 +373,7 @@
       .proj-date { margin-left: 0; padding-left: 18px; font-size: 0.7rem; }
       .cat-header-btn { padding: 10px 12px; font-size: 0.88rem; }
       .product-key-body { padding: 12px 14px; }
+      .product-key-body.peeking { max-height: 120px; }
       .project-body { padding: 12px 14px 14px 24px; }
     }
 
@@ -427,7 +442,7 @@
           <span class="toggle-icon" id="pk-icon">&#9658;</span>
           <span>Product Key</span>
         </button>
-        <div class="product-key-body collapsed" id="pk-body">
+        <div class="product-key-body peeking" id="pk-body">
           <p class="pk-intro">VergeSense builds ceiling-mounted workplace occupancy sensors and IoT gateways for enterprise space management. Below are the products referenced throughout.</p>
 
           <div class="pk-section-title">Sensors</div>
@@ -1208,24 +1223,22 @@
       const pkBody   = document.getElementById('pk-body');
       const pkIcon   = document.getElementById('pk-icon');
 
-      // Desktop: expanded by default; mobile: collapsed
-      const isDesktop = window.innerWidth >= 768;
-      if (isDesktop) {
-        pkBody.classList.remove('collapsed');
-        pkToggle.setAttribute('aria-expanded', 'true');
-        pkIcon.innerHTML = '&#9660;';
-      }
+      // Always start in peeking state (shows ~120-140px with fade)
+      pkToggle.setAttribute('aria-expanded', 'false');
+      pkIcon.innerHTML = '&#9658;';
 
       pkToggle.addEventListener('click', function() {
-        const expanded = pkToggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) {
-          pkBody.classList.add('collapsed');
-          pkToggle.setAttribute('aria-expanded', 'false');
-          pkIcon.innerHTML = '&#9658;';
-        } else {
-          pkBody.classList.remove('collapsed');
+        const isPeeking = pkBody.classList.contains('peeking');
+        if (isPeeking) {
+          pkBody.classList.remove('peeking');
+          pkBody.classList.add('expanded');
           pkToggle.setAttribute('aria-expanded', 'true');
           pkIcon.innerHTML = '&#9660;';
+        } else {
+          pkBody.classList.remove('expanded');
+          pkBody.classList.add('peeking');
+          pkToggle.setAttribute('aria-expanded', 'false');
+          pkIcon.innerHTML = '&#9658;';
         }
       });
 
