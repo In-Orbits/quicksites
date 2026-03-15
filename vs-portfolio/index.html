@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brian Head — Operations Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Helvetica is a system font, no external load needed -->
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -18,7 +16,7 @@
       --accent-hover: #1d4ed8;
       --border: #e5e7eb;
       --expanded-bg: #f3f4f6;
-      --font: 'JetBrains Mono', 'IBM Plex Mono', Consolas, monospace;
+      --font: Helvetica, 'Helvetica Neue', Arial, sans-serif;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -106,7 +104,8 @@
     }
 
     @media (max-width: 767px) {
-      .page-wrap { padding: 32px 16px 64px; }
+      .page-wrap { padding: 24px 12px 64px; }
+      body { font-size: 14px; }
     }
 
     /* ── HEADER ── */
@@ -290,6 +289,8 @@
       text-align: left;
       transition: background 150ms ease;
       line-height: 1.5;
+      overflow: hidden;
+      min-width: 0;
     }
 
     .project-header-btn:hover { background: var(--expanded-bg); }
@@ -302,7 +303,7 @@
       margin-top: 2px;
     }
 
-    .proj-title { font-weight: 600; flex-shrink: 0; }
+    .proj-title { font-weight: 600; min-width: 0; }
 
     .proj-dash {
       color: var(--muted);
@@ -312,6 +313,7 @@
     .proj-summary {
       color: var(--muted);
       flex: 1;
+      min-width: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -324,6 +326,21 @@
       margin-left: auto;
       padding-left: 12px;
       white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      .project-header-btn {
+        flex-wrap: wrap;
+        padding: 10px 12px;
+        gap: 4px;
+      }
+      .proj-title { flex-shrink: 1; word-break: break-word; }
+      .proj-summary { display: none; }
+      .proj-dash { display: none; }
+      .proj-date { margin-left: 0; padding-left: 18px; font-size: 0.7rem; }
+      .cat-header-btn { padding: 10px 12px; font-size: 0.88rem; }
+      .product-key-body { padding: 12px 14px; }
+      .project-body { padding: 12px 14px 14px 24px; }
     }
 
     .project-body {
