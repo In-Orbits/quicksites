@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brian Head — Operations Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border: #e5e7eb;
+      --expanded-bg: #f3f4f6;
+      --font: 'JetBrains Mono', 'IBM Plex Mono', Consolas, monospace;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── PASSWORD GATE ── */
+    #gate {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+      background: var(--bg);
+    }
+
+    .gate-box {
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+    }
+
+    .gate-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .gate-input {
+      font-family: var(--font);
+      font-size: 0.9rem;
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      margin-bottom: 10px;
+      transition: border-color 150ms ease;
+    }
+
+    .gate-input:focus { border-color: var(--accent); }
+
+    .gate-btn {
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 10px 24px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      transition: background 150ms ease;
+    }
+
+    .gate-btn:hover { background: var(--accent-hover); }
+
+    .gate-error {
+      font-size: 0.75rem;
+      color: #dc2626;
+      margin-top: 8px;
+      min-height: 18px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    #main { display: none; }
+    #main.visible { display: block; }
+
+    .page-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    @media (max-width: 767px) {
+      .page-wrap { padding: 32px 16px 64px; }
+    }
+
+    /* ── HEADER ── */
+    .site-header { margin-bottom: 36px; }
+
+    .site-header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .site-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    /* ── PRODUCT KEY ── */
+    .product-key {
+      margin-bottom: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .product-key-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      transition: background 150ms ease;
+    }
+
+    .product-key-header:hover { background: var(--expanded-bg); }
+
+    .product-key-header .toggle-icon {
+      font-size: 0.75rem;
+      color: var(--muted);
+      user-select: none;
+    }
+
+    .product-key-body {
+      padding: 16px 20px;
+      font-size: 0.8rem;
+      overflow: hidden;
+      transition: max-height 150ms ease, padding 150ms ease;
+    }
+
+    .product-key-body.collapsed {
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+
+    .pk-intro { color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+
+    .pk-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      margin-top: 16px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pk-section-title:first-of-type { margin-top: 0; }
+
+    .pk-product { margin-bottom: 12px; }
+
+    .pk-product-name {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .pk-product-spec {
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.55;
+    }
+
+    /* ── CATEGORIES GRID ── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    @media (max-width: 767px) {
+      .cat-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Each category is a grid item */
+    .cat {
+      border: 1px solid var(--border);
+      background: var(--bg);
+      transition: border-color 150ms ease;
+    }
+
+    .cat.cat-expanded {
+      grid-column: 1 / -1;
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 767px) {
+      .cat.cat-expanded { grid-column: 1; border-color: var(--accent); }
+    }
+
+    .cat-header-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: background 150ms ease;
+    }
+
+    .cat-header-btn:hover { background: var(--expanded-bg); }
+    .cat-expanded .cat-header-btn { background: var(--expanded-bg); }
+
+    .cat-header-btn .cat-toggle {
+      font-size: 0.7rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .cat-header-btn .cat-name { flex: 1; }
+
+    .cat-header-btn .cat-count {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    /* Category content */
+    .cat-content {
+      display: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .cat-expanded .cat-content { display: block; }
+
+    /* ── PROJECT ENTRIES ── */
+    .project-entry { border-bottom: 1px solid var(--border); }
+    .project-entry:last-child { border-bottom: none; }
+
+    .project-header-btn {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 16px;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      font-size: 0.82rem;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      transition: background 150ms ease;
+      line-height: 1.5;
+    }
+
+    .project-header-btn:hover { background: var(--expanded-bg); }
+    .project-entry.proj-expanded .project-header-btn { background: var(--expanded-bg); }
+
+    .proj-toggle {
+      font-size: 0.65rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .proj-title { font-weight: 600; flex-shrink: 0; }
+
+    .proj-dash {
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .proj-summary {
+      color: var(--muted);
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .proj-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      margin-left: auto;
+      padding-left: 12px;
+      white-space: nowrap;
+    }
+
+    .project-body {
+      display: none;
+      padding: 14px 20px 16px 36px;
+      background: var(--expanded-bg);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.65;
+      border-top: 1px solid var(--border);
+    }
+
+    .proj-expanded .project-body { display: block; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── PASSWORD GATE ── -->
+  <div id="gate" role="main" aria-label="Authentication">
+    <div class="gate-box">
+      <p class="gate-label">Portfolio access</p>
+      <input
+        type="password"
+        id="gate-input"
+        class="gate-input"
+        placeholder="Password"
+        autocomplete="off"
+        aria-label="Password"
+      />
+      <button class="gate-btn" id="gate-btn" type="button">Enter</button>
+      <p class="gate-error" id="gate-error" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div id="main" aria-label="Portfolio">
+    <div class="page-wrap">
+
+      <!-- Header -->
+      <header class="site-header">
+        <h1>Brian Head</h1>
+        <p>Sr. Director of Operations &amp; Supply Chain</p>
+        <p>VergeSense &mdash; Jan 2024 &ndash; Present</p>
+      </header>
+
+      <!-- Product Key -->
+      <section class="product-key" aria-label="Product Key">
+        <button
+          class="product-key-header"
+          id="pk-toggle"
+          aria-expanded="false"
+          aria-controls="pk-body"
+          type="button"
+        >
+          <span class="toggle-icon" id="pk-icon">&#9658;</span>
+          <span>Product Key</span>
+        </button>
+        <div class="product-key-body collapsed" id="pk-body">
+          <p class="pk-intro">VergeSense builds ceiling-mounted workplace occupancy sensors and IoT gateways for enterprise space management. Below are the products referenced throughout.</p>
+
+          <div class="pk-section-title">Sensors</div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">L302</span>
+            <div class="pk-product-spec">Last-gen battery sensor. K210 (Canaan) YOLO, u-blox BMD340 (Nordic nRF52) Wirepas mesh, L91 battery, Carlco camera CIF. PIR &rarr; camera &rarr; YOLO &rarr; Wirepas &rarr; gateway &rarr; cloud.</div>
+          </div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">L410</span>
+            <div class="pk-product-spec">Next-gen battery sensor replacing L302. Alif E3 (22nm SOI, GlobalFoundries). Nordic nRF52840 Wirepas. Bison camera module, Hynix sensor, Commonlands lens, 120&deg; FOV. Custom EVE Energy Li/SOCl&sub2; battery pack (G0998-LF, 3x ER14505 + SPC0920A supercap, 3.6V 8.1Ah). 10-year target life. Injection molded skins.</div>
+          </div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">E106</span>
+            <div class="pk-product-spec">PoE-powered wired sensor. Variscite VAR-SOM-MX8M-Mini (i.MX8M Mini) running YOLO. Higher polling rate, continuous power. Bison camera. Panasonic PAN1770 (nRF52840) Wirepas mesh. PoE via MPS MP8017. USB-C &amp; ethernet.</div>
+          </div>
+
+          <div class="pk-section-title">Gateway</div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">G400-C</span>
+            <div class="pk-product-spec">Cellular IoT gateway replacing Rigado Cell. E106 platform derivative. Variscite SOM. Quectel EG25-GL CAT4 modem, 2x external antennas, heavy antenna tuning with WNC. Wirepas mesh bridge. USB-C or PoE power.</div>
+          </div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">G400-NC</span>
+            <div class="pk-product-spec">Non-cellular variant. Depopulated G400-C, no modem/antennas. Ethernet/PoE/802.11 only. Same Wirepas mesh gateway function.</div>
+          </div>
+
+          <div class="pk-section-title">3rd Party</div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">Rigado Cell (EOL)</span>
+            <div class="pk-product-spec">Third-party IoT gateway, per-unit license. Replaced by G400. Rigado acquired by Walmart.</div>
+          </div>
+
+          <div class="pk-product">
+            <span class="pk-product-name">Xovis EN1</span>
+            <div class="pk-product-spec">Swiss-designed stereoscopic people counter. PoE-powered, high-frequency doorway counting. Resold by VergeSense for occupancy analytics.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Categories Grid -->
+      <div class="cat-grid" id="cat-grid" role="list"></div>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        127 projects &middot; 11 categories &middot; Jan 2024 &ndash; Present
+      </footer>
+
+    </div>
+  </div>
+
+  <script>
+    // ── DATA ─────────────────────────────────────────────────────────────────
+
+    const CATEGORIES = [
+      {
+        name: 'Supply Chain &amp; Sourcing',
+        projects: [
+          {
+            title: 'Variscite Scrap Resolution',
+            summary: 'WNC liability for $425K scrap',
+            date: 'Jul–Aug 2024',
+            body: 'Obtained written approval from WNC acknowledging liability for accidental scrap ($425k exposure); transitioned direct purchasing to WNC with reduced costs.'
+          },
+          {
+            title: 'Variscite Direct Supply Agreement',
+            summary: 'WNC buys SOM direct, $75–79/unit',
+            date: 'Jul–Aug 2024',
+            body: 'Negotiated shift where WNC purchases Variscite SOM directly (VAR-SOM-MX8MMQ_1800C_1024R_8G_EC_WBD_CT); secured pricing at $75.28–$79.24/unit MOQ-dependent, NCNR terms, 12–14wk lead time.'
+          },
+          {
+            title: 'Variscite SOM v2 Risk Buy &amp; Payment Terms Negotiation',
+            summary: 'Payment terms 25/25/50, $25K saved',
+            date: 'Jul 2024–Jan 2026',
+            body: 'Negotiated 1,000-unit purchase with improved payment terms from 50/50 to 25/25/50 structure ($99.5K order), reducing upfront cash by ~$25K while locking allocation spot during volatile memory markets. Signed volatility waiver.'
+          },
+          {
+            title: 'PoE Injector Sourcing &amp; India Compliance',
+            summary: 'Source in-country, avoid cert costs',
+            date: '2024–2025',
+            body: 'Led multi-vendor evaluation (Phihong, Future, Delta, Liteon) and negotiated shift to "source in-country" strategy for India & international markets, avoiding custom certification costs.'
+          },
+          {
+            title: 'Hard-to-Reach Countries Logistics Framework',
+            summary: 'India playbook, Brazil expansion built',
+            date: 'Jan 2024–Dec 2025',
+            body: 'Built India playbook, expanded to Brazil. Added SFDC warning message on hard-to-reach country orders. Evaluated ZenXL as India IOR provider (clearer than AVFX; legal review in progress). Proposed "Logistics deal desk" concept to Logistics team for insertion in sales workflow. Evaluated exclusive EU import proposal from TecEx.'
+          },
+          {
+            title: 'Quectel Strategic Cellular Module Purchase',
+            summary: '$44K risk buy, 2K modules locked',
+            date: 'Mar 2026',
+            body: 'Approved $44K risk buy for ~2,000 EG25-GL modules (1-year supply) to lock pricing ahead of further memory-driven increases. Created placeholder PO, negotiated consignment vs direct buy with WNC, fallback storage at MV or Rush Order.'
+          },
+          {
+            title: 'Rigado License &amp; Return Negotiations',
+            summary: 'License credits, AT&T savings $27K',
+            date: 'Feb 2024–Jan 2026',
+            body: 'Negotiated return of 100 units from PO2258 with full refund; 150+ additional units with $84 license credit (vs $44 disputed rate). Coordinated activation of returns for shipment to Rush Order. Managed EOL strategy after Rigado announced 2030 cloud service EOL. Reconciled license renewal pricing and dormant unit reactivation terms. Negotiated Q1/Q3 renewals with Rigado finance leadership. Leveraged AT&T spike analysis to reduce renewal costs ($27K saved on Q1 2026 renewals).'
+          },
+          {
+            title: 'Rigado Cell EOL &amp; Procurement',
+            summary: 'EOL planning, G400 bridge secured',
+            date: 'Jul 2024–Jan 2026',
+            body: 'Managed end-of-life planning for Rigado Cell GW platform; proposed Q4 PO for license renewals; evaluated replacement with G400 timing; secured urgent buy approvals when G400 delays created demand bridge requirements.'
+          },
+          {
+            title: 'PIR Sensor Exploration',
+            summary: 'JDM trail, Dexatek alternative explored',
+            date: 'Aug–Sep 2024',
+            body: 'Explored JDM trail with Sercomm; evaluated Nordic recommendation of Dexatek; managed sluggish WNC response on sourcing preference.'
+          },
+          {
+            title: 'USB-C Adapter Program',
+            summary: 'Certified connector at $5/unit MOQ',
+            date: 'Oct 2024–May 2025',
+            body: 'Transitioned from Phihong pursuit to China sourcing with Manufacturing/ME/Certification teams; settled on open-market interim solution with Globtek as certified connector option; later negotiated 2k MOQ at $5/unit with new vendor after discovering reselling issue.'
+          },
+          {
+            title: 'L302 End-of-Life Planning',
+            summary: 'EOL allocation, $10–13K E&O offset',
+            date: 'Oct 2024–Dec 2025',
+            body: 'Assessed large MOQ constraints from Canaan; negotiated buy/sell cycles to minimize excess inventory while managing component lead times; managed allocation strategy and last-time-buy economics (estimated $10–13k E&O offset); deferred final cancel decision pending material liability updates.'
+          },
+          {
+            title: 'AT&T SIM Card Procurement Strategy',
+            summary: 'SIM shifted to VS consignment model',
+            date: 'Nov–Dec 2024',
+            body: 'Shifted from WNC supply to VS consignment model; established Manufacturing team\'s account with WNC for direct ordering.'
+          },
+          {
+            title: 'Xovis Pricing &amp; MOQ Management',
+            summary: 'Tier 4 confirmed, 50-unit MOQ pushed',
+            date: 'Jan–Feb 2026',
+            body: 'Negotiated Tier 4 pricing confirmation; confirmed individual ordering now cheaper than bundle SKUs. Pushed back on 50-unit MOQ for 7-unit EN1 UL requirement. Changed from pre-mounting of brackets to loose-in-box approach at RO.'
+          },
+          {
+            title: 'Energizer Battery Direct Procurement',
+            summary: 'Direct Energizer deal at $1.29/unit',
+            date: 'Nov–Dec 2024',
+            body: 'Connected directly with Energizer for L91 battery sourcing; negotiated current WNC pricing at $1.29/unit; evaluated battery warehouse alternatives for bulk packaging.'
+          },
+          {
+            title: 'Sunpe Light Pipe Buy/Sell Model',
+            summary: 'Consignment to buy/sell model shift',
+            date: 'Feb–Mar 2026',
+            body: 'Shifted from consignment to buy/sell model for light pipe (PIR lens). Coordinated with WNC finance on invoice reconciliation and updated POs to include light pipe additions.'
+          },
+          {
+            title: 'Bracket SKU Program',
+            summary: 'Bracket SKUs created at 3PL',
+            date: 'Dec 2024',
+            body: 'Initiated creation of bracket SKUs at 3PL (PCO-000013) to simplify handling and reduce costs.'
+          },
+          {
+            title: 'Magnet Export Control &amp; Sourcing',
+            summary: 'Chinese export controls, redesign executed',
+            date: 'Feb–Dec 2025',
+            body: 'Identified all magnets (not just rare earths) subject to Chinese export control. Pressed WNC for supplier details and second-sourcing options. Secured third-party non-rare-earth magnet testing; executed strength redesign with engineering. Negotiated Trump trade deal implications and WNC bulk magnet risk-buy strategy.'
+          },
+          {
+            title: 'Obsolete Material Remediation',
+            summary: '$31K obsolete WNC inventory recovered',
+            date: 'Sep–Dec 2025',
+            body: 'Identified $31K of valid obsolete material at WNC from old NPI runs and EOL builds (E106, L410, L302 Black variants). Initiated spot-market resale to Mobius to recoup costs. Managed rework quote assessment for L302 Black-to-White conversion at WNC.'
+          },
+          {
+            title: 'L302 Black to White Conversion',
+            summary: '950-unit rework batch to WNC',
+            date: 'Jan–Mar 2026',
+            body: 'Managed 950-unit L302 Black to White conversion. Shipment initiated back to WNC for March rework. Released TransOrder226 for pick/pack, coordinated with Rush Order on pallet count/weight/dims/quotes, BOL ETA 3/16. L302 strategy implemented: 950 units available, conversion pushed to May with new ETA.'
+          },
+          {
+            title: 'L410 Gap 9 Replacement (Alif)',
+            summary: 'Alif health confirmed, award finalized',
+            date: 'Jan–Apr 2025',
+            body: 'Assessed Alif company health (low risk, DUNS lookup confirmed). Conducted costing exercise and award negotiations. WNC distribution channel setup. Camera driver commitment tracking (4/15 target). Final award delivery achieved.'
+          },
+          {
+            title: 'G400-NC Non-Cellular Variant Launch',
+            summary: 'USB-C splitter reduces BOM cost',
+            date: 'Oct 2024–Mar 2026',
+            body: 'Negotiated USB-C splitter substitution ($8–9/unit) for PoE injector ($50+/unit), reducing bill of materials and enabling faster time-to-market. Managed supply chain transitions (Sunpe housing redesign). Product enabled new customer segment and simplified supply chain.'
+          },
+          {
+            title: 'L410 Battery Pack FRU Strategy',
+            summary: 'DG packaging vendor selected, Uline pivot',
+            date: 'Sep–Dec 2024',
+            body: 'Coordinated DG training at DC; evaluated packaging vendors (ProtecPac, DG-Packaging); negotiated Chin Ming tooling for custom solution; pivoted to off-the-shelf Uline packaging for efficiency.'
+          },
+          {
+            title: 'Xovis Kitting &amp; Pricing Optimization',
+            summary: 'Wolverine automation eliminates VAS fees',
+            date: 'Jan–Mar 2026',
+            body: 'Negotiated response to Xovis decoupling pre-mounting/pre-packing service (post-automation). Quantified internal DC kitting cost per unit, negotiated price concession, and implemented Wolverine automation to eliminate RO VAS fees.'
+          }
+        ]
+      },
+      {
+        name: 'Manufacturing Partnerships',
+        projects: [
+          {
+            title: 'WNC Master Purchase Agreement (MPA)',
+            summary: '12-month MPA, CEO signature pending',
+            date: 'Jul 2024–Dec 2025',
+            body: 'Led multi-month negotiation with WNC legal on MPA terms; obtained written approval on Variscite liability; managed redlines Nov–Dec with targets for stakeholder meeting Dec–Jan. Negotiated 12-month MPA with WNC including pricing section, prior program ratification, and strategic deposit framework. Managed 8-month contract cycle with multiple revision rounds and WNC legal. Final signature path: WNC VP signed, then WNC President, pending CEO final signature. Strategic outcome: Locked formalized supply chain terms.'
+          },
+          {
+            title: 'WNC Strategic Deposit Framework',
+            summary: 'E&O drawdown replaces standard deposit',
+            date: 'Jan–Dec 2025',
+            body: 'Proposed new E&O-based drawdown mechanism to replace standard deposit. Coordinated $248K partial credit memo and full refund structure. Managed monthly cash flow reconciliation with WNC finance. Impact: Improved working capital flexibility.'
+          },
+          {
+            title: 'WNC Production Management &amp; Capacity Planning',
+            summary: '4K/month L410 capacity, E&O managed',
+            date: 'Oct 2024–Mar 2026',
+            body: 'Secured parallel NPI line and supplemental capacity fees (Oct–Nov 2024). Established 3-month forward consumption forecast model where WNC provides needs and VS executes buy/sell transactions with component suppliers (HBV, Canaan), enabling strategic sourcing vs. just-in-time. Managed weekly E&O discussions analyzing costed E&O lists for L302, L410, and E106 portfolio impact. Coordinated 3rd fixture installation at WNC to increase L410 production capacity from current run to 4K units/month target. Oversaw G400-NC DVT PO (48 units) and 850 production units through February; cleared for production after engineering validation.'
+          },
+          {
+            title: 'WNC Component E&amp;O &amp; Financial Framework',
+            summary: '$248K credit, working capital improved',
+            date: 'Jan–Dec 2025',
+            body: 'Proposed new E&O-based drawdown mechanism replacing standard deposit. Coordinated $248K partial credit memo and full refund structure with monthly cash flow reconciliation. Resolved multi-week E&O calculation discrepancies across product portfolio. Final E&O framework established post-strategic deposit refund, improving working capital flexibility.'
+          }
+        ]
+      },
+      {
+        name: 'Commercial &amp; Contracts',
+        projects: [
+          {
+            title: '3PL RFQ &amp; Transition to Rush Order (Project Redwood)',
+            summary: 'Full 3PL transition, Sep 8 go-live',
+            date: 'Oct 2024–Sep 2025',
+            body: 'Kicked off competitive RFQ targeting Rush Order, DCL, ArcBest, Unisco, Expeditors. Developed 3PL scorecard with ops team; conducted site visit to Rush Order (Gilroy) with positive CEO feedback. Managed 6-month transition spanning Oct 2024–Sep 2025: contract redlines (indemnity, liability, insurance), systems integration (Celigo/NetSuite), pilot orders, full go-live Sep 8, 2025. Negotiated 6.5% discount ($500/month). Coordinated VAS setup, credentialing workflows, tariff inventory SKU conversion, and fulfillment staging logic. Result: Executed complete 3PL transition with phased inventory cutover from Expeditors to Rush Order; avoided $10K–20K contractor costs.'
+          },
+          {
+            title: 'Rush Order Service Agreement Negotiation',
+            summary: 'Comprehensive 3PL contract fully negotiated',
+            date: 'Feb 2026',
+            body: 'Negotiated comprehensive 3PL service agreement with Rush Order spanning terms, termination/renewal conditions, tax treatment, liability/indemnification, IP/data retention, payment terms, and lien/disposal clauses. Worked with legal team on contract modifications, addressing service level expectations and operational governance.'
+          },
+          {
+            title: 'Expeditors Pricing Negotiation',
+            summary: '$1,375 cage, rate increase contained',
+            date: 'Sep–Oct 2024',
+            body: 'Negotiated response to Expeditors\' $4–8K/month rate increase (effective 1/1/2025); evaluated cage options ($1,375 vs $2,060); conducted escalation call with 3PL executive contact; pursued competitive rate card analysis for leverage. Recommended payment of $1,375 cage fee; justified decision after 6-month stall on free space usage.'
+          },
+          {
+            title: 'Techship RMA &amp; Antennas/Cables Resolution',
+            summary: 'Antenna charge pushback, PO1864 resolved',
+            date: 'Jul–Oct 2024',
+            body: 'Managed cancelation & E&O discussions; negotiated pushback on Techship attempt to charge for antennas & duties; resolved PO1864 for customized cable payments.'
+          }
+        ]
+      },
+      {
+        name: 'NPI &amp; Engineering Collaboration',
+        projects: [
+          {
+            title: 'L410 Certification Completion',
+            summary: 'Multi-territory certs, six countries pending',
+            date: 'Jan–Mar 2026',
+            body: 'Managed L410 certification across multiple territories. Completed most territories, pending: China, Vietnam, Korea, Indonesia, Thailand, South Africa. SGS working through WiFi co-existence testing requirements for China & Vietnam. 4 conductive test units ready to ship. Assigned Mexico cert ownership to PM + CTO with verification framework.'
+          },
+          {
+            title: 'L410 Cost Optimization &amp; BOM Reduction',
+            summary: '$143K annualized savings from adder removal',
+            date: 'Sep 2024–Jan 2026',
+            body: 'Refreshed costing data for EVT review (MP estimate $86.21 vs L302 $79.49). Negotiated L410 MPA adder removal: $4.97 reduction, BOM now $81.12 (~$143K annualized savings at 2.4K units/month production). Managed BOM questions with WNC on RBOM, ME, and PKG estimates.'
+          },
+          {
+            title: 'G400 Product Family Strategic Evolution',
+            summary: 'Cellular and non-cellular variants evolved',
+            date: '2024–2026',
+            body: 'Supported G400 mechanical evolution (G400-C cellular, G400-NC non-cellular). Coordinated antenna tuning, cable management improvements, housing redesign with Sunpe. Manufacturing speed improvement. Cleared G400-NC for customer deployment after expedited HW testing.'
+          },
+          {
+            title: 'Xovis EN1 UL SKU Greenlight',
+            summary: 'CCB initiated, new SKU in ERP',
+            date: 'Sep–Oct 2024',
+            body: 'Worked with Manufacturing team to initiate CCB for new SKU; managed 297 non-wifi + 125 wifi inventory burn-through requirement; released new SKU into ERP.'
+          },
+          {
+            title: 'SIM Deactivation &amp; Cellular Gateway Efficiency',
+            summary: '$60K annualized SIM savings targeted',
+            date: 'Jan–Feb 2026',
+            body: 'Initiated SIM deactivation project analyzing which SIMs correspond to active vs decommissioned devices. Expanded Rigado deactivation process to include churned G400 cellular customers. Decided to disable via AT&T web portal vs firmware. Target savings $5K/month ($21K→$16K bill), ~$60K annualized.'
+          },
+          {
+            title: 'E106 Hardware Failure Root Cause &amp; Rework Operationalization',
+            summary: '2K units PoE rework operationalized',
+            date: 'Feb–Mar 2026',
+            body: 'Led response to Takeda E106 device failures. Root cause investigation revealed PoE over-voltage failure tied to defective MPS chips from mid-2022 manufacturing. Approved 500-unit rework, expanded scope to ~2000 units of inventory with same defective chips. Resistor change confirmed, WNC cleared to proceed with rework. Rework avoids obsolescence and enables field deployment after correction. Forensic work to identify exact manufacturing date range and bound total serial numbers affected. Testing done 2/6 identified ESD test points vulnerable.'
+          }
+        ]
+      },
+      {
+        name: 'Planning &amp; S&amp;OP',
+        projects: [
+          {
+            title: 'Material Planning Workbench',
+            summary: 'Central planning workbench established ops',
+            date: 'Sep 2024',
+            body: 'Established new Material Planning workbench in Operations & Supply Chain folder for centralized planning visibility.'
+          },
+          {
+            title: 'G400/L410 Allocation Process',
+            summary: 'NS allocation, 250-unit gap identified',
+            date: 'Jan–Feb 2026',
+            body: 'Built and tested allocation process in NetSuite with Business Systems team. Executed G400/L410 allocation refresh identifying inventory gaps. Identified 250-unit gap for SoCal Gas deal (awaiting Sales install date confirmation). Allocation controls established: no NC orders ship without planning approval. Weekly G400 triage calls with Sales, CS, Ops to manage reprioritization. Tested NS allocation process with order reserves (draft orders use \'Reserved\' sales channel field). Introduced auto-commit and allocation schedules.'
+          },
+          {
+            title: 'Top-Down Forecast &amp; Planning Cycles',
+            summary: 'Monthly buy meetings, top-down forecast',
+            date: '2024',
+            body: 'Drove monthly buy meetings with Sales, Finance, Product. Introduced "top down historicals" adjustments (bumped 250 units from 2,545 baseline, 5% QoQ increases). Coordinated with Planning team on SOP for large order thresholds to prevent demand surprises.'
+          },
+          {
+            title: 'L410 x L302 Transition Planning',
+            summary: 'L410 ramp demand, L302 EOL modeled',
+            date: '2024–2025',
+            body: 'Led detailed demand transition analysis as L410 ramp began and L302 entered EOL phase. Created transition tabs in monthly plans with assumptions requiring validation. Coordinated with Product and Engineering on demand cutover timing.'
+          },
+          {
+            title: 'SKU Management &amp; BOM Updates',
+            summary: 'G400, L410 SKUs live in SFDC',
+            date: '2024',
+            body: 'Oversaw creation of new SKUs in Salesforce (G400-C, G400-NC, L410) with Rev Ops. Updated L410 BOMs; approved DVT PO for L410 hardware.'
+          },
+          {
+            title: 'Channel Planning &amp; Deal Desk',
+            summary: 'Deal desk workflow integrated logistics',
+            date: '2024–2025',
+            body: 'Collaborated with sales, customer success, and fulfillment on deal flow planning and logistics feasibility assessment. Proposed deal desk workflow integration.'
+          }
+        ]
+      },
+      {
+        name: 'Logistics &amp; Fulfillment',
+        projects: [
+          {
+            title: 'Dangerous Goods Certification at Expeditors',
+            summary: 'DG battery cert, shipping compliance',
+            date: 'Sep–Dec 2024',
+            body: 'Coordinated DG training at Expeditors DC team; managed battery pack FRU certification and shipping compliance.'
+          },
+          {
+            title: 'CARM Implementation',
+            summary: 'Canada CARM mismatch, IOR updated',
+            date: 'Jan–Feb 2026',
+            body: 'Addressed Canada customs CARM registration issues. Updated Rush Order IT electronic invoices to list VergeSense as IOR, bypassing CARM registration mismatch. Requested Canadian Business Number (CBN) added to IOR field for faster processing.'
+          },
+          {
+            title: 'Zonos Duty/Tax Integration',
+            summary: 'Zonos evaluated for international compliance',
+            date: 'Jan–Mar 2026',
+            body: 'Evaluated Zonos for duty/tariff calculations and international shipping compliance.'
+          },
+          {
+            title: 'Tariffed Inventory Management at Rush Order',
+            summary: 'Tariff SKU conversion logic built',
+            date: 'Oct 2024–Sep 2025',
+            body: 'Managed tariffed inventory SKU conversion at Rush Order. Built fulfillment staging logic for tariff inventory handling. Tracked tariff impact on fulfillment operations and cost reconciliation.'
+          },
+          {
+            title: 'Logistics Quote Template',
+            summary: 'Standardized freight quote template created',
+            date: '2024–2025',
+            body: 'Developed logistics quote template for international orders. Standardized freight cost estimation and RFQ process.'
+          },
+          {
+            title: 'India Import/Export Optimization (IOR Routing)',
+            summary: 'IOR routing optimized, ZenXL evaluated',
+            date: 'Aug 2024–Dec 2025',
+            body: 'Optimized India import/export routing through various IOR providers. Evaluated ZenXL vs AVFX for India operations. Managed compliance documentation (IMEI certificates, DG labeling).'
+          },
+          {
+            title: 'VAS (Value-Added Services) Execution at Mountain View',
+            summary: 'Wolverine automation reduces DC VAS',
+            date: 'Jan–Mar 2026',
+            body: 'Managed VAS kitting at Mountain View DC. Coordinated bracket bundling, accessory assembly, and compliance labeling. Implemented Wolverine automation to streamline DC operations and reduce Rush Order VAS charges.'
+          },
+          {
+            title: 'Freight Cost Analysis &amp; Systematic Under-Quoting Issue',
+            summary: 'DHL tariff misclassification audited',
+            date: 'Jan–Feb 2026',
+            body: 'Analyzed freight cost variance and identified systematic under-quoting in DHL invoices (China vs Switzerland tariff misclassification). Audited 6–12 months of invoices for systemic errors.'
+          },
+          {
+            title: 'DHL Invoice Dispute &amp; Tariff Overcharge Recovery',
+            summary: '$35K DHL tariff dispute filed',
+            date: 'Jan–Feb 2026',
+            body: 'Filed $35K DHL invoice dispute on units misclassified as China origin instead of Switzerland (25% vs 15% tariff error). Pursued additional $12K Switzerland reciprocal tariff refund pending since November. Updated DHL account contact to logistics@vergesense.com for team notification. Audited last 6–12 months of invoices for systemic country-of-origin misclassification.'
+          },
+          {
+            title: 'IEEPA Tariff Refund Recovery Strategy',
+            summary: 'Three-path $208K+ tariff recovery',
+            date: 'Feb–Mar 2026',
+            body: 'Led three-path tariff recovery pursuit following SCOTUS 6-3 ruling that IEEPA tariffs unlawful. Stopped paying immediately on all imports. Known exposure $300K+ from Sep 2025 to Feb 2026 via Expeditors portal. Pursuing via: (1) protest-based CBP refund (confirmed if Expeditors filed protests), (2) CIT litigation monitoring (1000+ companies filed), (3) admin refund watch. Monitored Section 122 pivot (10% global, raised to 15%, 150-day cap expiring mid-July). Segmented exposure into confidence tiers for working capital planning. Filed protests and pursuing CIT cases for $208K+ in disputed tariffs.'
+          },
+          {
+            title: 'Tariff Exposure &amp; Risk Management',
+            summary: 'Tariff matrix, multi-pronged mitigation',
+            date: 'Feb 2024–Mar 2026',
+            body: 'Monitored aluminum/steel tariff impacts. Evaluated duty drawback partnerships (Tradewin, JM Rodgers, Comstock/Holt). Established tariff-driven inventory identification workflow. Tracked EU tariff threats (50% threat at one point in June). Post-Trump trade deal: magnet supply constraints easing. Developed multi-pronged strategy in response to Section 122 tariffs (10% baseline, 15% threatened) affecting Taiwan-sourced products. Created tariff matrix for quarterly pricebook. Explored contingency locations (EU, Singapore warehouse, drop-ship from WNC).'
+          },
+          {
+            title: 'Expeditors Order Consolidation &amp; Staging',
+            summary: 'Consolidation windows, fill rates optimized',
+            date: 'Oct 2024–Sep 2025',
+            body: 'Negotiated consolidation windows and staging locations with Expeditors. Optimized fill rates to reduce consolidation fees. Managed 3PL transition to Rush Order with inventory staging strategy.'
+          },
+          {
+            title: 'FedEx Account Optimization &amp; Rate Card',
+            summary: 'FedEx international rates negotiated',
+            date: '2024',
+            body: 'Reviewed FedEx international shipping rates and service options. Negotiated account-level discounts.'
+          },
+          {
+            title: 'UPS International Freight Transition',
+            summary: 'Air freight transitioned to UPS',
+            date: '2024–2025',
+            body: 'Transitioned international air freight from Expeditors to UPS. Negotiated rate and service levels.'
+          },
+          {
+            title: 'India Market Entry Playbook',
+            summary: '15+ India deployments, playbook enabled',
+            date: 'Aug 2024–Dec 2025',
+            body: 'Built India playbook spanning sourcing strategy (TecEx partnership), logistics provider selection (ZenXL vs AVFX), and compliance framework (DG labeling, IMEI certificates). Expanded playbook to Brazil. Established India in-country logistics partnership ($210/month for 5-carton capacity). Negotiated exclusive EU import proposal; managed compliance for provisioning security. Result: Enabled India market entry at scale with 15+ enterprise deployments.'
+          },
+          {
+            title: 'Expeditors Pricing Negotiation &amp; Cage Strategy',
+            summary: '$5K annual savings, cage secured',
+            date: 'Sep–Oct 2024',
+            body: 'Negotiated response to Expeditors\' $4–8K/month rate increase (effective 1/1/2025). Evaluated cage options ($1,375 vs $2,060). Conducted escalation call with executive contact; pursued competitive rate card analysis. Recommended payment of $1,375 cage fee after 6-month stall. Saved ~$5K annually.'
+          },
+          {
+            title: 'India Storage Options Evaluation',
+            summary: 'ZenXL vs AVFX India storage compared',
+            date: 'Jan 2024–Dec 2025',
+            body: 'Evaluated ZenXL as India IOR provider (clearer than AVFX; legal review in progress). Assessed storage options for India market expansion.'
+          },
+          {
+            title: 'TecEx Freight Forwarder Partnership',
+            summary: 'TecEx $210/month India capacity secured',
+            date: 'Aug 2024–Dec 2025',
+            body: 'Established India in-country logistics partnership with TecEx ($210/month for 5-carton capacity); negotiated exclusive EU import proposal; managed compliance for IMEI certificates, DG labeling, and provisioning security; evaluated for scale-up.'
+          },
+          {
+            title: 'HTS Code Optimization for Tariff Minimization',
+            summary: 'Apple HTS codes aligned, tariff minimized',
+            date: 'Jan 2025–Jan 2026',
+            body: 'Engaged BPE to align HTS codes with Apple classifications (G400, L302, E106, etc.) to leverage Apple\'s tariff lobbying and minimize tariff exposure. Assessed foreign content % classification for sensors.'
+          },
+          {
+            title: 'Aluminum &amp; Steel Tariff Mitigation',
+            summary: 'Drawback explored, WNC mitigation plan',
+            date: 'Mar–May 2025',
+            body: 'Explored tariff impact changes with BPE. Investigated duty drawback opportunities. Assessed foreign content % classification for sensors. Partnered with WNC on mitigation plans.'
+          },
+          {
+            title: 'Export Licensing &amp; Compliance',
+            summary: 'BIS report filed, BPE scope revised',
+            date: 'Jan–Apr 2025',
+            body: 'Annual review of VS exportation license requirements. Coordinated BIS report filing for sensor classification (with BPE Global). Initiated contract revisions with BPE to reduce scope & exposure. Managed customs valuation project for compliance.'
+          },
+          {
+            title: 'G400 Operational Readiness',
+            summary: 'DVT cleared, SKUs live in NetSuite',
+            date: 'Feb–Mar 2025',
+            body: 'Trained Expeditors DC team on black-to-white conversion kitting process. Coordinated Item descriptions, Wolverine rules, and SKU setup in NetSuite. Accessory kit tight inventory managed; resolved via inspection with Manufacturing team at Jiatong. G400 DVT exit completed successfully.'
+          },
+          {
+            title: 'Duty Drawback Program Implementation',
+            summary: '$261K recovery, Tradewin selected',
+            date: 'Apr 2024–Jan 2026',
+            body: 'Submitted ACE (Automated Commercial Environment) application for government duty drawback eligibility. Established RFP process with three firms; selected Tradewin for claims processing. Signed drawback agreement with expected first claims by Oct/Nov 2025. Transitioned from substitution filing (ineligible) to direct ID method requiring lot/serial-level record keeping. Applied for export reporting access with US Census Bureau (granted Jan 2026). Expected 6–9 month government approval cycle with $261K+ potential recovery.'
+          },
+          {
+            title: 'Canada Customs Fix &amp; IOR Configuration',
+            summary: 'Canada IOR fixed, CBN field pending',
+            date: 'Jan–Feb 2026',
+            body: 'Implemented fix for Canada customs delays (systemic UPS/FedEx issue). Updated Rush Order IT electronic invoices to list VergeSense as IOR, bypassing CARM registration mismatch. Requested Canadian Business Number (CBN) added to IOR field for faster processing (CBN field still pending RO IT development as of 2/7).'
+          }
+        ]
+      },
+      {
+        name: 'Systems &amp; Tools Built',
+        projects: [
+          {
+            title: 'NetSuite-to-Salesforce Invoice Sync',
+            summary: 'Invoice sync automates order-to-cash',
+            date: 'Jan–Mar 2026',
+            body: 'Built NetSuite-to-Salesforce invoice synchronization. Automated invoice data flow for billing and revenue recognition. Integrated with SFDC for order-to-cash visibility.'
+          },
+          {
+            title: 'NetSuite-Salesforce Order Sync (Multi-Year Lines)',
+            summary: 'Multi-year line billing sync built',
+            date: 'Jan–Mar 2026',
+            body: 'Built order synchronization for multi-year line items. Handled complex billing scenarios with deferred revenue. Ensured accurate SFDC opportunity closure tied to NetSuite PO delivery.'
+          },
+          {
+            title: 'NetSuite Landing Cost &amp; Gross Margin Dashboard',
+            summary: 'Unit-level COGS, real-time margin visibility',
+            date: 'Jan–Mar 2026',
+            body: 'Built comprehensive landed-cost analytics tracking component procurement, freight, tariffs, duties, and material handling to unit-level COGS. Integrated with S&OP process for pricing and profitability analysis. Enables real-time visibility into cost drivers and margin impact of sourcing/logistics decisions. Used for FY26 pricebook strategy and competitive positioning.'
+          },
+          {
+            title: 'NetSuite 3PL Inventory &amp; Fulfillment Orchestration',
+            summary: 'Celigo Rush Order live Sep 8',
+            date: 'Jan–Sep 2025',
+            body: 'Designed and implemented Celigo integration syncing VS NetSuite ↔ Rush Order WMS. Built SKU conversion logic (820-XXXX → 810-XXXX-T for tariff inventory). Created fulfillment staging logic mapping NetSuite SO requirements to Rush Order pick/pack/ship operations. Coordinated pilot and go-live (Sep 8, 2025). System enables real-time inventory visibility and order-to-fulfillment automation.'
+          },
+          {
+            title: 'NetSuite Procurement Workflow &amp; Supplier Integration',
+            summary: '70% manual PO entry eliminated',
+            date: 'Jan–Mar 2025',
+            body: 'Built automated PO generation workflow for component purchases (HBV, Canaan, Future Electronics). Integrated supplier EDI feeds for receipt matching and invoice reconciliation. Reduced manual PO entry by ~70% and improved reconciliation cycle from 5 days to 1 day.'
+          },
+          {
+            title: 'NetSuite Multi-Subsidiary Setup',
+            summary: 'US, India multi-entity configured',
+            date: '2024–2025',
+            body: 'Configured NetSuite for multi-entity/subsidiary operations (US, India). Set up chart of accounts, inter-company transactions, and reporting.'
+          },
+          {
+            title: 'NetSuite Item Master &amp; Inventory Configuration',
+            summary: 'Tariff tracking, multi-warehouse setup',
+            date: 'Jan 2025–Mar 2026',
+            body: 'Configured item master for tariff tracking, landed cost roll-ups, and multi-warehouse inventory. Set up inventory locations (RO, WNC, MV). Managed SKU hierarchy and classification for fulfillment operations.'
+          },
+          {
+            title: 'Fulfillment Rules &amp; Automation (Wolverine)',
+            summary: 'Wolverine eliminates DC fulfillment exceptions',
+            date: 'Sep 2024–Mar 2026',
+            body: 'Built Wolverine rules in NetSuite for automated fulfillment logic. Implemented bracket bundling, black-to-white conversion, and VAS kitting logic. Eliminated manual fulfillment exceptions at DC.'
+          },
+          {
+            title: 'Celigo Integration Framework',
+            summary: 'SO-to-cash Celigo middleware deployed',
+            date: 'Jan–Sep 2025',
+            body: 'Implemented Celigo middleware layer for 3PL integration. Built mapping for SO → fulfillment order → shipment → cash cycle. Managed pilot and production deployment with Rush Order.'
+          },
+          {
+            title: 'SFDC Custom Workflow &amp; Validation',
+            summary: 'Hard-to-reach warnings added to SFDC',
+            date: '2024–2025',
+            body: 'Built SFDC custom workflow for hard-to-reach country warnings. Added sales validation for international order logistics requirements. Proposed integration with Logistics deal desk.'
+          },
+          {
+            title: 'Cloud Staging &amp; Performance Tuning',
+            summary: 'NetSuite reporting query performance tuned',
+            date: '2024–2025',
+            body: 'Optimized NetSuite cloud environment for reporting performance. Tuned query performance and data refresh cycles.'
+          },
+          {
+            title: 'Supply Chain Risk Dashboard &amp; KPIs',
+            summary: 'Lead-time, supplier health KPIs tracked',
+            date: '2024–2025',
+            body: 'Built dashboard tracking lead-time risk, supplier health, and geopolitical exposure.'
+          },
+          {
+            title: 'AI-Driven Cost &amp; Margin Analytics (Prototype)',
+            summary: 'AI cost driver analysis prototyped',
+            date: '2024–2025',
+            body: 'Experimented with AI-based analysis of cost drivers and margin optimization. Built initial prototype for proof-of-concept.'
+          },
+          {
+            title: 'Item Master &amp; HTS Code Overhaul',
+            summary: 'HTS aligned to Apple, COO confirmed',
+            date: 'Jan 2025–Jan 2026',
+            body: 'Led cross-functional Item Master project integrating SKU renaming, carton ID, and HTS code updates across product portfolio. Coordinated with trade compliance consultant (BPE) on HTS classification aligned with Apple codes (G400, L302, E106) to leverage tariff lobbying. Obtained COO confirmation from suppliers (Rigado, Xovis, WNC). Assessed foreign content % classification for sensors to minimize tariff exposure.'
+          },
+          {
+            title: 'Item Master Update Initiative',
+            summary: 'HTS codes, SKUs, carton IDs updated',
+            date: 'Jan 2025–Jan 2026',
+            body: 'Coordinated broader Item Master project integrating HTS codes, SKU renaming, and carton ID. Gating on HTS code updates across product portfolio.'
+          },
+          {
+            title: '&ldquo;Infinite Library&rdquo; Knowledge Repository',
+            summary: 'Ops key documents cataloged centrally',
+            date: 'Sep 2024',
+            body: 'Kicked off project to catalog all ops key documents; created comprehensive tracking spreadsheet for ongoing reference.'
+          }
+        ]
+      },
+      {
+        name: 'People &amp; Org',
+        projects: [
+          {
+            title: 'Operations Team Scaling &amp; Role Definition',
+            summary: 'Team 1-to-3, logistics/planning split',
+            date: 'Jan–Mar 2025',
+            body: 'Hired and onboarded Logistics lead and Planning & Fulfillment Analyst. Defined role boundaries: Logistics owns 3PL operations, international logistics, and fulfillment strategy; Planning owns demand planning, supply planning, and inventory optimization. Established weekly cadence, project ownership, and escalation paths. Team grew from 1 to 3 with clear specialization and accountability.'
+          },
+          {
+            title: 'Team Right-Sizing &amp; Performance Management',
+            summary: '4 underperforming roles transitioned out',
+            date: '2024–2025',
+            body: 'Transitioned 4 underperforming roles and reduced team size while maintaining and increasing operational output.'
+          },
+          {
+            title: 'Planning Analyst Role Expansion into Planning Leadership',
+            summary: 'Analyst elevated to planning lead',
+            date: 'Jan–Mar 2026',
+            body: 'Transitioned Planning Analyst from fulfillment analyst to lead planning responsibility. Provided coaching on S&OP facilitation, demand forecasting, and vendor communication. Planning lead now owns monthly demand plan and feeds WNC consumption forecast.'
+          },
+          {
+            title: 'WNC Backup Contact Establishment',
+            summary: 'WNC backup established for absences',
+            date: 'Jan–Feb 2026',
+            body: 'WNC primary contact canceling weekly calls for two weeks (vacation). Established WNC backup contact for urgent commercial decisions during absences.'
+          },
+          {
+            title: 'WNC Call Frequency Optimization',
+            summary: 'Weekly WNC calls shifted bi-weekly',
+            date: 'Mar 2026',
+            body: 'Transitioned WNC weekly calls to bi-weekly and adjusted meeting time for DST.'
+          },
+          {
+            title: 'Expeditors Pricing Negotiations',
+            summary: 'Expeditors rate increase negotiated favorably',
+            date: '2024',
+            body: 'Managed sustained price increase demands from Expeditors (effective 1/1/2025, $4–8K/month impact); negotiated cage pricing; obtained competitive quotes from alternative providers; achieved favorable rate adjustments through structured RFQ process. Prevented significant cost overrun through aggressive negotiation.'
+          },
+          {
+            title: 'Customs Import Bond Renewal',
+            summary: '$50K C1 import bond renewed',
+            date: 'Feb 2026',
+            body: 'Renewed $50K C1 import bond with Expeditors.'
+          },
+          {
+            title: 'Ops 2025 Roadmap Development',
+            summary: 'Roadmap built, team owners delegated',
+            date: 'Oct–Nov 2024',
+            body: 'Led roadmap planning sessions; delegated owners to teams; prioritized initiatives for ratification with VP Engineering.'
+          }
+        ]
+      },
+      {
+        name: 'Finance &amp; Cost Management',
+        projects: [
+          {
+            title: 'Supply Chain Cost Transparency &amp; Variance Tracking',
+            summary: 'Weekly spend dashboard, $300K+ tracked',
+            date: 'Jan–Mar 2026',
+            body: 'Built weekly spend dashboard capturing procurement (component, freight, duties, tariffs), manufacturing (labor, scrap, E&O), and fulfillment costs. Implemented monthly variance analysis vs budget by cost category. Identified $300K+ tariff exposure (IEEPA) and $261K+ duty drawback recovery potential. Used for executive reporting to CEO/FP&A.'
+          },
+          {
+            title: 'Tariff &amp; Trade Policy Strategy',
+            summary: 'IEEPA, Section 301 modeled for acquirer',
+            date: 'Feb–Mar 2026',
+            body: 'Conducted comprehensive tariff impact assessment (Section 301, IEEPA, potential Trump administration escalation). Modeled cost implications of Taiwan sanctions, China tariff increases, and reshoring incentives. Advised on component sourcing diversification and manufacturing location strategy. Informed supply chain strategy documentation for M&A diligence (TriplePoint).'
+          },
+          {
+            title: 'Inventory Turns &amp; Aging Analysis',
+            summary: 'Monthly aging, slow-moving inventory analyzed',
+            date: '2024–2025',
+            body: 'Monitored inventory turns and slow-moving inventory aging. Conducted monthly analysis with Planning and Logistics teams.'
+          },
+          {
+            title: 'Inventory Cleanup Across Locations',
+            summary: 'Inventory cleaned 3PL, WNC, MV',
+            date: 'Oct 2024',
+            body: 'Spearheaded ops team effort to clean inventory at 3PL, WNC, and MV office; combed through old POs for transfers and disposals.'
+          },
+          {
+            title: 'E106 Demand Surge &amp; Allocation Strategy',
+            summary: 'Q4 surge demand allocation managed',
+            date: 'Q4 2024–Q1 2025',
+            body: 'Managed surge demand for E106 in Q4 2024 and Q1 2025. Worked with Planning and Logistics teams on allocation and fulfillment.'
+          },
+          {
+            title: 'Safety Stock Review &amp; Optimization',
+            summary: 'Safety stock adjusted for demand variability',
+            date: '2024–2025',
+            body: 'Reviewed safety stock levels by SKU and lead time. Adjusted parametric model based on demand variability.'
+          },
+          {
+            title: 'FY26Q1 Quarterly Pricebook Updates',
+            summary: 'Bison +$20 locked, pricebook updated',
+            date: 'Jan–Feb 2025',
+            body: 'Locked Bison Camera module price increase: E106 $158.76 → $178.98 (+$20.22). Added COO (Cost of Ownership) pricing. Updated pricing for L410, G400, and accessory portfolio.'
+          }
+        ]
+      },
+      {
+        name: 'Strategic Initiatives',
+        projects: [
+          {
+            title: 'Supply Chain Strategy &amp; Risk Mitigation',
+            summary: 'Taiwan risk, acquirer-ready strategy built',
+            date: 'Jan–Mar 2026',
+            body: 'Drafted comprehensive supply chain strategy addressing Taiwan-centric sourcing risk, tariff management, component sole-source vulnerabilities, and long-term alternatives. Key initiatives: Variscite direct sourcing, magnet export control redesign, duty drawback recovery, 3PL transition, and international market expansion. Strategy enables resilience against geopolitical/trade disruption and supports financial modeling for acquirer.'
+          },
+          {
+            title: 'Manufacturing &amp; Supply Chain Resilience',
+            summary: 'Single points of failure mitigated',
+            date: 'Jan–Mar 2026',
+            body: 'Identified and mitigated single-point-of-failure risks: Variscite supply (direct relationship, geopolitical hedging), magnets (redesign away from rare earth), Panasonic modules (secondary sourcing activation), SunPe skins (eliminated from product spec). Established 12–18 month forward visibility for long-lead components.'
+          },
+          {
+            title: 'L410 BOM Cycle Time Optimization',
+            summary: 'Cycle time adder removed January 2026',
+            date: 'Jan 2026',
+            body: 'Removed cycle time adder from L410 BOM in January as production throughput increased substantially.'
+          }
+        ]
+      },
+      {
+        name: 'Compliance &amp; Risk',
+        projects: [
+          {
+            title: 'Annual Tax Compliance &amp; Exemption Certificates',
+            summary: 'Sales tax exemptions renewed annually',
+            date: '2024–2025',
+            body: 'Coordinated annual sales tax exemption renewals and certifications. Routine compliance renewal.'
+          },
+          {
+            title: 'Supplier Quality Management (AQL)',
+            summary: 'AQL defect rates monitored with WNC',
+            date: '2024–2025',
+            body: 'Reviewed AQL (Acceptable Quality Levels) with WNC and suppliers. Monitored defect rates and quality metrics.'
+          },
+          {
+            title: 'Rigado Q4 License Renewal',
+            summary: 'Q4 renewals PO issued, RMA tracked',
+            date: 'Sep–Dec 2024',
+            body: 'Issued Q4 PO for license renewals; established monthly RMA tracking meeting with Rigado to ensure credit returns.'
+          },
+          {
+            title: 'Customs Import Bond Renewal',
+            summary: '$50K C1 bond renewed with Expeditors',
+            date: 'Feb 2026',
+            body: 'Renewed $50K C1 import bond with Expeditors.'
+          }
+        ]
+      }
+    ];
+
+    // ── PASSWORD GATE ──────────────────────────────────────────────────────────
+
+    const gateEl   = document.getElementById('gate');
+    const mainEl   = document.getElementById('main');
+    const inputEl  = document.getElementById('gate-input');
+    const btnEl    = document.getElementById('gate-btn');
+    const errorEl  = document.getElementById('gate-error');
+
+    function tryUnlock() {
+      if (inputEl.value === 'morgan') {
+        gateEl.style.display = 'none';
+        mainEl.classList.add('visible');
+        initSite();
+      } else {
+        errorEl.textContent = 'Incorrect password.';
+        inputEl.value = '';
+        inputEl.focus();
+      }
+    }
+
+    btnEl.addEventListener('click', tryUnlock);
+    inputEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') tryUnlock();
+      if (errorEl.textContent) errorEl.textContent = '';
+    });
+
+    // ── PRODUCT KEY TOGGLE ─────────────────────────────────────────────────────
+
+    function initProductKey() {
+      const pkToggle = document.getElementById('pk-toggle');
+      const pkBody   = document.getElementById('pk-body');
+      const pkIcon   = document.getElementById('pk-icon');
+
+      // Desktop: expanded by default; mobile: collapsed
+      const isDesktop = window.innerWidth >= 768;
+      if (isDesktop) {
+        pkBody.classList.remove('collapsed');
+        pkToggle.setAttribute('aria-expanded', 'true');
+        pkIcon.innerHTML = '&#9660;';
+      }
+
+      pkToggle.addEventListener('click', function() {
+        const expanded = pkToggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+          pkBody.classList.add('collapsed');
+          pkToggle.setAttribute('aria-expanded', 'false');
+          pkIcon.innerHTML = '&#9658;';
+        } else {
+          pkBody.classList.remove('collapsed');
+          pkToggle.setAttribute('aria-expanded', 'true');
+          pkIcon.innerHTML = '&#9660;';
+        }
+      });
+
+      pkToggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pkToggle.click(); }
+      });
+    }
+
+    // ── CATEGORY & PROJECT RENDERING ──────────────────────────────────────────
+
+    function renderCategories() {
+      const grid = document.getElementById('cat-grid');
+
+      CATEGORIES.forEach(function(cat, catIdx) {
+        const catEl = document.createElement('div');
+        catEl.className = 'cat';
+        catEl.setAttribute('role', 'listitem');
+
+        // Header button
+        const headerBtn = document.createElement('button');
+        headerBtn.type = 'button';
+        headerBtn.className = 'cat-header-btn';
+        headerBtn.setAttribute('aria-expanded', 'false');
+        headerBtn.setAttribute('aria-controls', 'cat-content-' + catIdx);
+
+        const toggleSpan = document.createElement('span');
+        toggleSpan.className = 'cat-toggle';
+        toggleSpan.innerHTML = '&#9658;';
+        toggleSpan.setAttribute('aria-hidden', 'true');
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'cat-name';
+        nameSpan.innerHTML = cat.name;
+
+        const countSpan = document.createElement('span');
+        countSpan.className = 'cat-count';
+        countSpan.textContent = '(' + cat.projects.length + ')';
+
+        headerBtn.appendChild(toggleSpan);
+        headerBtn.appendChild(nameSpan);
+        headerBtn.appendChild(countSpan);
+
+        // Content
+        const contentEl = document.createElement('div');
+        contentEl.className = 'cat-content';
+        contentEl.id = 'cat-content-' + catIdx;
+
+        cat.projects.forEach(function(proj, projIdx) {
+          const projEl = renderProject(proj, catIdx, projIdx);
+          contentEl.appendChild(projEl);
+        });
+
+        catEl.appendChild(headerBtn);
+        catEl.appendChild(contentEl);
+        grid.appendChild(catEl);
+
+        // Toggle behavior
+        headerBtn.addEventListener('click', function() {
+          const isExpanded = catEl.classList.contains('cat-expanded');
+          if (isExpanded) {
+            catEl.classList.remove('cat-expanded');
+            headerBtn.setAttribute('aria-expanded', 'false');
+            toggleSpan.innerHTML = '&#9658;';
+          } else {
+            catEl.classList.add('cat-expanded');
+            headerBtn.setAttribute('aria-expanded', 'true');
+            toggleSpan.innerHTML = '&#9660;';
+          }
+        });
+
+        headerBtn.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); headerBtn.click(); }
+        });
+      });
+    }
+
+    function renderProject(proj, catIdx, projIdx) {
+      const projId = 'proj-' + catIdx + '-' + projIdx;
+      const bodyId = 'proj-body-' + catIdx + '-' + projIdx;
+
+      const projEl = document.createElement('div');
+      projEl.className = 'project-entry';
+
+      const headerBtn = document.createElement('button');
+      headerBtn.type = 'button';
+      headerBtn.className = 'project-header-btn';
+      headerBtn.setAttribute('aria-expanded', 'false');
+      headerBtn.setAttribute('aria-controls', bodyId);
+      headerBtn.id = projId;
+
+      const toggleSpan = document.createElement('span');
+      toggleSpan.className = 'proj-toggle';
+      toggleSpan.innerHTML = '&#9658;';
+      toggleSpan.setAttribute('aria-hidden', 'true');
+
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'proj-title';
+      titleSpan.innerHTML = proj.title;
+
+      const dashSpan = document.createElement('span');
+      dashSpan.className = 'proj-dash';
+      dashSpan.textContent = ' — ';
+
+      const summarySpan = document.createElement('span');
+      summarySpan.className = 'proj-summary';
+      summarySpan.innerHTML = proj.summary;
+
+      const dateSpan = document.createElement('span');
+      dateSpan.className = 'proj-date';
+      dateSpan.textContent = proj.date;
+
+      headerBtn.appendChild(toggleSpan);
+      headerBtn.appendChild(titleSpan);
+      headerBtn.appendChild(dashSpan);
+      headerBtn.appendChild(summarySpan);
+      headerBtn.appendChild(dateSpan);
+
+      const bodyEl = document.createElement('div');
+      bodyEl.className = 'project-body';
+      bodyEl.id = bodyId;
+      bodyEl.setAttribute('role', 'region');
+      bodyEl.setAttribute('aria-labelledby', projId);
+      bodyEl.textContent = proj.body;
+
+      projEl.appendChild(headerBtn);
+      projEl.appendChild(bodyEl);
+
+      // Toggle behavior
+      headerBtn.addEventListener('click', function() {
+        const isExpanded = projEl.classList.contains('proj-expanded');
+        if (isExpanded) {
+          projEl.classList.remove('proj-expanded');
+          headerBtn.setAttribute('aria-expanded', 'false');
+          toggleSpan.innerHTML = '&#9658;';
+        } else {
+          projEl.classList.add('proj-expanded');
+          headerBtn.setAttribute('aria-expanded', 'true');
+          toggleSpan.innerHTML = '&#9660;';
+        }
+      });
+
+      headerBtn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); headerBtn.click(); }
+      });
+
+      return projEl;
+    }
+
+    // ── INIT ───────────────────────────────────────────────────────────────────
+
+    function initSite() {
+      initProductKey();
+      renderCategories();
+    }
+  </script>
+</body>
+</html>
