@@ -20,6 +20,24 @@
       --zinc-700: #3f3f46;
       --zinc-900: #18181b;
       --white: #ffffff;
+      --card-bg: rgba(244,244,245,0.4);
+      --card-ring: rgba(212,212,216,0.5);
+      --card-hover: rgba(244,244,245,0.7);
+    }
+
+    html.dark {
+      --zinc-100: #27272a;
+      --zinc-200: #3f3f46;
+      --zinc-300: #3f3f46;
+      --zinc-400: #71717a;
+      --zinc-500: #a1a1aa;
+      --zinc-600: #d4d4d8;
+      --zinc-700: #d4d4d8;
+      --zinc-900: #fafafa;
+      --white: #09090b;
+      --card-bg: rgba(39,39,42,0.4);
+      --card-ring: rgba(63,63,70,0.5);
+      --card-hover: rgba(39,39,42,0.7);
     }
 
     html, body {
@@ -35,6 +53,31 @@
       touch-action: pan-y;
       overscroll-behavior-x: none;
       word-break: break-word;
+    }
+
+    /* ─── Theme Toggle ─── */
+    .theme-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      background: var(--zinc-100);
+      border: 1px solid var(--zinc-200);
+      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 150ms ease, border-color 150ms ease;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: var(--zinc-200);
     }
 
     /* ─── Gate ─── */
@@ -108,6 +151,9 @@
 
     .gate-btn:hover { background: #27272a; }
     .gate-btn:active { background: #18181b; }
+    html.dark .gate-btn { background: #fafafa; color: #09090b; }
+    html.dark .gate-btn:hover { background: #e4e4e7; }
+    html.dark .gate-input { background: #18181b; border-color: var(--zinc-200); color: var(--zinc-900); }
 
     /* ─── Main ─── */
     #main {
@@ -203,13 +249,13 @@
     .product-card {
       padding: 16px 18px;
       border-radius: 16px;
-      background: rgba(212, 212, 216, 0.18);
+      background: var(--card-bg);
       border: 1px solid var(--zinc-200);
       transition: background 0.15s, border-color 0.15s;
     }
 
     .product-card:hover {
-      background: rgba(212, 212, 216, 0.34);
+      background: var(--card-hover);
       border-color: var(--zinc-300);
     }
 
@@ -271,14 +317,14 @@
     .project-card {
       padding: 14px 18px;
       border-radius: 16px;
-      background: rgba(212, 212, 216, 0.13);
+      background: var(--card-bg);
       border: 1px solid var(--zinc-200);
       transition: background 0.15s, border-color 0.15s;
       cursor: default;
     }
 
     .project-card:hover {
-      background: rgba(212, 212, 216, 0.28);
+      background: var(--card-hover);
       border-color: var(--zinc-300);
     }
 
@@ -353,6 +399,8 @@
   </style>
 </head>
 <body>
+
+<button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle theme">☀️</button>
 
 <!-- ─── Password Gate ─── -->
 <div id="gate">
@@ -1610,6 +1658,26 @@
     document.getElementById('gate-btn').addEventListener('click', tryUnlock);
 
     pw.focus();
+
+    // ── Theme Toggle ──
+    var themeBtn = document.getElementById('theme-toggle');
+    function setTheme(dark) {
+      if (dark) {
+        document.documentElement.classList.add('dark');
+        themeBtn.textContent = '🌙';
+      } else {
+        document.documentElement.classList.remove('dark');
+        themeBtn.textContent = '☀️';
+      }
+    }
+    // Default to light
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark);
+
+    themeBtn.addEventListener('click', function() {
+      var isDark = document.documentElement.classList.contains('dark');
+      setTheme(!isDark);
+    });
   })();
 </script>
 
